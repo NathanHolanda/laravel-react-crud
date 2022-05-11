@@ -5,6 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import { Home } from "./pages/Home"
+import "../sass/app.scss";
 
 ReactDOM.render(
   <BrowserRouter>
