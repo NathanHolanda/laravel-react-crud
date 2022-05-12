@@ -1,10 +1,14 @@
-import styles from "./Home.module.scss"
+import { Card } from "../../components/Card";
+import styles from './styles.module.scss';
 
 function Home(){
     return (
-        <form>
-            <p className={styles.text}>Hello, world!</p>
-        </form>
+        <main className={styles.container}>
+            <Card>
+                <h1>Contatos</h1>
+                <table></table>
+            </Card>
+        </main>
     )
 }
 

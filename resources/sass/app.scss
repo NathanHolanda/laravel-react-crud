@@ -10,4 +10,13 @@
 body{
     background: $body-bg;
     font-family: $roboto;
+    color: $font-main;
+
+    a{
+        color: $font-main;
+
+        &:hover{
+            color: $font-main;
+        }
+    }
 }

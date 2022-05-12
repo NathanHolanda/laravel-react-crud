@@ -5,6 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import { Home } from "./pages/Home"
+import { Register } from "./pages/Register"
 import "../sass/app.scss";
 
 ReactDOM.render(
@@ -12,13 +13,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/">
         <Route index element={<Home />} />
-
-
-        {/* <Route path="teams" element={<Teams />}>
-          <Route path=":teamId" element={<Team />} />
-          <Route path="new" element={<NewTeamForm />} />
-          <Route index element={<LeagueStandings />} />
-        </Route> */}
+        <Route path="/cadastrar" element={<Register />}/>
       </Route>
     </Routes>
   </BrowserRouter>,
