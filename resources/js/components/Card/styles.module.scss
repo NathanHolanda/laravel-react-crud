@@ -14,7 +14,7 @@
     display: flex;
     padding-bottom: 2rem;
     margin-bottom: 2rem;
-    border-bottom: 2px dashed #767676;
+    border-bottom: 2px dashed $card-border;
 
     button{
         background: $card-button;
@@ -28,6 +28,10 @@
 
         &:hover{
             background: $card-button-hover;
+        }
+
+        &.selected{
+            background: $card-selected;
         }
 
         a{

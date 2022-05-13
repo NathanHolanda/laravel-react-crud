@@ -4,27 +4,40 @@ import styles from "./styles.module.scss";
 import { useForm } from "react-hook-form";
 import { AddedField } from "../../components/AddedField"
 import { useState } from "react"
+import { api } from "../../services/api"
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 function Register(){
     const [ countEmails, setCountEmails ] = useState(0)
     const [ countPhoneNumbers, setCountPhoneNumbers ] = useState(0)
     const [ deletedFields, setDeletedFields ] = useState([])
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const schema = yup.object().shape({
+        name: yup.string().min(2, "Nome inválido.").required("Nome obrigatório."),
+        surname: yup.string().min(2, "Sobrenome inválido.").required("Sobrenome obrigatório."),
+        cpf: yup.string().matches(/(\d{3}\.){2}\d{3}\-\d{2}/, "CPF inválido."),
+        email: yup.string().email("E-mail inválido.").required("E-mail obrigatório."),
+        phone_number: yup.string().matches(/\(\d{2}\) \d \d{4}\-\d{4}/, "Número de telefone inválido.")
+    });
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    })
     const onSubmit = formData => {
         const { name, surname, cpf, email, phone_number } = formData
 
         const emails = [email]
         for(let i = 1; i <= countEmails; i++){
             const key = `email${i}`
-            if(!deletedFields.includes(key))
+            if(formData[key] && !deletedFields.includes(key))
                 emails.push(formData[key])
         }
 
         const phone_numbers = [phone_number]
         for(let i = 1; i <= countPhoneNumbers; i++){
             const key = `phone_number${i}`
-            if(!deletedFields.includes(key))
+            if(formData[key] && !deletedFields.includes(key))
                 phone_numbers.push(formData[key])
         }
 
@@ -36,7 +49,20 @@ function Register(){
             phone_numbers
         }
 
-        console.log(data)
+        api.post("contacts", data)
+        .then(response => {
+            if(response.status === 201){
+                toast.success("Contato cadastrado com sucesso! 😉", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
+            }
+        })
     }
 
     return (
@@ -47,23 +73,46 @@ function Register(){
                     <div className={styles.formFields}>
                         <div className={styles.formControl}>
                             <label htmlFor="name">Nome *</label>
-                            <input id="name" type="text" {...register("name")}/>
+                            <input
+                              id="name"
+                              type="text"
+                              className={errors.name ? styles.errorFieldBorder : ""}
+                              {...register("name")}
+                            />
+                            { errors.name && <small className={styles.errorFieldMessage}>{ errors.name.message }</small> }
                         </div>
 
                         <div className={styles.formControl}>
                             <label htmlFor="surname">Sobrenome *</label>
-                            <input id="surname" type="text" {...register("surname")}/>
+                            <input
+                              id="surname"
+                              type="text"
+                              className={errors.name ? styles.errorFieldBorder : ""}
+                              {...register("surname")}
+                            />
+                            { errors.surname && <small className={styles.errorFieldMessage}>{ errors.surname.message }</small> }
                         </div>
 
                         <div className={styles.formControl}>
                             <label htmlFor="cpf">CPF *</label>
-                            <input id="cpf" type="text" {...register("cpf")}/>
+                            <input
+                              id="cpf"
+                              type="text"
+                              className={errors.name ? styles.errorFieldBorder : ""}
+                              {...register("cpf")}
+                            />
+                            { errors.cpf && <small className={styles.errorFieldMessage}>{ errors.cpf.message }</small> }
                         </div>
 
                         <div className={styles.formControl}>
-                            <label htmlFor="main_email">E-mail *</label>
+                            <label htmlFor="email">E-mail *</label>
                             <div className={styles.inputBox}>
-                                <input id="main_email" type="email" {...register("email")}/>
+                                <input
+                                  id="email"
+                                  type="email"
+                                  className={errors.name ? styles.errorFieldBorder : ""}
+                                  {...register("email")}
+                                />
                                 <button
                                   className={styles.addField}
                                   onClick={() => {
@@ -71,6 +120,7 @@ function Register(){
                                   }}
                                 ><RiAddLine/></button>
                             </div>
+                            { errors.email && <small className={styles.errorFieldMessage}>{ errors.email.message }</small> }
                         </div>
                         {
                             [...Array(countEmails)].map((_, i) => {
@@ -92,9 +142,14 @@ function Register(){
                         }
 
                         <div className={styles.formControl}>
-                            <label htmlFor="main_phone_number">Telefone *</label>
+                            <label htmlFor="phone_number">Telefone *</label>
                             <div className={styles.inputBox}>
-                                <input id="main_phone_number" type="text" {...register("phone_number")}/>
+                                <input
+                                  id="phone_number"
+                                  type="text"
+                                  className={errors.name ? styles.errorFieldBorder : ""}
+                                  {...register("phone_number")}
+                                />
                                 <button
                                   className={styles.addField}
                                   onClick={() => {
@@ -102,6 +157,7 @@ function Register(){
                                   }}
                                 ><RiAddLine/></button>
                             </div>
+                            { errors.phone_number && <small className={styles.errorFieldMessage}>{ errors.phone_number.message }</small> }
                         </div>
                         {
                             [...Array(countPhoneNumbers)].map((_, i) => {

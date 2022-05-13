@@ -8,10 +8,14 @@ function Card(props){
     return (
         <div className={styles.card}>
             <div className={styles.cardHeader}>
-                <button>
+                <button className={
+                    path === "/" ? styles.selected : ""
+                }>
                     <Link to="/"><RiContactsBookLine/></Link>
                 </button>
-                <button>
+                <button className={
+                    path === "/cadastrar" ? styles.selected : ""
+                }>
                     <Link to={path !== "/cadastrar" ? "/cadastrar" : ""}><RiUserAddLine/></Link>
                 </button>
             </div>

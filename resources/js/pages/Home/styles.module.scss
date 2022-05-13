@@ -1,3 +1,5 @@
+@import '../../../sass/variables';
+
 .container{
     display: flex;
     flex-direction: column;
@@ -7,6 +9,58 @@
 
     h1{
         font-size: 1.75rem;
+        font-weight: 500;
         margin-bottom: 2rem;
+    }
+
+    table{
+        width: 100%;
+
+        thead{
+            margin-bottom: 2rem;
+            border-bottom: 2px solid $card-border;
+            border-top: 2px solid $card-border;
+        }
+
+        tr:nth-of-type(2n){
+            background-color: #2f5286;
+        }
+
+        th{
+            padding: .75rem .25rem;
+        }
+
+        td{
+            padding: .5rem .25rem;
+        }
+
+        border-bottom: 2px solid $card-border;
+    }
+
+    .paginationContainer{
+        ul{
+            margin-top: 2rem;
+            display: flex;
+            list-style-type: none;
+        }
+
+        li{
+            height: 25px;
+            width: 25px;
+            background-color: $card-button;
+            border: none;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            transition: 0.2s;
+
+            &:not(:last-of-type){
+                margin-right: .5rem;
+            }
+
+            &:hover{
+                background-color: $card-button-hover;
+            }
+        }
     }
 }

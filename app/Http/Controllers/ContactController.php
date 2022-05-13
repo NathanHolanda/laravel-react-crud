@@ -38,10 +38,10 @@ class ContactController extends Controller
         ]), 201);
     }
 
-    function list(){
-        $contacts = Contact::all();
+    function list(Request $request){
+        $collection = Contact::all();
 
-        foreach($contacts as $contact){
+        foreach($collection as $contact){
             $emails = Email::where("contact_id", $contact->id)
                 ->get()
                 ->toArray();
@@ -53,7 +53,28 @@ class ContactController extends Controller
             $contact["phone_numbers"] = $phone_numbers;
         }
 
-        return response(json_encode($contacts), 200);
+        $per_page = $request->query("per_page", 8);
+        $page = $request->query("page", 1);
+        $count = count($collection);
+
+        $contacts = $collection->toArray();
+        usort($contacts, function ($a, $b) {
+            $a_val = $a['name'];
+            $b_val = $b['name'];
+
+            if($a_val > $b_val) return 1;
+            if($a_val < $b_val) return -1;
+            return 0;
+        });
+
+
+        $initial = $per_page * ($page - 1);
+        $response_data = array_slice($contacts, $initial, $per_page);
+
+        return response(json_encode([
+            "total" => $count,
+            "contacts" => $response_data
+        ]), 200);
     }
 
     function contact(Request $request){
