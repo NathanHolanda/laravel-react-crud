@@ -4,7 +4,8 @@ import { forwardRef, useState } from "react";
 function Base(props, ref){
     const { styles, id, type, label, deleted: {
         deletedFields, setDeletedFields
-    }, ...rest } = props
+    }, initialValue, ...rest } = props
+    const [ value, setValue ] = useState(initialValue)
     const [ showElement, setShowElement ] = useState(true)
 
     return showElement && (
@@ -15,9 +16,13 @@ function Base(props, ref){
                   {...rest}
                   id={id}
                   type={type}
+                  value={value}
+                  defaultValue={initialValue}
+                  onChange={event => setValue(event.target.value)}
                   ref={ref}
                 />
                 <button
+                  type="button"
                   className={styles.removeField}
                   onClick={() => {
                     setDeletedFields([

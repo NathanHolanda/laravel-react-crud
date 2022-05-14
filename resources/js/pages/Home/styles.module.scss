@@ -15,11 +15,12 @@
 
     table{
         width: 100%;
+        border-bottom: 2px solid $layout-border;
 
         thead{
             margin-bottom: 2rem;
-            border-bottom: 2px solid $card-border;
-            border-top: 2px solid $card-border;
+            border-bottom: 2px solid $layout-border;
+            border-top: 2px solid $layout-border;
         }
 
         tr:nth-of-type(2n){
@@ -27,14 +28,30 @@
         }
 
         th{
-            padding: .75rem .25rem;
+            padding: .75rem .5rem;
         }
 
         td{
-            padding: .5rem .25rem;
+            padding: .5rem .5rem;
         }
 
-        border-bottom: 2px solid $card-border;
+        .tableActions{
+            button{
+                color: $font-main;
+                background-color: $layout-button;
+                border: none;
+                border-radius: 0.25rem;
+                transition: 0.2s;
+
+                &:not(:last-of-type){
+                    margin-right: 0.25rem;
+                }
+
+                &:hover{
+                    background-color: $layout-button-hover;
+                }
+            }
+        }
     }
 
     .paginationContainer{
@@ -47,7 +64,7 @@
         li{
             height: 25px;
             width: 25px;
-            background-color: $card-button;
+            background-color: $layout-button;
             border: none;
             border-radius: 50%;
             text-align: center;
@@ -59,7 +76,7 @@
             }
 
             &:hover{
-                background-color: $card-button-hover;
+                background-color: $layout-button-hover;
             }
         }
     }

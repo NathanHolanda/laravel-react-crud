@@ -1,10 +1,13 @@
-import { Card } from "../../components/Card";
+import { Layout } from "../../components/Layout";
 import styles from './styles.module.scss';
 import "./styles.css"
 import ReactPaginate from 'react-paginate';
 import { useState, useEffect } from "react";
-import { RiArrowRightSLine, RiArrowLeftSLine } from "react-icons/ri";
+import { RiArrowRightSLine, RiArrowLeftSLine, RiEyeLine, RiDeleteBin5Line, RiEdit2Line, RiCloseLine } from "react-icons/ri";
 import { api } from "../../services/api"
+import Modal from 'react-modal';
+
+Modal.setAppElement("#root")
 
 function Home(){
     const [currentItems, setCurrentItems] = useState([]);
@@ -31,9 +34,101 @@ function Home(){
             .then(contacts => setCurrentItems(contacts))
     }
 
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [modalType, setModalType] = useState("")
+    const [currentContact, setCurrentContact] = useState(null)
+    const [contactIdToDelete, setContactIdToDelete] = useState(0)
+
+    const closeModal = () => setModalIsOpen(false)
+    const openModal = (type, id) => {
+        setModalType(type)
+        api.get(`contacts/${id}`)
+            .then(response => response.data)
+            .then(data => setCurrentContact(data))
+
+        setModalIsOpen(true)
+    }
+    const [confirmDeleteIsOpen, setConfirmDeleteIsOpen] = useState(false)
+    const closeConfirmDelete = () => setConfirmDeleteIsOpen(false)
+    const openConfirmDelete = (id) => {
+        setContactIdToDelete(id)
+
+        setConfirmDeleteIsOpen(true)
+    }
+
     return (
         <main className={styles.container}>
-            <Card>
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                className="react-modal-content"
+                overlayClassName="react-modal-overlay"
+            >
+                <div className="close-modal-container">
+                    <button onClick={closeModal}>
+                        <RiCloseLine/>
+                    </button>
+                </div>
+
+                <h1>{
+                    modalType === "edit" ? "Editar contato" :
+                    currentContact ? `${currentContact.name} ${currentContact.surname}` : ""
+                }</h1>
+                {
+                    currentContact ?
+                    <div className="react-modal-body">
+                        <p>CPF: {`${currentContact.cpf}`}</p>
+                        <p>Emails: </p>
+                        <ul>
+                        {
+                            currentContact.emails.map(email => {
+                                return <li>{email.content}</li>
+                            })
+                        }
+                        </ul>
+                        <p>Telefones: </p>
+                        <ul>
+                        {
+                            currentContact.phone_numbers.map(phone_number => {
+                                return <li>{phone_number.content}</li>
+                            })
+                        }
+                        </ul>
+                    </div> : ""
+                }
+            </Modal>
+
+            <Modal
+                isOpen={confirmDeleteIsOpen}
+                onRequestClose={closeConfirmDelete}
+                className="react-confirm-delete"
+                overlayClassName="react-modal-overlay"
+            >
+                <div className="close-modal-container">
+                    <button onClick={closeConfirmDelete}>
+                        <RiCloseLine/>
+                    </button>
+                </div>
+                <p>Deseja realmente excluir o contato?</p>
+                <div className="confirm-delete-buttons">
+                    <button
+                      className="confirm"
+                      onClick={() => {
+                        api.delete(`contacts/${contactIdToDelete}`)
+                            .then(() => {
+                                closeConfirmDelete()
+                                location.reload()
+                            })
+                      }}
+                    >Confirmar</button>
+                    <button
+                      className="cancel"
+                      onClick={closeConfirmDelete}
+                    >Cancelar</button>
+                </div>
+            </Modal>
+
+            <Layout>
                 <h1>Contatos</h1>
                 <table>
                     <thead>
@@ -50,7 +145,19 @@ function Home(){
                                     <tr key={i + 1}>
                                         <td>{`${item.name} ${item.surname}`}</td>
                                         <td>{item.cpf}</td>
-                                        <td></td>
+                                        <td>
+                                            <div className={styles.tableActions}>
+                                                <button
+                                                    onClick={() => openModal("view", item.id)}
+                                                ><RiEyeLine/></button>
+                                                <button
+                                                    onClick={() => openModal("edit", item.id)}
+                                                ><RiEdit2Line/></button>
+                                                <button
+                                                    onClick={() => openConfirmDelete(item.id)}
+                                                ><RiDeleteBin5Line/></button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 )
                             })
@@ -67,7 +174,7 @@ function Home(){
                         previousLabel={<RiArrowLeftSLine/>}
                     />
                 </div>
-            </Card>
+            </Layout>
         </main>
     )
 }

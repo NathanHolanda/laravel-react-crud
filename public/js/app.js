@@ -1,44 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@hookform/resolvers/dist/resolvers.module.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@hookform/resolvers/dist/resolvers.module.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "toNestError": () => (/* binding */ f),
-/* harmony export */   "validateFieldsNatively": () => (/* binding */ t)
-/* harmony export */ });
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
-var e=function(i,e,t){if(i&&"reportValidity"in i){var f=(0,react_hook_form__WEBPACK_IMPORTED_MODULE_0__.get)(t,e);i.setCustomValidity(f&&f.message||""),i.reportValidity()}},t=function(r,i){var t=function(t){var f=i.fields[t];f&&f.ref&&"reportValidity"in f.ref?e(f.ref,t,r):f.refs&&f.refs.forEach(function(i){return e(i,t,r)})};for(var f in i.fields)t(f)},f=function(e,f){f.shouldUseNativeValidation&&t(e,f);var o={};for(var a in e){var n=(0,react_hook_form__WEBPACK_IMPORTED_MODULE_0__.get)(f.fields,a);(0,react_hook_form__WEBPACK_IMPORTED_MODULE_0__.set)(o,a,Object.assign(e[a],{ref:n&&n.ref}))}return o};
-//# sourceMappingURL=resolvers.module.js.map
-
-
-/***/ }),
-
-/***/ "./node_modules/@hookform/resolvers/yup/dist/yup.module.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@hookform/resolvers/yup/dist/yup.module.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "yupResolver": () => (/* binding */ o)
-/* harmony export */ });
-/* harmony import */ var _hookform_resolvers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @hookform/resolvers */ "./node_modules/@hookform/resolvers/dist/resolvers.module.js");
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
-var o=function(o,n,a){return void 0===n&&(n={}),void 0===a&&(a={}),function(s,i,c){try{return Promise.resolve(function(t,r){try{var u=(n.context&&"development"==="development"&&console.warn("You should not used the yup options context. Please, use the 'useForm' context object instead"),Promise.resolve(o["sync"===a.mode?"validateSync":"validate"](s,Object.assign({abortEarly:!1},n,{context:i}))).then(function(t){return c.shouldUseNativeValidation&&(0,_hookform_resolvers__WEBPACK_IMPORTED_MODULE_0__.validateFieldsNatively)({},c),{values:t,errors:{}}}))}catch(e){return r(e)}return u&&u.then?u.then(void 0,r):u}(0,function(e){if(!e.inner)throw e;return{values:{},errors:(0,_hookform_resolvers__WEBPACK_IMPORTED_MODULE_0__.toNestError)((o=e,n=!c.shouldUseNativeValidation&&"all"===c.criteriaMode,(o.inner||[]).reduce(function(e,t){if(e[t.path]||(e[t.path]={message:t.message,type:t.type}),n){var o=e[t.path].types,a=o&&o[t.type];e[t.path]=(0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.appendErrors)(t.path,n,e,t.type,a?[].concat(a,t.message):t.message)}return e},{})),c)};var o,n}))}catch(e){return Promise.reject(e)}}};
-//# sourceMappingURL=yup.module.js.map
-
-
-/***/ }),
-
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -2247,7 +2209,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_icons_ri__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-icons/ri */ "./node_modules/react-icons/ri/index.esm.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _excluded = ["styles", "id", "type", "label", "deleted"];
+var _excluded = ["styles", "id", "type", "label", "deleted", "initialValue"];
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -2292,12 +2254,18 @@ function Base(props, ref) {
       _props$deleted = props.deleted,
       deletedFields = _props$deleted.deletedFields,
       setDeletedFields = _props$deleted.setDeletedFields,
+      initialValue = props.initialValue,
       rest = _objectWithoutProperties(props, _excluded);
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialValue),
       _useState2 = _slicedToArray(_useState, 2),
-      showElement = _useState2[0],
-      setShowElement = _useState2[1];
+      value = _useState2[0],
+      setValue = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState4 = _slicedToArray(_useState3, 2),
+      showElement = _useState4[0],
+      setShowElement = _useState4[1];
 
   return showElement && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: styles.formControl,
@@ -2309,8 +2277,14 @@ function Base(props, ref) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", _objectSpread(_objectSpread({}, rest), {}, {
         id: id,
         type: type,
+        value: value,
+        defaultValue: initialValue,
+        onChange: function onChange(event) {
+          return setValue(event.target.value);
+        },
         ref: ref
       })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        type: "button",
         className: styles.removeField,
         onClick: function onClick() {
           setDeletedFields([].concat(_toConsumableArray(deletedFields), [id]));
@@ -2327,18 +2301,18 @@ var AddedField = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(
 
 /***/ }),
 
-/***/ "./resources/js/components/Card/index.jsx":
-/*!************************************************!*\
-  !*** ./resources/js/components/Card/index.jsx ***!
-  \************************************************/
+/***/ "./resources/js/components/Layout/index.jsx":
+/*!**************************************************!*\
+  !*** ./resources/js/components/Layout/index.jsx ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Card": () => (/* binding */ Card)
+/* harmony export */   "Layout": () => (/* binding */ Layout)
 /* harmony export */ });
-/* harmony import */ var _styles_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.module.scss */ "./resources/js/components/Card/styles.module.scss");
+/* harmony import */ var _styles_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.module.scss */ "./resources/js/components/Layout/styles.module.scss");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var react_icons_ri__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/ri */ "./node_modules/react-icons/ri/index.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -2348,12 +2322,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Card(props) {
+function Layout(props) {
   var path = location.pathname;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].card,
+    className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].layout,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].cardHeader,
+      className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].layoutHeader,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
         className: path === "/" ? _styles_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].selected : "",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
@@ -2388,15 +2362,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Home": () => (/* binding */ Home)
 /* harmony export */ });
-/* harmony import */ var _components_Card__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Card */ "./resources/js/components/Card/index.jsx");
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Layout */ "./resources/js/components/Layout/index.jsx");
 /* harmony import */ var _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.module.scss */ "./resources/js/pages/Home/styles.module.scss");
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles.css */ "./resources/js/pages/Home/styles.css");
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_icons_ri__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-icons/ri */ "./node_modules/react-icons/ri/index.esm.js");
+/* harmony import */ var react_icons_ri__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-icons/ri */ "./node_modules/react-icons/ri/index.esm.js");
 /* harmony import */ var _services_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/api */ "./resources/js/services/api.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2418,6 +2394,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+react_modal__WEBPACK_IMPORTED_MODULE_6___default().setAppElement("#root");
 
 function Home() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)([]),
@@ -2451,43 +2429,176 @@ function Home() {
     });
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("main", {
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      modalIsOpen = _useState6[0],
+      setModalIsOpen = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      modalType = _useState8[0],
+      setModalType = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null),
+      _useState10 = _slicedToArray(_useState9, 2),
+      currentContact = _useState10[0],
+      setCurrentContact = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(0),
+      _useState12 = _slicedToArray(_useState11, 2),
+      contactIdToDelete = _useState12[0],
+      setContactIdToDelete = _useState12[1];
+
+  var closeModal = function closeModal() {
+    return setModalIsOpen(false);
+  };
+
+  var openModal = function openModal(type, id) {
+    setModalType(type);
+    _services_api__WEBPACK_IMPORTED_MODULE_5__.api.get("contacts/".concat(id)).then(function (response) {
+      return response.data;
+    }).then(function (data) {
+      return setCurrentContact(data);
+    });
+    setModalIsOpen(true);
+  };
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      confirmDeleteIsOpen = _useState14[0],
+      setConfirmDeleteIsOpen = _useState14[1];
+
+  var closeConfirmDelete = function closeConfirmDelete() {
+    return setConfirmDeleteIsOpen(false);
+  };
+
+  var openConfirmDelete = function openConfirmDelete(id) {
+    setContactIdToDelete(id);
+    setConfirmDeleteIsOpen(true);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("main", {
     className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].container,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_components_Card__WEBPACK_IMPORTED_MODULE_0__.Card, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
-        children: "Contatos"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("table", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("thead", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-              children: "Nome"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-              children: "CPF"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {})]
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)((react_modal__WEBPACK_IMPORTED_MODULE_6___default()), {
+      isOpen: modalIsOpen,
+      onRequestClose: closeModal,
+      className: "react-modal-content",
+      overlayClassName: "react-modal-overlay",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        className: "close-modal-container",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          onClick: closeModal,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_8__.RiCloseLine, {})
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+        children: modalType === "edit" ? "Editar contato" : currentContact ? "".concat(currentContact.name, " ").concat(currentContact.surname) : ""
+      }), currentContact ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "react-modal-body",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
+          children: ["CPF: ", "".concat(currentContact.cpf)]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+          children: "Emails: "
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("ul", {
+          children: currentContact.emails.map(function (email) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
+              children: email.content
+            });
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+          children: "Telefones: "
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("ul", {
+          children: currentContact.phone_numbers.map(function (phone_number) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
+              children: phone_number.content
+            });
+          })
+        })]
+      }) : ""]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)((react_modal__WEBPACK_IMPORTED_MODULE_6___default()), {
+      isOpen: confirmDeleteIsOpen,
+      onRequestClose: closeConfirmDelete,
+      className: "react-confirm-delete",
+      overlayClassName: "react-modal-overlay",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        className: "close-modal-container",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          onClick: closeConfirmDelete,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_8__.RiCloseLine, {})
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+        children: "Deseja realmente excluir o contato?"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "confirm-delete-buttons",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          className: "confirm",
+          onClick: function onClick() {
+            _services_api__WEBPACK_IMPORTED_MODULE_5__.api["delete"]("contacts/".concat(contactIdToDelete)).then(function () {
+              closeConfirmDelete();
+              location.reload();
+            });
+          },
+          children: "Confirmar"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          className: "cancel",
+          onClick: closeConfirmDelete,
+          children: "Cancelar"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_Layout__WEBPACK_IMPORTED_MODULE_0__.Layout, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+        children: "Contatos"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("table", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("thead", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
+              children: "Nome"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
+              children: "CPF"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {})]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("tbody", {
           children: currentItems.map(function (item, i) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                 children: "".concat(item.name, " ").concat(item.surname)
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                 children: item.cpf
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {})]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].tableActions,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+                    onClick: function onClick() {
+                      return openModal("view", item.id);
+                    },
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_8__.RiEyeLine, {})
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+                    onClick: function onClick() {
+                      return openModal("edit", item.id);
+                    },
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_8__.RiEdit2Line, {})
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+                    onClick: function onClick() {
+                      return openConfirmDelete(item.id);
+                    },
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_8__.RiDeleteBin5Line, {})
+                  })]
+                })
+              })]
             }, i + 1);
           })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].paginationContainer,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_3___default()), {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_3___default()), {
           breakLabel: "...",
-          nextLabel: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_7__.RiArrowRightSLine, {}),
+          nextLabel: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_8__.RiArrowRightSLine, {}),
           onPageChange: handlePageClick,
           pageRangeDisplayed: 5,
           pageCount: pageCount,
-          previousLabel: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_7__.RiArrowLeftSLine, {})
+          previousLabel: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_8__.RiArrowLeftSLine, {})
         })
       })]
-    })
+    })]
   });
 }
 
@@ -2506,16 +2617,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Register": () => (/* binding */ Register)
 /* harmony export */ });
-/* harmony import */ var _components_Card__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Card */ "./resources/js/components/Card/index.jsx");
-/* harmony import */ var react_icons_ri__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-icons/ri */ "./node_modules/react-icons/ri/index.esm.js");
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Layout */ "./resources/js/components/Layout/index.jsx");
+/* harmony import */ var react_icons_ri__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-icons/ri */ "./node_modules/react-icons/ri/index.esm.js");
 /* harmony import */ var _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.module.scss */ "./resources/js/pages/Register/styles.module.scss");
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var _components_AddedField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/AddedField */ "./resources/js/components/AddedField/index.jsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _services_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/api */ "./resources/js/services/api.js");
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
-/* harmony import */ var _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @hookform/resolvers/yup */ "./node_modules/@hookform/resolvers/yup/dist/yup.module.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
+/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
+/* harmony import */ var spinners_react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! spinners-react */ "./node_modules/spinners-react/lib/esm/SpinnerCircularFixed.js");
+/* harmony import */ var react_input_mask__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-input-mask */ "./node_modules/react-input-mask/index.js");
+/* harmony import */ var react_input_mask__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_input_mask__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2554,38 +2668,66 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 function Register() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
+    name: "",
+    surname: "",
+    cpf: "",
+    email: "",
+    phone_number: ""
+  }),
       _useState2 = _slicedToArray(_useState, 2),
-      countEmails = _useState2[0],
-      setCountEmails = _useState2[1];
+      form = _useState2[0],
+      setForm = _useState2[1];
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
-      countPhoneNumbers = _useState4[0],
-      setCountPhoneNumbers = _useState4[1];
+      countEmails = _useState4[0],
+      setCountEmails = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
-      deletedFields = _useState6[0],
-      setDeletedFields = _useState6[1];
+      countPhoneNumbers = _useState6[0],
+      setCountPhoneNumbers = _useState6[1];
 
-  var schema = yup__WEBPACK_IMPORTED_MODULE_5__.object().shape({
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      deletedFields = _useState8[0],
+      setDeletedFields = _useState8[1];
+
+  var schema = yup__WEBPACK_IMPORTED_MODULE_5__.object({
     name: yup__WEBPACK_IMPORTED_MODULE_5__.string().min(2, "Nome inválido.").required("Nome obrigatório."),
     surname: yup__WEBPACK_IMPORTED_MODULE_5__.string().min(2, "Sobrenome inválido.").required("Sobrenome obrigatório."),
     cpf: yup__WEBPACK_IMPORTED_MODULE_5__.string().matches(/(\d{3}\.){2}\d{3}\-\d{2}/, "CPF inválido."),
     email: yup__WEBPACK_IMPORTED_MODULE_5__.string().email("E-mail inválido.").required("E-mail obrigatório."),
-    phone_number: yup__WEBPACK_IMPORTED_MODULE_5__.string().matches(/\(\d{2}\) \d \d{4}\-\d{4}/, "Número de telefone inválido.")
+    phone_number: yup__WEBPACK_IMPORTED_MODULE_5__.string().matches(/\(\d{2}\) 9\d{4}\-\d{4}/, "Número de telefone inválido.")
   });
 
-  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_8__.useForm)({
-    resolver: (0,_hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_6__.yupResolver)(schema)
-  }),
-      register = _useForm.register,
-      handleSubmit = _useForm.handleSubmit,
-      errors = _useForm.formState.errors;
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null),
+      _useState10 = _slicedToArray(_useState9, 2),
+      errors = _useState10[0],
+      setErrors = _useState10[1];
 
-  var onSubmit = function onSubmit(formData) {
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      isLoading = _useState12[0],
+      setIsLoading = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      isFormSent = _useState14[0],
+      setIsFormSent = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      submitClicked = _useState16[0],
+      setSubmitClicked = _useState16[1];
+
+  var _onSubmit = function onSubmit(formData) {
+    setIsLoading(true);
+    setIsFormSent(true);
     var name = formData.name,
         surname = formData.surname,
         cpf = formData.cpf,
@@ -2615,91 +2757,150 @@ function Register() {
     };
     _services_api__WEBPACK_IMPORTED_MODULE_4__.api.post("contacts", data).then(function (response) {
       if (response.status === 201) {
-        toast.success("Contato cadastrado com sucesso! 😉", {
-          position: "top-right",
+        react_toastify__WEBPACK_IMPORTED_MODULE_6__.toast.success("Contato cadastrado com sucesso! 😉", {
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined
+          progress: undefined,
+          onClose: function onClose() {
+            return location.href = "/";
+          },
+          onOpen: function onOpen() {
+            return setIsLoading(false);
+          }
         });
       }
+
+      setIsLoading(false);
+    })["catch"](function () {
+      react_toastify__WEBPACK_IMPORTED_MODULE_6__.toast.error("Erro ao cadastrar contato! 😣", {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        progress: undefined,
+        onClose: function onClose() {
+          return location.href = "/";
+        },
+        onOpen: function onOpen() {
+          return setIsLoading(false);
+        }
+      });
+      setIsLoading(false);
     });
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("main", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("main", {
     className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].container,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_Card__WEBPACK_IMPORTED_MODULE_0__.Card, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_components_Layout__WEBPACK_IMPORTED_MODULE_0__.Layout, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h1", {
         children: "Novo contato"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
-        onSubmit: handleSubmit(onSubmit),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("form", {
+        onSubmit: function onSubmit(event) {
+          event.preventDefault();
+          schema.validate(form, {
+            abortEarly: false
+          }).then(function (data) {
+            return _onSubmit(data);
+          })["catch"](function (data) {
+            var invalid = JSON.parse(JSON.stringify(data));
+            var errors = {};
+            invalid.inner.forEach(function (item) {
+              errors[item.path] = item.errors[0];
+            });
+            setErrors(errors);
+          });
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
           className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].formFields,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].formControl,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
               htmlFor: "name",
               children: "Nome *"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", _objectSpread({
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
               id: "name",
               type: "text",
-              className: errors.name ? _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldBorder : ""
-            }, register("name"))), errors.name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("small", {
+              className: submitClicked && errors !== null && errors !== void 0 && errors.name ? _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldBorder : "",
+              value: form.name,
+              onChange: function onChange(event) {
+                return setForm(_objectSpread(_objectSpread({}, form), {}, {
+                  name: event.target.value
+                }));
+              }
+            }), submitClicked && (errors === null || errors === void 0 ? void 0 : errors.name) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("small", {
               className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldMessage,
-              children: errors.name.message
+              children: errors.name
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].formControl,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
               htmlFor: "surname",
               children: "Sobrenome *"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", _objectSpread({
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
               id: "surname",
               type: "text",
-              className: errors.name ? _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldBorder : ""
-            }, register("surname"))), errors.surname && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("small", {
+              className: submitClicked && errors !== null && errors !== void 0 && errors.surname ? _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldBorder : "",
+              value: form.surname,
+              onChange: function onChange(event) {
+                return setForm(_objectSpread(_objectSpread({}, form), {}, {
+                  surname: event.target.value
+                }));
+              }
+            }), submitClicked && (errors === null || errors === void 0 ? void 0 : errors.surname) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("small", {
               className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldMessage,
-              children: errors.surname.message
+              children: errors.surname
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].formControl,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
               htmlFor: "cpf",
               children: "CPF *"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", _objectSpread({
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((react_input_mask__WEBPACK_IMPORTED_MODULE_8___default()), {
+              mask: "999.999.999-99",
               id: "cpf",
               type: "text",
-              className: errors.name ? _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldBorder : ""
-            }, register("cpf"))), errors.cpf && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("small", {
+              className: submitClicked && errors !== null && errors !== void 0 && errors.cpf ? _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldBorder : "",
+              value: form.cpf,
+              onChange: function onChange(event) {
+                return setForm(_objectSpread(_objectSpread({}, form), {}, {
+                  cpf: event.target.value
+                }));
+              }
+            }), submitClicked && (errors === null || errors === void 0 ? void 0 : errors.cpf) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("small", {
               className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldMessage,
-              children: errors.cpf.message
+              children: errors.cpf
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].formControl,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
               htmlFor: "email",
               children: "E-mail *"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
               className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].inputBox,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", _objectSpread({
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
                 id: "email",
                 type: "email",
-                className: errors.name ? _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldBorder : ""
-              }, register("email"))), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+                className: submitClicked && errors !== null && errors !== void 0 && errors.email ? _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldBorder : "",
+                value: form.email,
+                onChange: function onChange(event) {
+                  return setForm(_objectSpread(_objectSpread({}, form), {}, {
+                    email: event.target.value
+                  }));
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+                type: "button",
                 className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].addField,
                 onClick: function onClick() {
                   setCountEmails(countEmails + 1);
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_9__.RiAddLine, {})
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_10__.RiAddLine, {})
               })]
-            }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("small", {
+            }), submitClicked && (errors === null || errors === void 0 ? void 0 : errors.email) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("small", {
               className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldMessage,
-              children: errors.email.message
+              children: errors.email
             })]
           }), _toConsumableArray(Array(countEmails)).map(function (_, i) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_AddedField__WEBPACK_IMPORTED_MODULE_2__.AddedField, _objectSpread({
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_AddedField__WEBPACK_IMPORTED_MODULE_2__.AddedField, {
               label: "E-mail",
               id: "email".concat(i + 1),
               type: "email",
@@ -2708,31 +2909,39 @@ function Register() {
                 deletedFields: deletedFields,
                 setDeletedFields: setDeletedFields
               }
-            }, register("email".concat(i + 1))), i + 1);
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            }, i + 1);
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].formControl,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
               htmlFor: "phone_number",
               children: "Telefone *"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
               className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].inputBox,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", _objectSpread({
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((react_input_mask__WEBPACK_IMPORTED_MODULE_8___default()), {
+                mask: "(99) \\99999-9999",
                 id: "phone_number",
                 type: "text",
-                className: errors.name ? _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldBorder : ""
-              }, register("phone_number"))), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+                className: submitClicked && errors !== null && errors !== void 0 && errors.phone_number ? _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldBorder : "",
+                value: form.phone_number,
+                onChange: function onChange(event) {
+                  return setForm(_objectSpread(_objectSpread({}, form), {}, {
+                    phone_number: event.target.value
+                  }));
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+                type: "button",
                 className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].addField,
                 onClick: function onClick() {
                   setCountPhoneNumbers(countPhoneNumbers + 1);
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_9__.RiAddLine, {})
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_icons_ri__WEBPACK_IMPORTED_MODULE_10__.RiAddLine, {})
               })]
-            }), errors.phone_number && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("small", {
+            }), submitClicked && (errors === null || errors === void 0 ? void 0 : errors.phone_number) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("small", {
               className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].errorFieldMessage,
-              children: errors.phone_number.message
+              children: errors.phone_number
             })]
           }), _toConsumableArray(Array(countPhoneNumbers)).map(function (_, i) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_AddedField__WEBPACK_IMPORTED_MODULE_2__.AddedField, _objectSpread({
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_AddedField__WEBPACK_IMPORTED_MODULE_2__.AddedField, {
               label: "Telefone",
               id: "phone_number".concat(i + 1),
               type: "text",
@@ -2741,16 +2950,35 @@ function Register() {
                 deletedFields: deletedFields,
                 setDeletedFields: setDeletedFields
               }
-            }, register("phone_number".concat(i + 1))), i + 1);
+            }, i + 1);
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("small", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("small", {
           children: "* Campos obrigat\xF3rios"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
           className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].buttonContainer,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_6__.ToastContainer, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            newestOnTop: false,
+            pauseOnFocusLoss: true,
+            closeButton: "",
+            rtl: false,
+            theme: "colored"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
             type: "submit",
-            children: "Cadastrar"
-          })
+            disabled: isFormSent,
+            onClick: function onClick() {
+              return setSubmitClicked(true);
+            },
+            children: isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(spinners_react__WEBPACK_IMPORTED_MODULE_11__.SpinnerCircularFixed, {
+              size: 30,
+              thickness: 180,
+              speed: 100,
+              color: "#dadada",
+              secondaryColor: "#0000"
+            }) : "Cadastrar"
+          })]
         })]
       })]
     })
@@ -2782,6 +3010,85 @@ var api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
 
 /***/ }),
 
+/***/ "./node_modules/clsx/dist/clsx.m.js":
+/*!******************************************!*\
+  !*** ./node_modules/clsx/dist/clsx.m.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function toVal(mix) {
+	var k, y, str='';
+
+	if (typeof mix === 'string' || typeof mix === 'number') {
+		str += mix;
+	} else if (typeof mix === 'object') {
+		if (Array.isArray(mix)) {
+			for (k=0; k < mix.length; k++) {
+				if (mix[k]) {
+					if (y = toVal(mix[k])) {
+						str && (str += ' ');
+						str += y;
+					}
+				}
+			}
+		} else {
+			for (k in mix) {
+				if (mix[k]) {
+					str && (str += ' ');
+					str += k;
+				}
+			}
+		}
+	}
+
+	return str;
+}
+
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
+	var i=0, tmp, x, str='';
+	while (i < arguments.length) {
+		if (tmp = arguments[i++]) {
+			if (x = toVal(tmp)) {
+				str && (str += ' ');
+				str += x
+			}
+		}
+	}
+	return str;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/react-toastify/dist/ReactToastify.css":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/react-toastify/dist/ReactToastify.css ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ":root {\n  --toastify-color-light: #fff;\n  --toastify-color-dark: #121212;\n  --toastify-color-info: #3498db;\n  --toastify-color-success: #07bc0c;\n  --toastify-color-warning: #f1c40f;\n  --toastify-color-error: #e74c3c;\n  --toastify-color-transparent: rgba(255, 255, 255, 0.7);\n  --toastify-icon-color-info: var(--toastify-color-info);\n  --toastify-icon-color-success: var(--toastify-color-success);\n  --toastify-icon-color-warning: var(--toastify-color-warning);\n  --toastify-icon-color-error: var(--toastify-color-error);\n  --toastify-toast-width: 320px;\n  --toastify-toast-background: #fff;\n  --toastify-toast-min-height: 64px;\n  --toastify-toast-max-height: 800px;\n  --toastify-font-family: sans-serif;\n  --toastify-z-index: 9999;\n  --toastify-text-color-light: #757575;\n  --toastify-text-color-dark: #fff;\n  --toastify-text-color-info: #fff;\n  --toastify-text-color-success: #fff;\n  --toastify-text-color-warning: #fff;\n  --toastify-text-color-error: #fff;\n  --toastify-spinner-color: #616161;\n  --toastify-spinner-color-empty-area: #e0e0e0;\n  --toastify-color-progress-light: linear-gradient(\n    to right,\n    #4cd964,\n    #5ac8fa,\n    #007aff,\n    #34aadc,\n    #5856d6,\n    #ff2d55\n  );\n  --toastify-color-progress-dark: #bb86fc;\n  --toastify-color-progress-info: var(--toastify-color-info);\n  --toastify-color-progress-success: var(--toastify-color-success);\n  --toastify-color-progress-warning: var(--toastify-color-warning);\n  --toastify-color-progress-error: var(--toastify-color-error);\n}\n\n.Toastify__toast-container {\n  z-index: var(--toastify-z-index);\n  -webkit-transform: translate3d(0, 0, var(--toastify-z-index) px);\n  position: fixed;\n  padding: 4px;\n  width: var(--toastify-toast-width);\n  box-sizing: border-box;\n  color: #fff;\n}\n.Toastify__toast-container--top-left {\n  top: 1em;\n  left: 1em;\n}\n.Toastify__toast-container--top-center {\n  top: 1em;\n  left: 50%;\n  transform: translateX(-50%);\n}\n.Toastify__toast-container--top-right {\n  top: 1em;\n  right: 1em;\n}\n.Toastify__toast-container--bottom-left {\n  bottom: 1em;\n  left: 1em;\n}\n.Toastify__toast-container--bottom-center {\n  bottom: 1em;\n  left: 50%;\n  transform: translateX(-50%);\n}\n.Toastify__toast-container--bottom-right {\n  bottom: 1em;\n  right: 1em;\n}\n\n@media only screen and (max-width : 480px) {\n  .Toastify__toast-container {\n    width: 100vw;\n    padding: 0;\n    left: 0;\n    margin: 0;\n  }\n  .Toastify__toast-container--top-left, .Toastify__toast-container--top-center, .Toastify__toast-container--top-right {\n    top: 0;\n    transform: translateX(0);\n  }\n  .Toastify__toast-container--bottom-left, .Toastify__toast-container--bottom-center, .Toastify__toast-container--bottom-right {\n    bottom: 0;\n    transform: translateX(0);\n  }\n  .Toastify__toast-container--rtl {\n    right: 0;\n    left: initial;\n  }\n}\n.Toastify__toast {\n  position: relative;\n  min-height: var(--toastify-toast-min-height);\n  box-sizing: border-box;\n  margin-bottom: 1rem;\n  padding: 8px;\n  border-radius: 4px;\n  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 15px 0 rgba(0, 0, 0, 0.05);\n  display: flex;\n  justify-content: space-between;\n  max-height: var(--toastify-toast-max-height);\n  overflow: hidden;\n  font-family: var(--toastify-font-family);\n  cursor: pointer;\n  direction: ltr;\n}\n.Toastify__toast--rtl {\n  direction: rtl;\n}\n.Toastify__toast-body {\n  margin: auto 0;\n  flex: 1 1 auto;\n  padding: 6px;\n  display: flex;\n  align-items: center;\n}\n.Toastify__toast-body > div:last-child {\n  flex: 1;\n}\n.Toastify__toast-icon {\n  -webkit-margin-end: 10px;\n          margin-inline-end: 10px;\n  width: 20px;\n  flex-shrink: 0;\n  display: flex;\n}\n\n.Toastify--animate {\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-duration: 0.7s;\n          animation-duration: 0.7s;\n}\n\n.Toastify--animate-icon {\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-duration: 0.3s;\n          animation-duration: 0.3s;\n}\n\n@media only screen and (max-width : 480px) {\n  .Toastify__toast {\n    margin-bottom: 0;\n    border-radius: 0;\n  }\n}\n.f {\n  --y: calc(var(--len) - var(--nth));\n  position: absolute;\n  bottom: 0;\n  right: 0;\n  width: 100%;\n  transform: translate3d(0, calc(var(--y) * -40%), 0) scale(calc(1 - 0.05 * var(--y)));\n  transition: all 0.3s;\n  min-height: 80px;\n}\n\n.Toastify__toast-theme--dark {\n  background: var(--toastify-color-dark);\n  color: var(--toastify-text-color-dark);\n}\n.Toastify__toast-theme--light {\n  background: var(--toastify-color-light);\n  color: var(--toastify-text-color-light);\n}\n.Toastify__toast-theme--colored.Toastify__toast--default {\n  background: var(--toastify-color-light);\n  color: var(--toastify-text-color-light);\n}\n.Toastify__toast-theme--colored.Toastify__toast--info {\n  color: var(--toastify-text-color-info);\n  background: var(--toastify-color-info);\n}\n.Toastify__toast-theme--colored.Toastify__toast--success {\n  color: var(--toastify-text-color-success);\n  background: var(--toastify-color-success);\n}\n.Toastify__toast-theme--colored.Toastify__toast--warning {\n  color: var(--toastify-text-color-warning);\n  background: var(--toastify-color-warning);\n}\n.Toastify__toast-theme--colored.Toastify__toast--error {\n  color: var(--toastify-text-color-error);\n  background: var(--toastify-color-error);\n}\n\n.Toastify__progress-bar-theme--light {\n  background: var(--toastify-color-progress-light);\n}\n.Toastify__progress-bar-theme--dark {\n  background: var(--toastify-color-progress-dark);\n}\n.Toastify__progress-bar--info {\n  background: var(--toastify-color-progress-info);\n}\n.Toastify__progress-bar--success {\n  background: var(--toastify-color-progress-success);\n}\n.Toastify__progress-bar--warning {\n  background: var(--toastify-color-progress-warning);\n}\n.Toastify__progress-bar--error {\n  background: var(--toastify-color-progress-error);\n}\n.Toastify__progress-bar-theme--colored.Toastify__progress-bar--info, .Toastify__progress-bar-theme--colored.Toastify__progress-bar--success, .Toastify__progress-bar-theme--colored.Toastify__progress-bar--warning, .Toastify__progress-bar-theme--colored.Toastify__progress-bar--error {\n  background: var(--toastify-color-transparent);\n}\n\n.Toastify__close-button {\n  color: #fff;\n  background: transparent;\n  outline: none;\n  border: none;\n  padding: 0;\n  cursor: pointer;\n  opacity: 0.7;\n  transition: 0.3s ease;\n  align-self: flex-start;\n}\n.Toastify__close-button--light {\n  color: #000;\n  opacity: 0.3;\n}\n.Toastify__close-button > svg {\n  fill: currentColor;\n  height: 16px;\n  width: 14px;\n}\n.Toastify__close-button:hover, .Toastify__close-button:focus {\n  opacity: 1;\n}\n\n@-webkit-keyframes Toastify__trackProgress {\n  0% {\n    transform: scaleX(1);\n  }\n  100% {\n    transform: scaleX(0);\n  }\n}\n\n@keyframes Toastify__trackProgress {\n  0% {\n    transform: scaleX(1);\n  }\n  100% {\n    transform: scaleX(0);\n  }\n}\n.Toastify__progress-bar {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 5px;\n  z-index: var(--toastify-z-index);\n  opacity: 0.7;\n  transform-origin: left;\n}\n.Toastify__progress-bar--animated {\n  -webkit-animation: Toastify__trackProgress linear 1 forwards;\n          animation: Toastify__trackProgress linear 1 forwards;\n}\n.Toastify__progress-bar--controlled {\n  transition: transform 0.2s;\n}\n.Toastify__progress-bar--rtl {\n  right: 0;\n  left: initial;\n  transform-origin: right;\n}\n\n.Toastify__spinner {\n  width: 20px;\n  height: 20px;\n  box-sizing: border-box;\n  border: 2px solid;\n  border-radius: 100%;\n  border-color: var(--toastify-spinner-color-empty-area);\n  border-right-color: var(--toastify-spinner-color);\n  -webkit-animation: Toastify__spin 0.65s linear infinite;\n          animation: Toastify__spin 0.65s linear infinite;\n}\n\n@-webkit-keyframes Toastify__bounceInRight {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n  from {\n    opacity: 0;\n    transform: translate3d(3000px, 0, 0);\n  }\n  60% {\n    opacity: 1;\n    transform: translate3d(-25px, 0, 0);\n  }\n  75% {\n    transform: translate3d(10px, 0, 0);\n  }\n  90% {\n    transform: translate3d(-5px, 0, 0);\n  }\n  to {\n    transform: none;\n  }\n}\n\n@keyframes Toastify__bounceInRight {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n  from {\n    opacity: 0;\n    transform: translate3d(3000px, 0, 0);\n  }\n  60% {\n    opacity: 1;\n    transform: translate3d(-25px, 0, 0);\n  }\n  75% {\n    transform: translate3d(10px, 0, 0);\n  }\n  90% {\n    transform: translate3d(-5px, 0, 0);\n  }\n  to {\n    transform: none;\n  }\n}\n@-webkit-keyframes Toastify__bounceOutRight {\n  20% {\n    opacity: 1;\n    transform: translate3d(-20px, 0, 0);\n  }\n  to {\n    opacity: 0;\n    transform: translate3d(2000px, 0, 0);\n  }\n}\n@keyframes Toastify__bounceOutRight {\n  20% {\n    opacity: 1;\n    transform: translate3d(-20px, 0, 0);\n  }\n  to {\n    opacity: 0;\n    transform: translate3d(2000px, 0, 0);\n  }\n}\n@-webkit-keyframes Toastify__bounceInLeft {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n  0% {\n    opacity: 0;\n    transform: translate3d(-3000px, 0, 0);\n  }\n  60% {\n    opacity: 1;\n    transform: translate3d(25px, 0, 0);\n  }\n  75% {\n    transform: translate3d(-10px, 0, 0);\n  }\n  90% {\n    transform: translate3d(5px, 0, 0);\n  }\n  to {\n    transform: none;\n  }\n}\n@keyframes Toastify__bounceInLeft {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n  0% {\n    opacity: 0;\n    transform: translate3d(-3000px, 0, 0);\n  }\n  60% {\n    opacity: 1;\n    transform: translate3d(25px, 0, 0);\n  }\n  75% {\n    transform: translate3d(-10px, 0, 0);\n  }\n  90% {\n    transform: translate3d(5px, 0, 0);\n  }\n  to {\n    transform: none;\n  }\n}\n@-webkit-keyframes Toastify__bounceOutLeft {\n  20% {\n    opacity: 1;\n    transform: translate3d(20px, 0, 0);\n  }\n  to {\n    opacity: 0;\n    transform: translate3d(-2000px, 0, 0);\n  }\n}\n@keyframes Toastify__bounceOutLeft {\n  20% {\n    opacity: 1;\n    transform: translate3d(20px, 0, 0);\n  }\n  to {\n    opacity: 0;\n    transform: translate3d(-2000px, 0, 0);\n  }\n}\n@-webkit-keyframes Toastify__bounceInUp {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n  from {\n    opacity: 0;\n    transform: translate3d(0, 3000px, 0);\n  }\n  60% {\n    opacity: 1;\n    transform: translate3d(0, -20px, 0);\n  }\n  75% {\n    transform: translate3d(0, 10px, 0);\n  }\n  90% {\n    transform: translate3d(0, -5px, 0);\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes Toastify__bounceInUp {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n  from {\n    opacity: 0;\n    transform: translate3d(0, 3000px, 0);\n  }\n  60% {\n    opacity: 1;\n    transform: translate3d(0, -20px, 0);\n  }\n  75% {\n    transform: translate3d(0, 10px, 0);\n  }\n  90% {\n    transform: translate3d(0, -5px, 0);\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n@-webkit-keyframes Toastify__bounceOutUp {\n  20% {\n    transform: translate3d(0, -10px, 0);\n  }\n  40%, 45% {\n    opacity: 1;\n    transform: translate3d(0, 20px, 0);\n  }\n  to {\n    opacity: 0;\n    transform: translate3d(0, -2000px, 0);\n  }\n}\n@keyframes Toastify__bounceOutUp {\n  20% {\n    transform: translate3d(0, -10px, 0);\n  }\n  40%, 45% {\n    opacity: 1;\n    transform: translate3d(0, 20px, 0);\n  }\n  to {\n    opacity: 0;\n    transform: translate3d(0, -2000px, 0);\n  }\n}\n@-webkit-keyframes Toastify__bounceInDown {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n  0% {\n    opacity: 0;\n    transform: translate3d(0, -3000px, 0);\n  }\n  60% {\n    opacity: 1;\n    transform: translate3d(0, 25px, 0);\n  }\n  75% {\n    transform: translate3d(0, -10px, 0);\n  }\n  90% {\n    transform: translate3d(0, 5px, 0);\n  }\n  to {\n    transform: none;\n  }\n}\n@keyframes Toastify__bounceInDown {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n  0% {\n    opacity: 0;\n    transform: translate3d(0, -3000px, 0);\n  }\n  60% {\n    opacity: 1;\n    transform: translate3d(0, 25px, 0);\n  }\n  75% {\n    transform: translate3d(0, -10px, 0);\n  }\n  90% {\n    transform: translate3d(0, 5px, 0);\n  }\n  to {\n    transform: none;\n  }\n}\n@-webkit-keyframes Toastify__bounceOutDown {\n  20% {\n    transform: translate3d(0, 10px, 0);\n  }\n  40%, 45% {\n    opacity: 1;\n    transform: translate3d(0, -20px, 0);\n  }\n  to {\n    opacity: 0;\n    transform: translate3d(0, 2000px, 0);\n  }\n}\n@keyframes Toastify__bounceOutDown {\n  20% {\n    transform: translate3d(0, 10px, 0);\n  }\n  40%, 45% {\n    opacity: 1;\n    transform: translate3d(0, -20px, 0);\n  }\n  to {\n    opacity: 0;\n    transform: translate3d(0, 2000px, 0);\n  }\n}\n.Toastify__bounce-enter--top-left, .Toastify__bounce-enter--bottom-left {\n  -webkit-animation-name: Toastify__bounceInLeft;\n          animation-name: Toastify__bounceInLeft;\n}\n.Toastify__bounce-enter--top-right, .Toastify__bounce-enter--bottom-right {\n  -webkit-animation-name: Toastify__bounceInRight;\n          animation-name: Toastify__bounceInRight;\n}\n.Toastify__bounce-enter--top-center {\n  -webkit-animation-name: Toastify__bounceInDown;\n          animation-name: Toastify__bounceInDown;\n}\n.Toastify__bounce-enter--bottom-center {\n  -webkit-animation-name: Toastify__bounceInUp;\n          animation-name: Toastify__bounceInUp;\n}\n\n.Toastify__bounce-exit--top-left, .Toastify__bounce-exit--bottom-left {\n  -webkit-animation-name: Toastify__bounceOutLeft;\n          animation-name: Toastify__bounceOutLeft;\n}\n.Toastify__bounce-exit--top-right, .Toastify__bounce-exit--bottom-right {\n  -webkit-animation-name: Toastify__bounceOutRight;\n          animation-name: Toastify__bounceOutRight;\n}\n.Toastify__bounce-exit--top-center {\n  -webkit-animation-name: Toastify__bounceOutUp;\n          animation-name: Toastify__bounceOutUp;\n}\n.Toastify__bounce-exit--bottom-center {\n  -webkit-animation-name: Toastify__bounceOutDown;\n          animation-name: Toastify__bounceOutDown;\n}\n\n@-webkit-keyframes Toastify__zoomIn {\n  from {\n    opacity: 0;\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n  50% {\n    opacity: 1;\n  }\n}\n\n@keyframes Toastify__zoomIn {\n  from {\n    opacity: 0;\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n  50% {\n    opacity: 1;\n  }\n}\n@-webkit-keyframes Toastify__zoomOut {\n  from {\n    opacity: 1;\n  }\n  50% {\n    opacity: 0;\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n  to {\n    opacity: 0;\n  }\n}\n@keyframes Toastify__zoomOut {\n  from {\n    opacity: 1;\n  }\n  50% {\n    opacity: 0;\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n  to {\n    opacity: 0;\n  }\n}\n.Toastify__zoom-enter {\n  -webkit-animation-name: Toastify__zoomIn;\n          animation-name: Toastify__zoomIn;\n}\n\n.Toastify__zoom-exit {\n  -webkit-animation-name: Toastify__zoomOut;\n          animation-name: Toastify__zoomOut;\n}\n\n@-webkit-keyframes Toastify__flipIn {\n  from {\n    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    -webkit-animation-timing-function: ease-in;\n            animation-timing-function: ease-in;\n    opacity: 0;\n  }\n  40% {\n    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    -webkit-animation-timing-function: ease-in;\n            animation-timing-function: ease-in;\n  }\n  60% {\n    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);\n    opacity: 1;\n  }\n  80% {\n    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);\n  }\n  to {\n    transform: perspective(400px);\n  }\n}\n\n@keyframes Toastify__flipIn {\n  from {\n    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    -webkit-animation-timing-function: ease-in;\n            animation-timing-function: ease-in;\n    opacity: 0;\n  }\n  40% {\n    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    -webkit-animation-timing-function: ease-in;\n            animation-timing-function: ease-in;\n  }\n  60% {\n    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);\n    opacity: 1;\n  }\n  80% {\n    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);\n  }\n  to {\n    transform: perspective(400px);\n  }\n}\n@-webkit-keyframes Toastify__flipOut {\n  from {\n    transform: perspective(400px);\n  }\n  30% {\n    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    opacity: 1;\n  }\n  to {\n    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    opacity: 0;\n  }\n}\n@keyframes Toastify__flipOut {\n  from {\n    transform: perspective(400px);\n  }\n  30% {\n    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    opacity: 1;\n  }\n  to {\n    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    opacity: 0;\n  }\n}\n.Toastify__flip-enter {\n  -webkit-animation-name: Toastify__flipIn;\n          animation-name: Toastify__flipIn;\n}\n\n.Toastify__flip-exit {\n  -webkit-animation-name: Toastify__flipOut;\n          animation-name: Toastify__flipOut;\n}\n\n@-webkit-keyframes Toastify__slideInRight {\n  from {\n    transform: translate3d(110%, 0, 0);\n    visibility: visible;\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n\n@keyframes Toastify__slideInRight {\n  from {\n    transform: translate3d(110%, 0, 0);\n    visibility: visible;\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n@-webkit-keyframes Toastify__slideInLeft {\n  from {\n    transform: translate3d(-110%, 0, 0);\n    visibility: visible;\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes Toastify__slideInLeft {\n  from {\n    transform: translate3d(-110%, 0, 0);\n    visibility: visible;\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n@-webkit-keyframes Toastify__slideInUp {\n  from {\n    transform: translate3d(0, 110%, 0);\n    visibility: visible;\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes Toastify__slideInUp {\n  from {\n    transform: translate3d(0, 110%, 0);\n    visibility: visible;\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n@-webkit-keyframes Toastify__slideInDown {\n  from {\n    transform: translate3d(0, -110%, 0);\n    visibility: visible;\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes Toastify__slideInDown {\n  from {\n    transform: translate3d(0, -110%, 0);\n    visibility: visible;\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n@-webkit-keyframes Toastify__slideOutRight {\n  from {\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    visibility: hidden;\n    transform: translate3d(110%, 0, 0);\n  }\n}\n@keyframes Toastify__slideOutRight {\n  from {\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    visibility: hidden;\n    transform: translate3d(110%, 0, 0);\n  }\n}\n@-webkit-keyframes Toastify__slideOutLeft {\n  from {\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    visibility: hidden;\n    transform: translate3d(-110%, 0, 0);\n  }\n}\n@keyframes Toastify__slideOutLeft {\n  from {\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    visibility: hidden;\n    transform: translate3d(-110%, 0, 0);\n  }\n}\n@-webkit-keyframes Toastify__slideOutDown {\n  from {\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    visibility: hidden;\n    transform: translate3d(0, 500px, 0);\n  }\n}\n@keyframes Toastify__slideOutDown {\n  from {\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    visibility: hidden;\n    transform: translate3d(0, 500px, 0);\n  }\n}\n@-webkit-keyframes Toastify__slideOutUp {\n  from {\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    visibility: hidden;\n    transform: translate3d(0, -500px, 0);\n  }\n}\n@keyframes Toastify__slideOutUp {\n  from {\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    visibility: hidden;\n    transform: translate3d(0, -500px, 0);\n  }\n}\n.Toastify__slide-enter--top-left, .Toastify__slide-enter--bottom-left {\n  -webkit-animation-name: Toastify__slideInLeft;\n          animation-name: Toastify__slideInLeft;\n}\n.Toastify__slide-enter--top-right, .Toastify__slide-enter--bottom-right {\n  -webkit-animation-name: Toastify__slideInRight;\n          animation-name: Toastify__slideInRight;\n}\n.Toastify__slide-enter--top-center {\n  -webkit-animation-name: Toastify__slideInDown;\n          animation-name: Toastify__slideInDown;\n}\n.Toastify__slide-enter--bottom-center {\n  -webkit-animation-name: Toastify__slideInUp;\n          animation-name: Toastify__slideInUp;\n}\n\n.Toastify__slide-exit--top-left, .Toastify__slide-exit--bottom-left {\n  -webkit-animation-name: Toastify__slideOutLeft;\n          animation-name: Toastify__slideOutLeft;\n}\n.Toastify__slide-exit--top-right, .Toastify__slide-exit--bottom-right {\n  -webkit-animation-name: Toastify__slideOutRight;\n          animation-name: Toastify__slideOutRight;\n}\n.Toastify__slide-exit--top-center {\n  -webkit-animation-name: Toastify__slideOutUp;\n          animation-name: Toastify__slideOutUp;\n}\n.Toastify__slide-exit--bottom-center {\n  -webkit-animation-name: Toastify__slideOutDown;\n          animation-name: Toastify__slideOutDown;\n}\n\n@-webkit-keyframes Toastify__spin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n\n@keyframes Toastify__spin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/pages/Home/styles.css":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/pages/Home/styles.css ***!
@@ -2799,17 +3106,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".selected{\n    background-color: #2a61b5 !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".selected{\n    background-color: #2357a4 !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/Card/styles.module.scss":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/Card/styles.module.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/Layout/styles.module.scss":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/Layout/styles.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2823,12 +3130,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".hVmth1lqUTBnpRPpB6GEGg\\=\\= {\n  margin: 0 auto;\n  background: #23416e;\n  width: 700px;\n  border-radius: 0.25rem;\n  padding: 2rem;\n}\n\n._39LbHc2dsQvmk9aSufcG2g\\=\\= {\n  width: 100%;\n  justify-content: center;\n  display: flex;\n  padding-bottom: 2rem;\n  margin-bottom: 2rem;\n  border-bottom: 2px dashed #4f89e0;\n}\n._39LbHc2dsQvmk9aSufcG2g\\=\\= button {\n  background: #143361;\n  border: none;\n  border-radius: 0.25rem;\n  transition: 0.2s;\n}\n._39LbHc2dsQvmk9aSufcG2g\\=\\= button:first-of-type {\n  margin-right: 0.5rem;\n}\n._39LbHc2dsQvmk9aSufcG2g\\=\\= button:hover {\n  background: #0c387b;\n}\n._39LbHc2dsQvmk9aSufcG2g\\=\\= button.kfRcXR1KQdqy2iiVdbq8RQ\\=\\= {\n  background: #2a61b5;\n}\n._39LbHc2dsQvmk9aSufcG2g\\=\\= button a {\n  font-size: 1.5rem;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".J05QvLigPJ8DBM9y-TCe0g\\=\\= {\n  margin: 0 auto;\n  background: #23416e;\n  width: 700px;\n  border-radius: 0.25rem;\n  padding: 2rem;\n}\n\n.H-i-7lNFGcdS1U1a7Rucsw\\=\\= {\n  width: 100%;\n  justify-content: center;\n  display: flex;\n  padding-bottom: 2rem;\n  margin-bottom: 2rem;\n  border-bottom: 2px dashed #4f89e0;\n}\n.H-i-7lNFGcdS1U1a7Rucsw\\=\\= button {\n  background: #143361;\n  border: none;\n  border-radius: 0.25rem;\n  transition: 0.2s;\n}\n.H-i-7lNFGcdS1U1a7Rucsw\\=\\= button:first-of-type {\n  margin-right: 0.5rem;\n}\n.H-i-7lNFGcdS1U1a7Rucsw\\=\\= button:hover {\n  background: #0c387b;\n}\n.H-i-7lNFGcdS1U1a7Rucsw\\=\\= button._7eFEyp8L8\\+2IQYFGlyN4DQ\\=\\= {\n  background: #2a61b5;\n}\n.H-i-7lNFGcdS1U1a7Rucsw\\=\\= button a {\n  font-size: 1.5rem;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"card": "hVmth1lqUTBnpRPpB6GEGg==",
-	"cardHeader": "_39LbHc2dsQvmk9aSufcG2g==",
-	"selected": "kfRcXR1KQdqy2iiVdbq8RQ=="
+	"layout": "J05QvLigPJ8DBM9y-TCe0g==",
+	"layoutHeader": "H-i-7lNFGcdS1U1a7Rucsw==",
+	"selected": "_7eFEyp8L8+2IQYFGlyN4DQ=="
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2852,10 +3159,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".rWJKtEnqNZUBm9uqHTcIUQ\\=\\= {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  height: 100vh;\n  width: 100vw;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= h1 {\n  font-size: 1.75rem;\n  font-weight: 500;\n  margin-bottom: 2rem;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table {\n  width: 100%;\n  border-bottom: 2px solid #4f89e0;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table thead {\n  margin-bottom: 2rem;\n  border-bottom: 2px solid #4f89e0;\n  border-top: 2px solid #4f89e0;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table tr:nth-of-type(2n) {\n  background-color: #2f5286;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table th {\n  padding: 0.75rem 0.25rem;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table td {\n  padding: 0.5rem 0.25rem;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= .XzLYo1OLsxz\\+mQCDe1nROA\\=\\= ul {\n  margin-top: 2rem;\n  display: flex;\n  list-style-type: none;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= .XzLYo1OLsxz\\+mQCDe1nROA\\=\\= li {\n  height: 25px;\n  width: 25px;\n  background-color: #143361;\n  border: none;\n  border-radius: 50%;\n  text-align: center;\n  line-height: 25px;\n  transition: 0.2s;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= .XzLYo1OLsxz\\+mQCDe1nROA\\=\\= li:not(:last-of-type) {\n  margin-right: 0.5rem;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= .XzLYo1OLsxz\\+mQCDe1nROA\\=\\= li:hover {\n  background-color: #0c387b;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".rWJKtEnqNZUBm9uqHTcIUQ\\=\\= {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  height: 100vh;\n  width: 100vw;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= h1 {\n  font-size: 1.75rem;\n  font-weight: 500;\n  margin-bottom: 2rem;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table {\n  width: 100%;\n  border-bottom: 2px solid #4f89e0;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table thead {\n  margin-bottom: 2rem;\n  border-bottom: 2px solid #4f89e0;\n  border-top: 2px solid #4f89e0;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table tr:nth-of-type(2n) {\n  background-color: #2f5286;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table th {\n  padding: 0.75rem 0.5rem;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table td {\n  padding: 0.5rem 0.5rem;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table .VcaALcLP9u5ubeOp\\+jXnhQ\\=\\= button {\n  color: #dadada;\n  background-color: #143361;\n  border: none;\n  border-radius: 0.25rem;\n  transition: 0.2s;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table .VcaALcLP9u5ubeOp\\+jXnhQ\\=\\= button:not(:last-of-type) {\n  margin-right: 0.25rem;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= table .VcaALcLP9u5ubeOp\\+jXnhQ\\=\\= button:hover {\n  background-color: #0c387b;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= .XzLYo1OLsxz\\+mQCDe1nROA\\=\\= ul {\n  margin-top: 2rem;\n  display: flex;\n  list-style-type: none;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= .XzLYo1OLsxz\\+mQCDe1nROA\\=\\= li {\n  height: 25px;\n  width: 25px;\n  background-color: #143361;\n  border: none;\n  border-radius: 50%;\n  text-align: center;\n  line-height: 25px;\n  transition: 0.2s;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= .XzLYo1OLsxz\\+mQCDe1nROA\\=\\= li:not(:last-of-type) {\n  margin-right: 0.5rem;\n}\n.rWJKtEnqNZUBm9uqHTcIUQ\\=\\= .XzLYo1OLsxz\\+mQCDe1nROA\\=\\= li:hover {\n  background-color: #0c387b;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "rWJKtEnqNZUBm9uqHTcIUQ==",
+	"tableActions": "VcaALcLP9u5ubeOp+jXnhQ==",
 	"paginationContainer": "XzLYo1OLsxz+mQCDe1nROA=="
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
@@ -2880,7 +3188,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".-pg4TFJgmZetQUZN1G-SNw\\=\\= {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  height: 100vh;\n  width: 100vw;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= h1 {\n  font-size: 1.75rem;\n  font-weight: 500;\n  margin-bottom: 2rem;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .m9zheGfWP4DJbYIhfmfCcw\\=\\= {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 0.5rem 2rem;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= {\n  display: flex;\n  flex-direction: column;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= .fz0RYhsrCt\\+CdSAof2oMZg\\=\\= {\n  position: relative;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= .c\\+orAuDrpHxAGLXWTh2GOQ\\=\\= {\n  border-color: #f00;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= .y9zWZ13oBERGi40BV4gBoA\\=\\= {\n  color: #f00;\n  font-size: 0.8rem;\n  margin-top: 0.15rem;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= label {\n  font-size: 1rem;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= input {\n  font-size: 1rem;\n  width: 100%;\n  border-radius: 0.25rem;\n  border: 2px solid transparent;\n  overflow: hidden;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .gOdi1AxxeE0HxWUKCa1FGg\\=\\=, .-pg4TFJgmZetQUZN1G-SNw\\=\\= form .XxDzBjY6Y5TinhLG97pojA\\=\\= {\n  position: absolute;\n  top: 0;\n  right: 0;\n  color: #dadada;\n  background-color: #143361;\n  border-radius: 0 0.2rem 0.2rem 0;\n  border: 2px solid transparent;\n  transition: 0.2s;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .gOdi1AxxeE0HxWUKCa1FGg\\=\\=:hover, .-pg4TFJgmZetQUZN1G-SNw\\=\\= form .XxDzBjY6Y5TinhLG97pojA\\=\\=:hover {\n  background-color: #0c387b;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .gOdi1AxxeE0HxWUKCa1FGg\\=\\= {\n  background-color: #143361;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .gOdi1AxxeE0HxWUKCa1FGg\\=\\=:hover {\n  background-color: #0c387b;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .XxDzBjY6Y5TinhLG97pojA\\=\\= {\n  background-color: #611414;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .XxDzBjY6Y5TinhLG97pojA\\=\\=:hover {\n  background-color: #7b0c0c;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form small {\n  display: block;\n  margin-top: 1rem;\n  font-size: 0.7rem;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .ysPdD3n1744oU-zwVsWJRg\\=\\= {\n  width: 100%;\n  margin-top: 1.5rem;\n  text-align: center;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .ysPdD3n1744oU-zwVsWJRg\\=\\= button {\n  color: #dadada;\n  background-color: #143361;\n  border: none;\n  border-radius: 0.25rem;\n  padding: 0.3rem;\n  transition: 0.2s;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .ysPdD3n1744oU-zwVsWJRg\\=\\= button[disabled] {\n  opacity: 0.6;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .ysPdD3n1744oU-zwVsWJRg\\=\\= button:not([disabled]):hover {\n  background-color: #0c387b;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".-pg4TFJgmZetQUZN1G-SNw\\=\\= {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  height: 100vh;\n  width: 100vw;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= h1 {\n  font-size: 1.75rem;\n  font-weight: 500;\n  margin-bottom: 2rem;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .m9zheGfWP4DJbYIhfmfCcw\\=\\= {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 0.5rem 2rem;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= {\n  display: flex;\n  flex-direction: column;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= .fz0RYhsrCt\\+CdSAof2oMZg\\=\\= {\n  position: relative;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= .c\\+orAuDrpHxAGLXWTh2GOQ\\=\\= {\n  border-color: #f00;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= .y9zWZ13oBERGi40BV4gBoA\\=\\= {\n  color: #f00;\n  font-size: 0.8rem;\n  margin-top: 0.15rem;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= label {\n  font-size: 1rem;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .oiX2d6TnyyQvzb5UTf5S6Q\\=\\= input {\n  font-size: 1rem;\n  width: 100%;\n  border-radius: 0.25rem;\n  border: 2px solid transparent;\n  overflow: hidden;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .gOdi1AxxeE0HxWUKCa1FGg\\=\\=, .-pg4TFJgmZetQUZN1G-SNw\\=\\= form .XxDzBjY6Y5TinhLG97pojA\\=\\= {\n  position: absolute;\n  top: 0;\n  right: 0;\n  color: #dadada;\n  background-color: #143361;\n  border-radius: 0 0.2rem 0.2rem 0;\n  border: 2px solid transparent;\n  transition: 0.2s;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .gOdi1AxxeE0HxWUKCa1FGg\\=\\=:hover, .-pg4TFJgmZetQUZN1G-SNw\\=\\= form .XxDzBjY6Y5TinhLG97pojA\\=\\=:hover {\n  background-color: #0c387b;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .gOdi1AxxeE0HxWUKCa1FGg\\=\\= {\n  background-color: #143361;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .gOdi1AxxeE0HxWUKCa1FGg\\=\\=:hover {\n  background-color: #0c387b;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .XxDzBjY6Y5TinhLG97pojA\\=\\= {\n  background-color: #611414;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .XxDzBjY6Y5TinhLG97pojA\\=\\=:hover {\n  background-color: #7b0c0c;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form small {\n  display: block;\n  margin-top: 1rem;\n  font-size: 0.7rem;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .ysPdD3n1744oU-zwVsWJRg\\=\\= {\n  width: 100%;\n  margin-top: 1.5rem;\n  text-align: center;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .ysPdD3n1744oU-zwVsWJRg\\=\\= button {\n  padding: 0.75rem;\n  color: #dadada;\n  background-color: #143361;\n  border: none;\n  border-radius: 0.25rem;\n  padding: 0.3rem;\n  transition: 0.2s;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .ysPdD3n1744oU-zwVsWJRg\\=\\= button[disabled] {\n  opacity: 0.6;\n}\n.-pg4TFJgmZetQUZN1G-SNw\\=\\= form .ysPdD3n1744oU-zwVsWJRg\\=\\= button:not([disabled]):hover {\n  background-color: #0c387b;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "-pg4TFJgmZetQUZN1G-SNw==",
@@ -2971,6 +3279,53 @@ module.exports = function (cssWithMappingToString) {
 
   return list;
 };
+
+/***/ }),
+
+/***/ "./node_modules/exenv/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/exenv/index.js ***!
+  \*************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2015 Jed Watson.
+  Based on code that is Copyright 2013-2015, Facebook, Inc.
+  All rights reserved.
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var canUseDOM = !!(
+		typeof window !== 'undefined' &&
+		window.document &&
+		window.document.createElement
+	);
+
+	var ExecutionEnvironment = {
+
+		canUseDOM: canUseDOM,
+
+		canUseWorkers: typeof Worker !== 'undefined',
+
+		canUseEventListeners:
+			canUseDOM && !!(window.addEventListener || window.attachEvent),
+
+		canUseViewport: canUseDOM && !!window.screen
+
+	};
+
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return ExecutionEnvironment;
+		}).call(exports, __webpack_require__, exports, module),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+
+}());
+
 
 /***/ }),
 
@@ -3786,6 +4141,66 @@ function parsePath(path) {
 
 
 //# sourceMappingURL=index.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/invariant/browser.js":
+/*!*******************************************!*\
+  !*** ./node_modules/invariant/browser.js ***!
+  \*******************************************/
+/***/ ((module) => {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var invariant = function(condition, format, a, b, c, d, e, f) {
+  if (true) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  }
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error(
+        'Minified exception occurred; use the non-minified dev environment ' +
+        'for the full error message and additional helpful warnings.'
+      );
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(
+        format.replace(/%s/g, function() { return args[argIndex++]; })
+      );
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+};
+
+module.exports = invariant;
 
 
 /***/ }),
@@ -9438,6 +9853,800 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 process.umask = function() { return 0; };
+
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/checkPropTypes.js":
+/*!***************************************************!*\
+  !*** ./node_modules/prop-types/checkPropTypes.js ***!
+  \***************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var printWarning = function() {};
+
+if (true) {
+  var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "./node_modules/prop-types/lib/ReactPropTypesSecret.js");
+  var loggedTypeFailures = {};
+  var has = __webpack_require__(/*! ./lib/has */ "./node_modules/prop-types/lib/has.js");
+
+  printWarning = function(text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) { /**/ }
+  };
+}
+
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if (true) {
+    for (var typeSpecName in typeSpecs) {
+      if (has(typeSpecs, typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          if (typeof typeSpecs[typeSpecName] !== 'function') {
+            var err = Error(
+              (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
+              'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' +
+              'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.'
+            );
+            err.name = 'Invariant Violation';
+            throw err;
+          }
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+        } catch (ex) {
+          error = ex;
+        }
+        if (error && !(error instanceof Error)) {
+          printWarning(
+            (componentName || 'React class') + ': type specification of ' +
+            location + ' `' + typeSpecName + '` is invalid; the type checker ' +
+            'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
+            'You may have forgotten to pass an argument to the type checker ' +
+            'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
+            'shape all require an argument).'
+          );
+        }
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error.message] = true;
+
+          var stack = getStack ? getStack() : '';
+
+          printWarning(
+            'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
+          );
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Resets warning cache when testing.
+ *
+ * @private
+ */
+checkPropTypes.resetWarningCache = function() {
+  if (true) {
+    loggedTypeFailures = {};
+  }
+}
+
+module.exports = checkPropTypes;
+
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/factoryWithTypeCheckers.js":
+/*!************************************************************!*\
+  !*** ./node_modules/prop-types/factoryWithTypeCheckers.js ***!
+  \************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+var assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
+
+var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "./node_modules/prop-types/lib/ReactPropTypesSecret.js");
+var has = __webpack_require__(/*! ./lib/has */ "./node_modules/prop-types/lib/has.js");
+var checkPropTypes = __webpack_require__(/*! ./checkPropTypes */ "./node_modules/prop-types/checkPropTypes.js");
+
+var printWarning = function() {};
+
+if (true) {
+  printWarning = function(text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+
+function emptyFunctionThatReturnsNull() {
+  return null;
+}
+
+module.exports = function(isValidElement, throwOnDirectAccess) {
+  /* global Symbol */
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+
+  /**
+   * Returns the iterator method function contained on the iterable object.
+   *
+   * Be sure to invoke the function with the iterable as context:
+   *
+   *     var iteratorFn = getIteratorFn(myIterable);
+   *     if (iteratorFn) {
+   *       var iterator = iteratorFn.call(myIterable);
+   *       ...
+   *     }
+   *
+   * @param {?object} maybeIterable
+   * @return {?function}
+   */
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+
+  /**
+   * Collection of methods that allow declaration and validation of props that are
+   * supplied to React components. Example usage:
+   *
+   *   var Props = require('ReactPropTypes');
+   *   var MyArticle = React.createClass({
+   *     propTypes: {
+   *       // An optional string prop named "description".
+   *       description: Props.string,
+   *
+   *       // A required enum prop named "category".
+   *       category: Props.oneOf(['News','Photos']).isRequired,
+   *
+   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       dialog: Props.instanceOf(Dialog).isRequired
+   *     },
+   *     render: function() { ... }
+   *   });
+   *
+   * A more formal specification of how these methods are used:
+   *
+   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+   *   decl := ReactPropTypes.{type}(.isRequired)?
+   *
+   * Each and every declaration produces a function with the same signature. This
+   * allows the creation of custom validation functions. For example:
+   *
+   *  var MyLink = React.createClass({
+   *    propTypes: {
+   *      // An optional string or URI prop named "href".
+   *      href: function(props, propName, componentName) {
+   *        var propValue = props[propName];
+   *        if (propValue != null && typeof propValue !== 'string' &&
+   *            !(propValue instanceof URI)) {
+   *          return new Error(
+   *            'Expected a string or an URI for ' + propName + ' in ' +
+   *            componentName
+   *          );
+   *        }
+   *      }
+   *    },
+   *    render: function() {...}
+   *  });
+   *
+   * @internal
+   */
+
+  var ANONYMOUS = '<<anonymous>>';
+
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bigint: createPrimitiveTypeChecker('bigint'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    elementType: createElementTypeTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker,
+  };
+
+  /**
+   * inlined Object.is polyfill to avoid requiring consumers ship their own
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+   */
+  /*eslint-disable no-self-compare*/
+  function is(x, y) {
+    // SameValue algorithm
+    if (x === y) {
+      // Steps 1-5, 7-10
+      // Steps 6.b-6.e: +0 != -0
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      // Step 6.a: NaN == NaN
+      return x !== x && y !== y;
+    }
+  }
+  /*eslint-enable no-self-compare*/
+
+  /**
+   * We use an Error-like object for backward compatibility as people may call
+   * PropTypes directly and inspect their output. However, we don't use real
+   * Errors anymore. We don't inspect their stack anyway, and creating them
+   * is prohibitively expensive if they are created too often, such as what
+   * happens in oneOfType() for any type before the one that matched.
+   */
+  function PropTypeError(message, data) {
+    this.message = message;
+    this.data = data && typeof data === 'object' ? data: {};
+    this.stack = '';
+  }
+  // Make `instanceof Error` still work for returned errors.
+  PropTypeError.prototype = Error.prototype;
+
+  function createChainableTypeChecker(validate) {
+    if (true) {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+
+      if (secret !== ReactPropTypesSecret) {
+        if (throwOnDirectAccess) {
+          // New behavior only for users of `prop-types` package
+          var err = new Error(
+            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+            'Use `PropTypes.checkPropTypes()` to call them. ' +
+            'Read more at http://fb.me/use-check-prop-types'
+          );
+          err.name = 'Invariant Violation';
+          throw err;
+        } else if ( true && typeof console !== 'undefined') {
+          // Old behavior for people using React.PropTypes
+          var cacheKey = componentName + ':' + propName;
+          if (
+            !manualPropTypeCallCache[cacheKey] &&
+            // Avoid spamming the console because they are often not actionable except for lib authors
+            manualPropTypeWarningCount < 3
+          ) {
+            printWarning(
+              'You are manually calling a React.PropTypes validation ' +
+              'function for the `' + propFullName + '` prop on `' + componentName + '`. This is deprecated ' +
+              'and will throw in the standalone `prop-types` package. ' +
+              'You may be seeing this warning due to a third-party PropTypes ' +
+              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.'
+            );
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+
+    return chainedCheckType;
+  }
+
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        // `propValue` being instance of, say, date/regexp, pass the 'object'
+        // check, but we can offer a more precise error message here rather than
+        // 'of type `object`'.
+        var preciseType = getPreciseType(propValue);
+
+        return new PropTypeError(
+          'Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'),
+          {expectedType: expectedType}
+        );
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunctionThatReturnsNull);
+  }
+
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createElementTypeTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!ReactIs.isValidElementType(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement type.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+      if (true) {
+        if (arguments.length > 1) {
+          printWarning(
+            'Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' +
+            'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).'
+          );
+        } else {
+          printWarning('Invalid argument supplied to oneOf, expected an array.');
+        }
+      }
+      return emptyFunctionThatReturnsNull;
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+
+      var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
+        var type = getPreciseType(value);
+        if (type === 'symbol') {
+          return String(value);
+        }
+        return value;
+      });
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + String(propValue) + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (has(propValue, key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+       true ? printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') : 0;
+      return emptyFunctionThatReturnsNull;
+    }
+
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        printWarning(
+          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
+          'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
+        );
+        return emptyFunctionThatReturnsNull;
+      }
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      var expectedTypes = [];
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        var checkerResult = checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret);
+        if (checkerResult == null) {
+          return null;
+        }
+        if (checkerResult.data && has(checkerResult.data, 'expectedType')) {
+          expectedTypes.push(checkerResult.data.expectedType);
+        }
+      }
+      var expectedTypesMessage = (expectedTypes.length > 0) ? ', expected one of type [' + expectedTypes.join(', ') + ']': '';
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`' + expectedTypesMessage + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function invalidValidatorError(componentName, location, propFullName, key, type) {
+    return new PropTypeError(
+      (componentName || 'React class') + ': ' + location + ' type `' + propFullName + '.' + key + '` is invalid; ' +
+      'it must be a function, usually from the `prop-types` package, but received `' + type + '`.'
+    );
+  }
+
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (typeof checker !== 'function') {
+          return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      // We need to check all keys in case some are required but missing from props.
+      var allKeys = assign({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (has(shapeTypes, key) && typeof checker !== 'function') {
+          return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+        }
+        if (!checker) {
+          return new PropTypeError(
+            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
+            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
+            '\nValid keys: ' + JSON.stringify(Object.keys(shapeTypes), null, '  ')
+          );
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+
+    return createChainableTypeChecker(validate);
+  }
+
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            // Iterator will provide entry [k,v] tuples rather than values.
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  function isSymbol(propType, propValue) {
+    // Native Symbol.
+    if (propType === 'symbol') {
+      return true;
+    }
+
+    // falsy value can't be a Symbol
+    if (!propValue) {
+      return false;
+    }
+
+    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+
+    // Fallback for non-spec compliant Symbols which are polyfilled.
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Equivalent of `typeof` but with special handling for array and regexp.
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      // Old webkits (at least until Android 4.0) return 'function' rather than
+      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      // passes PropTypes.object.
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+
+  // This handles more types than `getPropType`. Only used for error messages.
+  // See `createPrimitiveTypeChecker`.
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+
+  // Returns a string that is postfixed to a warning about an invalid type.
+  // For example, "undefined" or "of type array"
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+
+  // Returns class name of the object, if any.
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+
+  ReactPropTypes.checkPropTypes = checkPropTypes;
+  ReactPropTypes.resetWarningCache = checkPropTypes.resetWarningCache;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/prop-types/index.js ***!
+  \******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (true) {
+  var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "./node_modules/prop-types/factoryWithTypeCheckers.js")(ReactIs.isElement, throwOnDirectAccess);
+} else {}
+
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/lib/ReactPropTypesSecret.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/prop-types/lib/ReactPropTypesSecret.js ***!
+  \*************************************************************/
+/***/ ((module) => {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/lib/has.js":
+/*!********************************************!*\
+  !*** ./node_modules/prop-types/lib/has.js ***!
+  \********************************************/
+/***/ ((module) => {
+
+module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
 
 
 /***/ }),
@@ -45324,6 +46533,3141 @@ function RiWindyLine (props) {
 
 /***/ }),
 
+/***/ "./node_modules/react-input-mask/index.js":
+/*!************************************************!*\
+  !*** ./node_modules/react-input-mask/index.js ***!
+  \************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./lib/react-input-mask.development.js */ "./node_modules/react-input-mask/lib/react-input-mask.development.js");
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react-input-mask/lib/react-input-mask.development.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-input-mask/lib/react-input-mask.development.js ***!
+  \***************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = _interopDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var reactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+var invariant = _interopDefault(__webpack_require__(/*! invariant */ "./node_modules/invariant/browser.js"));
+var warning = _interopDefault(__webpack_require__(/*! warning */ "./node_modules/warning/warning.js"));
+
+function _defaults2(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+
+  _defaults2(subClass, superClass);
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function setInputSelection(input, start, end) {
+  if ('selectionStart' in input && 'selectionEnd' in input) {
+    input.selectionStart = start;
+    input.selectionEnd = end;
+  } else {
+    var range = input.createTextRange();
+    range.collapse(true);
+    range.moveStart('character', start);
+    range.moveEnd('character', end - start);
+    range.select();
+  }
+}
+function getInputSelection(input) {
+  var start = 0;
+  var end = 0;
+
+  if ('selectionStart' in input && 'selectionEnd' in input) {
+    start = input.selectionStart;
+    end = input.selectionEnd;
+  } else {
+    var range = document.selection.createRange();
+
+    if (range.parentElement() === input) {
+      start = -range.moveStart('character', -input.value.length);
+      end = -range.moveEnd('character', -input.value.length);
+    }
+  }
+
+  return {
+    start: start,
+    end: end,
+    length: end - start
+  };
+}
+
+var defaultFormatChars = {
+  '9': '[0-9]',
+  'a': '[A-Za-z]',
+  '*': '[A-Za-z0-9]'
+};
+var defaultMaskChar = '_';
+
+function parseMask (mask, maskChar, formatChars) {
+  var parsedMaskString = '';
+  var prefix = '';
+  var lastEditablePosition = null;
+  var permanents = [];
+
+  if (maskChar === undefined) {
+    maskChar = defaultMaskChar;
+  }
+
+  if (formatChars == null) {
+    formatChars = defaultFormatChars;
+  }
+
+  if (!mask || typeof mask !== 'string') {
+    return {
+      maskChar: maskChar,
+      formatChars: formatChars,
+      mask: null,
+      prefix: null,
+      lastEditablePosition: null,
+      permanents: []
+    };
+  }
+
+  var isPermanent = false;
+  mask.split('').forEach(function (character) {
+    if (!isPermanent && character === '\\') {
+      isPermanent = true;
+    } else {
+      if (isPermanent || !formatChars[character]) {
+        permanents.push(parsedMaskString.length);
+
+        if (parsedMaskString.length === permanents.length - 1) {
+          prefix += character;
+        }
+      } else {
+        lastEditablePosition = parsedMaskString.length + 1;
+      }
+
+      parsedMaskString += character;
+      isPermanent = false;
+    }
+  });
+  return {
+    maskChar: maskChar,
+    formatChars: formatChars,
+    prefix: prefix,
+    mask: parsedMaskString,
+    lastEditablePosition: lastEditablePosition,
+    permanents: permanents
+  };
+}
+
+/* eslint no-use-before-define: ["error", { functions: false }] */
+function isPermanentCharacter(maskOptions, pos) {
+  return maskOptions.permanents.indexOf(pos) !== -1;
+}
+function isAllowedCharacter(maskOptions, pos, character) {
+  var mask = maskOptions.mask,
+      formatChars = maskOptions.formatChars;
+
+  if (!character) {
+    return false;
+  }
+
+  if (isPermanentCharacter(maskOptions, pos)) {
+    return mask[pos] === character;
+  }
+
+  var ruleChar = mask[pos];
+  var charRule = formatChars[ruleChar];
+  return new RegExp(charRule).test(character);
+}
+function isEmpty(maskOptions, value) {
+  return value.split('').every(function (character, i) {
+    return isPermanentCharacter(maskOptions, i) || !isAllowedCharacter(maskOptions, i, character);
+  });
+}
+function getFilledLength(maskOptions, value) {
+  var maskChar = maskOptions.maskChar,
+      prefix = maskOptions.prefix;
+
+  if (!maskChar) {
+    while (value.length > prefix.length && isPermanentCharacter(maskOptions, value.length - 1)) {
+      value = value.slice(0, value.length - 1);
+    }
+
+    return value.length;
+  }
+
+  var filledLength = prefix.length;
+
+  for (var i = value.length; i >= prefix.length; i--) {
+    var character = value[i];
+    var isEnteredCharacter = !isPermanentCharacter(maskOptions, i) && isAllowedCharacter(maskOptions, i, character);
+
+    if (isEnteredCharacter) {
+      filledLength = i + 1;
+      break;
+    }
+  }
+
+  return filledLength;
+}
+function isFilled(maskOptions, value) {
+  return getFilledLength(maskOptions, value) === maskOptions.mask.length;
+}
+function formatValue(maskOptions, value) {
+  var maskChar = maskOptions.maskChar,
+      mask = maskOptions.mask,
+      prefix = maskOptions.prefix;
+
+  if (!maskChar) {
+    value = insertString(maskOptions, '', value, 0);
+
+    if (value.length < prefix.length) {
+      value = prefix;
+    }
+
+    while (value.length < mask.length && isPermanentCharacter(maskOptions, value.length)) {
+      value += mask[value.length];
+    }
+
+    return value;
+  }
+
+  if (value) {
+    var emptyValue = formatValue(maskOptions, '');
+    return insertString(maskOptions, emptyValue, value, 0);
+  }
+
+  for (var i = 0; i < mask.length; i++) {
+    if (isPermanentCharacter(maskOptions, i)) {
+      value += mask[i];
+    } else {
+      value += maskChar;
+    }
+  }
+
+  return value;
+}
+function clearRange(maskOptions, value, start, len) {
+  var end = start + len;
+  var maskChar = maskOptions.maskChar,
+      mask = maskOptions.mask,
+      prefix = maskOptions.prefix;
+  var arrayValue = value.split('');
+
+  if (!maskChar) {
+    // remove any permanent chars after clear range, they will be added back by formatValue
+    for (var i = end; i < arrayValue.length; i++) {
+      if (isPermanentCharacter(maskOptions, i)) {
+        arrayValue[i] = '';
+      }
+    }
+
+    start = Math.max(prefix.length, start);
+    arrayValue.splice(start, end - start);
+    value = arrayValue.join('');
+    return formatValue(maskOptions, value);
+  }
+
+  return arrayValue.map(function (character, i) {
+    if (i < start || i >= end) {
+      return character;
+    }
+
+    if (isPermanentCharacter(maskOptions, i)) {
+      return mask[i];
+    }
+
+    return maskChar;
+  }).join('');
+}
+function insertString(maskOptions, value, insertStr, insertPosition) {
+  var mask = maskOptions.mask,
+      maskChar = maskOptions.maskChar,
+      prefix = maskOptions.prefix;
+  var arrayInsertStr = insertStr.split('');
+  var isInputFilled = isFilled(maskOptions, value);
+
+  var isUsablePosition = function isUsablePosition(pos, character) {
+    return !isPermanentCharacter(maskOptions, pos) || character === mask[pos];
+  };
+
+  var isUsableCharacter = function isUsableCharacter(character, pos) {
+    return !maskChar || !isPermanentCharacter(maskOptions, pos) || character !== maskChar;
+  };
+
+  if (!maskChar && insertPosition > value.length) {
+    value += mask.slice(value.length, insertPosition);
+  }
+
+  arrayInsertStr.every(function (insertCharacter) {
+    while (!isUsablePosition(insertPosition, insertCharacter)) {
+      if (insertPosition >= value.length) {
+        value += mask[insertPosition];
+      }
+
+      if (!isUsableCharacter(insertCharacter, insertPosition)) {
+        return true;
+      }
+
+      insertPosition++; // stop iteration if maximum value length reached
+
+      if (insertPosition >= mask.length) {
+        return false;
+      }
+    }
+
+    var isAllowed = isAllowedCharacter(maskOptions, insertPosition, insertCharacter) || insertCharacter === maskChar;
+
+    if (!isAllowed) {
+      return true;
+    }
+
+    if (insertPosition < value.length) {
+      if (maskChar || isInputFilled || insertPosition < prefix.length) {
+        value = value.slice(0, insertPosition) + insertCharacter + value.slice(insertPosition + 1);
+      } else {
+        value = value.slice(0, insertPosition) + insertCharacter + value.slice(insertPosition);
+        value = formatValue(maskOptions, value);
+      }
+    } else if (!maskChar) {
+      value += insertCharacter;
+    }
+
+    insertPosition++; // stop iteration if maximum value length reached
+
+    return insertPosition < mask.length;
+  });
+  return value;
+}
+function getInsertStringLength(maskOptions, value, insertStr, insertPosition) {
+  var mask = maskOptions.mask,
+      maskChar = maskOptions.maskChar;
+  var arrayInsertStr = insertStr.split('');
+  var initialInsertPosition = insertPosition;
+
+  var isUsablePosition = function isUsablePosition(pos, character) {
+    return !isPermanentCharacter(maskOptions, pos) || character === mask[pos];
+  };
+
+  arrayInsertStr.every(function (insertCharacter) {
+    while (!isUsablePosition(insertPosition, insertCharacter)) {
+      insertPosition++; // stop iteration if maximum value length reached
+
+      if (insertPosition >= mask.length) {
+        return false;
+      }
+    }
+
+    var isAllowed = isAllowedCharacter(maskOptions, insertPosition, insertCharacter) || insertCharacter === maskChar;
+
+    if (isAllowed) {
+      insertPosition++;
+    } // stop iteration if maximum value length reached
+
+
+    return insertPosition < mask.length;
+  });
+  return insertPosition - initialInsertPosition;
+}
+function getLeftEditablePosition(maskOptions, pos) {
+  for (var i = pos; i >= 0; --i) {
+    if (!isPermanentCharacter(maskOptions, i)) {
+      return i;
+    }
+  }
+
+  return null;
+}
+function getRightEditablePosition(maskOptions, pos) {
+  var mask = maskOptions.mask;
+
+  for (var i = pos; i < mask.length; ++i) {
+    if (!isPermanentCharacter(maskOptions, i)) {
+      return i;
+    }
+  }
+
+  return null;
+}
+function getStringValue(value) {
+  return !value && value !== 0 ? '' : value + '';
+}
+
+function processChange(maskOptions, value, selection, previousValue, previousSelection) {
+  var mask = maskOptions.mask,
+      prefix = maskOptions.prefix,
+      lastEditablePosition = maskOptions.lastEditablePosition;
+  var newValue = value;
+  var enteredString = '';
+  var formattedEnteredStringLength = 0;
+  var removedLength = 0;
+  var cursorPosition = Math.min(previousSelection.start, selection.start);
+
+  if (selection.end > previousSelection.start) {
+    enteredString = newValue.slice(previousSelection.start, selection.end);
+    formattedEnteredStringLength = getInsertStringLength(maskOptions, previousValue, enteredString, cursorPosition);
+
+    if (!formattedEnteredStringLength) {
+      removedLength = 0;
+    } else {
+      removedLength = previousSelection.length;
+    }
+  } else if (newValue.length < previousValue.length) {
+    removedLength = previousValue.length - newValue.length;
+  }
+
+  newValue = previousValue;
+
+  if (removedLength) {
+    if (removedLength === 1 && !previousSelection.length) {
+      var deleteFromRight = previousSelection.start === selection.start;
+      cursorPosition = deleteFromRight ? getRightEditablePosition(maskOptions, selection.start) : getLeftEditablePosition(maskOptions, selection.start);
+    }
+
+    newValue = clearRange(maskOptions, newValue, cursorPosition, removedLength);
+  }
+
+  newValue = insertString(maskOptions, newValue, enteredString, cursorPosition);
+  cursorPosition = cursorPosition + formattedEnteredStringLength;
+
+  if (cursorPosition >= mask.length) {
+    cursorPosition = mask.length;
+  } else if (cursorPosition < prefix.length && !formattedEnteredStringLength) {
+    cursorPosition = prefix.length;
+  } else if (cursorPosition >= prefix.length && cursorPosition < lastEditablePosition && formattedEnteredStringLength) {
+    cursorPosition = getRightEditablePosition(maskOptions, cursorPosition);
+  }
+
+  newValue = formatValue(maskOptions, newValue);
+
+  if (!enteredString) {
+    enteredString = null;
+  }
+
+  return {
+    value: newValue,
+    enteredString: enteredString,
+    selection: {
+      start: cursorPosition,
+      end: cursorPosition
+    }
+  };
+}
+
+function isWindowsPhoneBrowser() {
+  var windows = new RegExp('windows', 'i');
+  var phone = new RegExp('phone', 'i');
+  var ua = navigator.userAgent;
+  return windows.test(ua) && phone.test(ua);
+}
+
+function isFunction(value) {
+  return typeof value === 'function';
+}
+
+function getRequestAnimationFrame() {
+  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
+}
+
+function getCancelAnimationFrame() {
+  return window.cancelAnimationFrame || window.webkitCancelRequestAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame;
+}
+
+function defer(fn) {
+  var hasCancelAnimationFrame = !!getCancelAnimationFrame();
+  var deferFn;
+
+  if (hasCancelAnimationFrame) {
+    deferFn = getRequestAnimationFrame();
+  } else {
+    deferFn = function deferFn() {
+      return setTimeout(fn, 1000 / 60);
+    };
+  }
+
+  return deferFn(fn);
+}
+function cancelDefer(deferId) {
+  var cancelFn = getCancelAnimationFrame() || clearTimeout;
+  cancelFn(deferId);
+}
+
+var InputElement =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(InputElement, _React$Component);
+
+  function InputElement(props) {
+    var _this;
+
+    _this = _React$Component.call(this, props) || this;
+    _this.focused = false;
+    _this.mounted = false;
+    _this.previousSelection = null;
+    _this.selectionDeferId = null;
+    _this.saveSelectionLoopDeferId = null;
+
+    _this.saveSelectionLoop = function () {
+      _this.previousSelection = _this.getSelection();
+      _this.saveSelectionLoopDeferId = defer(_this.saveSelectionLoop);
+    };
+
+    _this.runSaveSelectionLoop = function () {
+      if (_this.saveSelectionLoopDeferId === null) {
+        _this.saveSelectionLoop();
+      }
+    };
+
+    _this.stopSaveSelectionLoop = function () {
+      if (_this.saveSelectionLoopDeferId !== null) {
+        cancelDefer(_this.saveSelectionLoopDeferId);
+        _this.saveSelectionLoopDeferId = null;
+        _this.previousSelection = null;
+      }
+    };
+
+    _this.getInputDOMNode = function () {
+      if (!_this.mounted) {
+        return null;
+      }
+
+      var input = reactDom.findDOMNode(_assertThisInitialized(_assertThisInitialized(_this)));
+      var isDOMNode = typeof window !== 'undefined' && input instanceof window.Element; // workaround for react-test-renderer
+      // https://github.com/sanniassin/react-input-mask/issues/147
+
+      if (input && !isDOMNode) {
+        return null;
+      }
+
+      if (input.nodeName !== 'INPUT') {
+        input = input.querySelector('input');
+      }
+
+      if (!input) {
+        throw new Error('react-input-mask: inputComponent doesn\'t contain input node');
+      }
+
+      return input;
+    };
+
+    _this.getInputValue = function () {
+      var input = _this.getInputDOMNode();
+
+      if (!input) {
+        return null;
+      }
+
+      return input.value;
+    };
+
+    _this.setInputValue = function (value) {
+      var input = _this.getInputDOMNode();
+
+      if (!input) {
+        return;
+      }
+
+      _this.value = value;
+      input.value = value;
+    };
+
+    _this.setCursorToEnd = function () {
+      var filledLength = getFilledLength(_this.maskOptions, _this.value);
+      var pos = getRightEditablePosition(_this.maskOptions, filledLength);
+
+      if (pos !== null) {
+        _this.setCursorPosition(pos);
+      }
+    };
+
+    _this.setSelection = function (start, end, options) {
+      if (options === void 0) {
+        options = {};
+      }
+
+      var input = _this.getInputDOMNode();
+
+      var isFocused = _this.isFocused(); // don't change selection on unfocused input
+      // because Safari sets focus on selection change (#154)
+
+
+      if (!input || !isFocused) {
+        return;
+      }
+
+      var _options = options,
+          deferred = _options.deferred;
+
+      if (!deferred) {
+        setInputSelection(input, start, end);
+      }
+
+      if (_this.selectionDeferId !== null) {
+        cancelDefer(_this.selectionDeferId);
+      } // deferred selection update is required for pre-Lollipop Android browser,
+      // but for consistent behavior we do it for all browsers
+
+
+      _this.selectionDeferId = defer(function () {
+        _this.selectionDeferId = null;
+        setInputSelection(input, start, end);
+      });
+      _this.previousSelection = {
+        start: start,
+        end: end,
+        length: Math.abs(end - start)
+      };
+    };
+
+    _this.getSelection = function () {
+      var input = _this.getInputDOMNode();
+
+      return getInputSelection(input);
+    };
+
+    _this.getCursorPosition = function () {
+      return _this.getSelection().start;
+    };
+
+    _this.setCursorPosition = function (pos) {
+      _this.setSelection(pos, pos);
+    };
+
+    _this.isFocused = function () {
+      return _this.focused;
+    };
+
+    _this.getBeforeMaskedValueChangeConfig = function () {
+      var _this$maskOptions = _this.maskOptions,
+          mask = _this$maskOptions.mask,
+          maskChar = _this$maskOptions.maskChar,
+          permanents = _this$maskOptions.permanents,
+          formatChars = _this$maskOptions.formatChars;
+      var alwaysShowMask = _this.props.alwaysShowMask;
+      return {
+        mask: mask,
+        maskChar: maskChar,
+        permanents: permanents,
+        alwaysShowMask: !!alwaysShowMask,
+        formatChars: formatChars
+      };
+    };
+
+    _this.isInputAutofilled = function (value, selection, previousValue, previousSelection) {
+      var input = _this.getInputDOMNode(); // only check for positive match because it will be false negative
+      // in case of autofill simulation in tests
+      //
+      // input.matches throws an exception if selector isn't supported
+
+
+      try {
+        if (input.matches(':-webkit-autofill')) {
+          return true;
+        }
+      } catch (e) {} // if input isn't focused then change event must have been triggered
+      // either by autofill or event simulation in tests
+
+
+      if (!_this.focused) {
+        return true;
+      } // if cursor has moved to the end while previousSelection forbids it
+      // then it must be autofill
+
+
+      return previousSelection.end < previousValue.length && selection.end === value.length;
+    };
+
+    _this.onChange = function (event) {
+      var _assertThisInitialize = _assertThisInitialized(_assertThisInitialized(_this)),
+          beforePasteState = _assertThisInitialize.beforePasteState;
+
+      var _assertThisInitialize2 = _assertThisInitialized(_assertThisInitialized(_this)),
+          previousSelection = _assertThisInitialize2.previousSelection;
+
+      var beforeMaskedValueChange = _this.props.beforeMaskedValueChange;
+
+      var value = _this.getInputValue();
+
+      var previousValue = _this.value;
+
+      var selection = _this.getSelection(); // autofill replaces entire value, ignore old one
+      // https://github.com/sanniassin/react-input-mask/issues/113
+
+
+      if (_this.isInputAutofilled(value, selection, previousValue, previousSelection)) {
+        previousValue = formatValue(_this.maskOptions, '');
+        previousSelection = {
+          start: 0,
+          end: 0,
+          length: 0
+        };
+      } // set value and selection as if we haven't
+      // cleared input in onPaste handler
+
+
+      if (beforePasteState) {
+        previousSelection = beforePasteState.selection;
+        previousValue = beforePasteState.value;
+        selection = {
+          start: previousSelection.start + value.length,
+          end: previousSelection.start + value.length,
+          length: 0
+        };
+        value = previousValue.slice(0, previousSelection.start) + value + previousValue.slice(previousSelection.end);
+        _this.beforePasteState = null;
+      }
+
+      var changedState = processChange(_this.maskOptions, value, selection, previousValue, previousSelection);
+      var enteredString = changedState.enteredString;
+      var newSelection = changedState.selection;
+      var newValue = changedState.value;
+
+      if (isFunction(beforeMaskedValueChange)) {
+        var modifiedValue = beforeMaskedValueChange({
+          value: newValue,
+          selection: newSelection
+        }, {
+          value: previousValue,
+          selection: previousSelection
+        }, enteredString, _this.getBeforeMaskedValueChangeConfig());
+        newValue = modifiedValue.value;
+        newSelection = modifiedValue.selection;
+      }
+
+      _this.setInputValue(newValue);
+
+      if (isFunction(_this.props.onChange)) {
+        _this.props.onChange(event);
+      }
+
+      if (_this.isWindowsPhoneBrowser) {
+        _this.setSelection(newSelection.start, newSelection.end, {
+          deferred: true
+        });
+      } else {
+        _this.setSelection(newSelection.start, newSelection.end);
+      }
+    };
+
+    _this.onFocus = function (event) {
+      var beforeMaskedValueChange = _this.props.beforeMaskedValueChange;
+      var _this$maskOptions2 = _this.maskOptions,
+          mask = _this$maskOptions2.mask,
+          prefix = _this$maskOptions2.prefix;
+      _this.focused = true; // if autoFocus is set, onFocus triggers before componentDidMount
+
+      _this.mounted = true;
+
+      if (mask) {
+        if (!_this.value) {
+          var emptyValue = formatValue(_this.maskOptions, prefix);
+          var newValue = formatValue(_this.maskOptions, emptyValue);
+          var filledLength = getFilledLength(_this.maskOptions, newValue);
+          var cursorPosition = getRightEditablePosition(_this.maskOptions, filledLength);
+          var newSelection = {
+            start: cursorPosition,
+            end: cursorPosition
+          };
+
+          if (isFunction(beforeMaskedValueChange)) {
+            var modifiedValue = beforeMaskedValueChange({
+              value: newValue,
+              selection: newSelection
+            }, {
+              value: _this.value,
+              selection: null
+            }, null, _this.getBeforeMaskedValueChangeConfig());
+            newValue = modifiedValue.value;
+            newSelection = modifiedValue.selection;
+          }
+
+          var isInputValueChanged = newValue !== _this.getInputValue();
+
+          if (isInputValueChanged) {
+            _this.setInputValue(newValue);
+          }
+
+          if (isInputValueChanged && isFunction(_this.props.onChange)) {
+            _this.props.onChange(event);
+          }
+
+          _this.setSelection(newSelection.start, newSelection.end);
+        } else if (getFilledLength(_this.maskOptions, _this.value) < _this.maskOptions.mask.length) {
+          _this.setCursorToEnd();
+        }
+
+        _this.runSaveSelectionLoop();
+      }
+
+      if (isFunction(_this.props.onFocus)) {
+        _this.props.onFocus(event);
+      }
+    };
+
+    _this.onBlur = function (event) {
+      var beforeMaskedValueChange = _this.props.beforeMaskedValueChange;
+      var mask = _this.maskOptions.mask;
+
+      _this.stopSaveSelectionLoop();
+
+      _this.focused = false;
+
+      if (mask && !_this.props.alwaysShowMask && isEmpty(_this.maskOptions, _this.value)) {
+        var newValue = '';
+
+        if (isFunction(beforeMaskedValueChange)) {
+          var modifiedValue = beforeMaskedValueChange({
+            value: newValue,
+            selection: null
+          }, {
+            value: _this.value,
+            selection: _this.previousSelection
+          }, null, _this.getBeforeMaskedValueChangeConfig());
+          newValue = modifiedValue.value;
+        }
+
+        var isInputValueChanged = newValue !== _this.getInputValue();
+
+        if (isInputValueChanged) {
+          _this.setInputValue(newValue);
+        }
+
+        if (isInputValueChanged && isFunction(_this.props.onChange)) {
+          _this.props.onChange(event);
+        }
+      }
+
+      if (isFunction(_this.props.onBlur)) {
+        _this.props.onBlur(event);
+      }
+    };
+
+    _this.onMouseDown = function (event) {
+      // tiny unintentional mouse movements can break cursor
+      // position on focus, so we have to restore it in that case
+      //
+      // https://github.com/sanniassin/react-input-mask/issues/108
+      if (!_this.focused && document.addEventListener) {
+        _this.mouseDownX = event.clientX;
+        _this.mouseDownY = event.clientY;
+        _this.mouseDownTime = new Date().getTime();
+
+        var mouseUpHandler = function mouseUpHandler(mouseUpEvent) {
+          document.removeEventListener('mouseup', mouseUpHandler);
+
+          if (!_this.focused) {
+            return;
+          }
+
+          var deltaX = Math.abs(mouseUpEvent.clientX - _this.mouseDownX);
+          var deltaY = Math.abs(mouseUpEvent.clientY - _this.mouseDownY);
+          var axisDelta = Math.max(deltaX, deltaY);
+
+          var timeDelta = new Date().getTime() - _this.mouseDownTime;
+
+          if (axisDelta <= 10 && timeDelta <= 200 || axisDelta <= 5 && timeDelta <= 300) {
+            _this.setCursorToEnd();
+          }
+        };
+
+        document.addEventListener('mouseup', mouseUpHandler);
+      }
+
+      if (isFunction(_this.props.onMouseDown)) {
+        _this.props.onMouseDown(event);
+      }
+    };
+
+    _this.onPaste = function (event) {
+      if (isFunction(_this.props.onPaste)) {
+        _this.props.onPaste(event);
+      } // event.clipboardData might not work in Android browser
+      // cleaning input to get raw text inside onChange handler
+
+
+      if (!event.defaultPrevented) {
+        _this.beforePasteState = {
+          value: _this.getInputValue(),
+          selection: _this.getSelection()
+        };
+
+        _this.setInputValue('');
+      }
+    };
+
+    _this.handleRef = function (ref) {
+      if (_this.props.children == null && isFunction(_this.props.inputRef)) {
+        _this.props.inputRef(ref);
+      }
+    };
+
+    var _mask = props.mask,
+        _maskChar = props.maskChar,
+        _formatChars = props.formatChars,
+        _alwaysShowMask = props.alwaysShowMask,
+        _beforeMaskedValueChange = props.beforeMaskedValueChange;
+    var defaultValue = props.defaultValue,
+        _value = props.value;
+    _this.maskOptions = parseMask(_mask, _maskChar, _formatChars);
+
+    if (defaultValue == null) {
+      defaultValue = '';
+    }
+
+    if (_value == null) {
+      _value = defaultValue;
+    }
+
+    var _newValue = getStringValue(_value);
+
+    if (_this.maskOptions.mask && (_alwaysShowMask || _newValue)) {
+      _newValue = formatValue(_this.maskOptions, _newValue);
+
+      if (isFunction(_beforeMaskedValueChange)) {
+        var oldValue = props.value;
+
+        if (props.value == null) {
+          oldValue = defaultValue;
+        }
+
+        oldValue = getStringValue(oldValue);
+
+        var modifiedValue = _beforeMaskedValueChange({
+          value: _newValue,
+          selection: null
+        }, {
+          value: oldValue,
+          selection: null
+        }, null, _this.getBeforeMaskedValueChangeConfig());
+
+        _newValue = modifiedValue.value;
+      }
+    }
+
+    _this.value = _newValue;
+    return _this;
+  }
+
+  var _proto = InputElement.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.mounted = true; // workaround for react-test-renderer
+    // https://github.com/sanniassin/react-input-mask/issues/147
+
+    if (!this.getInputDOMNode()) {
+      return;
+    }
+
+    this.isWindowsPhoneBrowser = isWindowsPhoneBrowser();
+
+    if (this.maskOptions.mask && this.getInputValue() !== this.value) {
+      this.setInputValue(this.value);
+    }
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate() {
+    var previousSelection = this.previousSelection;
+    var _this$props = this.props,
+        beforeMaskedValueChange = _this$props.beforeMaskedValueChange,
+        alwaysShowMask = _this$props.alwaysShowMask,
+        mask = _this$props.mask,
+        maskChar = _this$props.maskChar,
+        formatChars = _this$props.formatChars;
+    var previousMaskOptions = this.maskOptions;
+    var showEmpty = alwaysShowMask || this.isFocused();
+    var hasValue = this.props.value != null;
+    var newValue = hasValue ? getStringValue(this.props.value) : this.value;
+    var cursorPosition = previousSelection ? previousSelection.start : null;
+    this.maskOptions = parseMask(mask, maskChar, formatChars);
+
+    if (!this.maskOptions.mask) {
+      if (previousMaskOptions.mask) {
+        this.stopSaveSelectionLoop(); // render depends on this.maskOptions and this.value,
+        // call forceUpdate to keep it in sync
+
+        this.forceUpdate();
+      }
+
+      return;
+    } else if (!previousMaskOptions.mask && this.isFocused()) {
+      this.runSaveSelectionLoop();
+    }
+
+    var isMaskChanged = this.maskOptions.mask && this.maskOptions.mask !== previousMaskOptions.mask;
+
+    if (!previousMaskOptions.mask && !hasValue) {
+      newValue = this.getInputValue();
+    }
+
+    if (isMaskChanged || this.maskOptions.mask && (newValue || showEmpty)) {
+      newValue = formatValue(this.maskOptions, newValue);
+    }
+
+    if (isMaskChanged) {
+      var filledLength = getFilledLength(this.maskOptions, newValue);
+
+      if (cursorPosition === null || filledLength < cursorPosition) {
+        if (isFilled(this.maskOptions, newValue)) {
+          cursorPosition = filledLength;
+        } else {
+          cursorPosition = getRightEditablePosition(this.maskOptions, filledLength);
+        }
+      }
+    }
+
+    if (this.maskOptions.mask && isEmpty(this.maskOptions, newValue) && !showEmpty && (!hasValue || !this.props.value)) {
+      newValue = '';
+    }
+
+    var newSelection = {
+      start: cursorPosition,
+      end: cursorPosition
+    };
+
+    if (isFunction(beforeMaskedValueChange)) {
+      var modifiedValue = beforeMaskedValueChange({
+        value: newValue,
+        selection: newSelection
+      }, {
+        value: this.value,
+        selection: this.previousSelection
+      }, null, this.getBeforeMaskedValueChangeConfig());
+      newValue = modifiedValue.value;
+      newSelection = modifiedValue.selection;
+    }
+
+    this.value = newValue;
+    var isValueChanged = this.getInputValue() !== this.value; // render depends on this.maskOptions and this.value,
+    // call forceUpdate to keep it in sync
+
+    if (isValueChanged) {
+      this.setInputValue(this.value);
+      this.forceUpdate();
+    } else if (isMaskChanged) {
+      this.forceUpdate();
+    }
+
+    var isSelectionChanged = false;
+
+    if (newSelection.start != null && newSelection.end != null) {
+      isSelectionChanged = !previousSelection || previousSelection.start !== newSelection.start || previousSelection.end !== newSelection.end;
+    }
+
+    if (isSelectionChanged || isValueChanged) {
+      this.setSelection(newSelection.start, newSelection.end);
+    }
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.mounted = false;
+
+    if (this.selectionDeferId !== null) {
+      cancelDefer(this.selectionDeferId);
+    }
+
+    this.stopSaveSelectionLoop();
+  };
+
+  _proto.render = function render() {
+    var _this$props2 = this.props,
+        mask = _this$props2.mask,
+        alwaysShowMask = _this$props2.alwaysShowMask,
+        maskChar = _this$props2.maskChar,
+        formatChars = _this$props2.formatChars,
+        inputRef = _this$props2.inputRef,
+        beforeMaskedValueChange = _this$props2.beforeMaskedValueChange,
+        children = _this$props2.children,
+        restProps = _objectWithoutPropertiesLoose(_this$props2, ["mask", "alwaysShowMask", "maskChar", "formatChars", "inputRef", "beforeMaskedValueChange", "children"]);
+
+    var inputElement;
+     true ? warning( // parse mask to test against actual mask prop as this.maskOptions
+    // will be updated later in componentDidUpdate
+    !restProps.maxLength || !parseMask(mask, maskChar, formatChars).mask, 'react-input-mask: maxLength property shouldn\'t be passed to the masked input. It breaks masking and unnecessary because length is limited by the mask length.') : 0;
+
+    if (children) {
+      !isFunction(children) ?  true ? invariant(false, 'react-input-mask: children must be a function') : 0 : void 0;
+      var controlledProps = ['onChange', 'onPaste', 'onMouseDown', 'onFocus', 'onBlur', 'value', 'disabled', 'readOnly'];
+
+      var childrenProps = _extends({}, restProps);
+
+      controlledProps.forEach(function (propId) {
+        return delete childrenProps[propId];
+      });
+      inputElement = children(childrenProps);
+      var conflictProps = controlledProps.filter(function (propId) {
+        return inputElement.props[propId] != null && inputElement.props[propId] !== restProps[propId];
+      });
+      !!conflictProps.length ?  true ? invariant(false, "react-input-mask: the following props should be passed to the react-input-mask's component and should not be altered in children's function: " + conflictProps.join(', ')) : 0 : void 0;
+       true ? warning(!inputRef, 'react-input-mask: inputRef is ignored when children is passed, attach ref to the children instead') : 0;
+    } else {
+      inputElement = React.createElement("input", _extends({
+        ref: this.handleRef
+      }, restProps));
+    }
+
+    var changedProps = {
+      onFocus: this.onFocus,
+      onBlur: this.onBlur
+    };
+
+    if (this.maskOptions.mask) {
+      if (!restProps.disabled && !restProps.readOnly) {
+        changedProps.onChange = this.onChange;
+        changedProps.onPaste = this.onPaste;
+        changedProps.onMouseDown = this.onMouseDown;
+      }
+
+      if (restProps.value != null) {
+        changedProps.value = this.value;
+      }
+    }
+
+    inputElement = React.cloneElement(inputElement, changedProps);
+    return inputElement;
+  };
+
+  return InputElement;
+}(React.Component);
+
+module.exports = InputElement;
+
+
+/***/ }),
+
+/***/ "./node_modules/react-is/cjs/react-is.development.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/react-is/cjs/react-is.development.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+/** @license React v16.13.1
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+
+
+if (true) {
+  (function() {
+'use strict';
+
+// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+// nor polyfill, then a plain number is used for performance.
+var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+// (unstable) APIs that have been removed. Can we remove the symbols?
+
+var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+
+function isValidElementType(type) {
+  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+}
+
+function typeOf(object) {
+  if (typeof object === 'object' && object !== null) {
+    var $$typeof = object.$$typeof;
+
+    switch ($$typeof) {
+      case REACT_ELEMENT_TYPE:
+        var type = object.type;
+
+        switch (type) {
+          case REACT_ASYNC_MODE_TYPE:
+          case REACT_CONCURRENT_MODE_TYPE:
+          case REACT_FRAGMENT_TYPE:
+          case REACT_PROFILER_TYPE:
+          case REACT_STRICT_MODE_TYPE:
+          case REACT_SUSPENSE_TYPE:
+            return type;
+
+          default:
+            var $$typeofType = type && type.$$typeof;
+
+            switch ($$typeofType) {
+              case REACT_CONTEXT_TYPE:
+              case REACT_FORWARD_REF_TYPE:
+              case REACT_LAZY_TYPE:
+              case REACT_MEMO_TYPE:
+              case REACT_PROVIDER_TYPE:
+                return $$typeofType;
+
+              default:
+                return $$typeof;
+            }
+
+        }
+
+      case REACT_PORTAL_TYPE:
+        return $$typeof;
+    }
+  }
+
+  return undefined;
+} // AsyncMode is deprecated along with isAsyncMode
+
+var AsyncMode = REACT_ASYNC_MODE_TYPE;
+var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+var ContextConsumer = REACT_CONTEXT_TYPE;
+var ContextProvider = REACT_PROVIDER_TYPE;
+var Element = REACT_ELEMENT_TYPE;
+var ForwardRef = REACT_FORWARD_REF_TYPE;
+var Fragment = REACT_FRAGMENT_TYPE;
+var Lazy = REACT_LAZY_TYPE;
+var Memo = REACT_MEMO_TYPE;
+var Portal = REACT_PORTAL_TYPE;
+var Profiler = REACT_PROFILER_TYPE;
+var StrictMode = REACT_STRICT_MODE_TYPE;
+var Suspense = REACT_SUSPENSE_TYPE;
+var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+
+function isAsyncMode(object) {
+  {
+    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+    }
+  }
+
+  return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+}
+function isConcurrentMode(object) {
+  return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+}
+function isContextConsumer(object) {
+  return typeOf(object) === REACT_CONTEXT_TYPE;
+}
+function isContextProvider(object) {
+  return typeOf(object) === REACT_PROVIDER_TYPE;
+}
+function isElement(object) {
+  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+}
+function isForwardRef(object) {
+  return typeOf(object) === REACT_FORWARD_REF_TYPE;
+}
+function isFragment(object) {
+  return typeOf(object) === REACT_FRAGMENT_TYPE;
+}
+function isLazy(object) {
+  return typeOf(object) === REACT_LAZY_TYPE;
+}
+function isMemo(object) {
+  return typeOf(object) === REACT_MEMO_TYPE;
+}
+function isPortal(object) {
+  return typeOf(object) === REACT_PORTAL_TYPE;
+}
+function isProfiler(object) {
+  return typeOf(object) === REACT_PROFILER_TYPE;
+}
+function isStrictMode(object) {
+  return typeOf(object) === REACT_STRICT_MODE_TYPE;
+}
+function isSuspense(object) {
+  return typeOf(object) === REACT_SUSPENSE_TYPE;
+}
+
+exports.AsyncMode = AsyncMode;
+exports.ConcurrentMode = ConcurrentMode;
+exports.ContextConsumer = ContextConsumer;
+exports.ContextProvider = ContextProvider;
+exports.Element = Element;
+exports.ForwardRef = ForwardRef;
+exports.Fragment = Fragment;
+exports.Lazy = Lazy;
+exports.Memo = Memo;
+exports.Portal = Portal;
+exports.Profiler = Profiler;
+exports.StrictMode = StrictMode;
+exports.Suspense = Suspense;
+exports.isAsyncMode = isAsyncMode;
+exports.isConcurrentMode = isConcurrentMode;
+exports.isContextConsumer = isContextConsumer;
+exports.isContextProvider = isContextProvider;
+exports.isElement = isElement;
+exports.isForwardRef = isForwardRef;
+exports.isFragment = isFragment;
+exports.isLazy = isLazy;
+exports.isMemo = isMemo;
+exports.isPortal = isPortal;
+exports.isProfiler = isProfiler;
+exports.isStrictMode = isStrictMode;
+exports.isSuspense = isSuspense;
+exports.isValidElementType = isValidElementType;
+exports.typeOf = typeOf;
+  })();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react-is/index.js":
+/*!****************************************!*\
+  !*** ./node_modules/react-is/index.js ***!
+  \****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/react-is/cjs/react-is.development.js");
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "polyfill": () => (/* binding */ polyfill)
+/* harmony export */ });
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+function componentWillMount() {
+  // Call this.constructor.gDSFP to support sub-classes.
+  var state = this.constructor.getDerivedStateFromProps(this.props, this.state);
+  if (state !== null && state !== undefined) {
+    this.setState(state);
+  }
+}
+
+function componentWillReceiveProps(nextProps) {
+  // Call this.constructor.gDSFP to support sub-classes.
+  // Use the setState() updater to ensure state isn't stale in certain edge cases.
+  function updater(prevState) {
+    var state = this.constructor.getDerivedStateFromProps(nextProps, prevState);
+    return state !== null && state !== undefined ? state : null;
+  }
+  // Binding "this" is important for shallow renderer support.
+  this.setState(updater.bind(this));
+}
+
+function componentWillUpdate(nextProps, nextState) {
+  try {
+    var prevProps = this.props;
+    var prevState = this.state;
+    this.props = nextProps;
+    this.state = nextState;
+    this.__reactInternalSnapshotFlag = true;
+    this.__reactInternalSnapshot = this.getSnapshotBeforeUpdate(
+      prevProps,
+      prevState
+    );
+  } finally {
+    this.props = prevProps;
+    this.state = prevState;
+  }
+}
+
+// React may warn about cWM/cWRP/cWU methods being deprecated.
+// Add a flag to suppress these warnings for this special case.
+componentWillMount.__suppressDeprecationWarning = true;
+componentWillReceiveProps.__suppressDeprecationWarning = true;
+componentWillUpdate.__suppressDeprecationWarning = true;
+
+function polyfill(Component) {
+  var prototype = Component.prototype;
+
+  if (!prototype || !prototype.isReactComponent) {
+    throw new Error('Can only polyfill class components');
+  }
+
+  if (
+    typeof Component.getDerivedStateFromProps !== 'function' &&
+    typeof prototype.getSnapshotBeforeUpdate !== 'function'
+  ) {
+    return Component;
+  }
+
+  // If new component APIs are defined, "unsafe" lifecycles won't be called.
+  // Error if any of these lifecycles are present,
+  // Because they would work differently between older and newer (16.3+) versions of React.
+  var foundWillMountName = null;
+  var foundWillReceivePropsName = null;
+  var foundWillUpdateName = null;
+  if (typeof prototype.componentWillMount === 'function') {
+    foundWillMountName = 'componentWillMount';
+  } else if (typeof prototype.UNSAFE_componentWillMount === 'function') {
+    foundWillMountName = 'UNSAFE_componentWillMount';
+  }
+  if (typeof prototype.componentWillReceiveProps === 'function') {
+    foundWillReceivePropsName = 'componentWillReceiveProps';
+  } else if (typeof prototype.UNSAFE_componentWillReceiveProps === 'function') {
+    foundWillReceivePropsName = 'UNSAFE_componentWillReceiveProps';
+  }
+  if (typeof prototype.componentWillUpdate === 'function') {
+    foundWillUpdateName = 'componentWillUpdate';
+  } else if (typeof prototype.UNSAFE_componentWillUpdate === 'function') {
+    foundWillUpdateName = 'UNSAFE_componentWillUpdate';
+  }
+  if (
+    foundWillMountName !== null ||
+    foundWillReceivePropsName !== null ||
+    foundWillUpdateName !== null
+  ) {
+    var componentName = Component.displayName || Component.name;
+    var newApiName =
+      typeof Component.getDerivedStateFromProps === 'function'
+        ? 'getDerivedStateFromProps()'
+        : 'getSnapshotBeforeUpdate()';
+
+    throw Error(
+      'Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n' +
+        componentName +
+        ' uses ' +
+        newApiName +
+        ' but also contains the following legacy lifecycles:' +
+        (foundWillMountName !== null ? '\n  ' + foundWillMountName : '') +
+        (foundWillReceivePropsName !== null
+          ? '\n  ' + foundWillReceivePropsName
+          : '') +
+        (foundWillUpdateName !== null ? '\n  ' + foundWillUpdateName : '') +
+        '\n\nThe above lifecycles should be removed. Learn more about this warning here:\n' +
+        'https://fb.me/react-async-component-lifecycle-hooks'
+    );
+  }
+
+  // React <= 16.2 does not support static getDerivedStateFromProps.
+  // As a workaround, use cWM and cWRP to invoke the new static lifecycle.
+  // Newer versions of React will ignore these lifecycles if gDSFP exists.
+  if (typeof Component.getDerivedStateFromProps === 'function') {
+    prototype.componentWillMount = componentWillMount;
+    prototype.componentWillReceiveProps = componentWillReceiveProps;
+  }
+
+  // React <= 16.2 does not support getSnapshotBeforeUpdate.
+  // As a workaround, use cWU to invoke the new lifecycle.
+  // Newer versions of React will ignore that lifecycle if gSBU exists.
+  if (typeof prototype.getSnapshotBeforeUpdate === 'function') {
+    if (typeof prototype.componentDidUpdate !== 'function') {
+      throw new Error(
+        'Cannot polyfill getSnapshotBeforeUpdate() for components that do not define componentDidUpdate() on the prototype'
+      );
+    }
+
+    prototype.componentWillUpdate = componentWillUpdate;
+
+    var componentDidUpdate = prototype.componentDidUpdate;
+
+    prototype.componentDidUpdate = function componentDidUpdatePolyfill(
+      prevProps,
+      prevState,
+      maybeSnapshot
+    ) {
+      // 16.3+ will not execute our will-update method;
+      // It will pass a snapshot value to did-update though.
+      // Older versions will require our polyfilled will-update value.
+      // We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
+      // Because for <= 15.x versions this might be a "prevContext" object.
+      // We also can't just check "__reactInternalSnapshot",
+      // Because get-snapshot might return a falsy value.
+      // So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
+      var snapshot = this.__reactInternalSnapshotFlag
+        ? this.__reactInternalSnapshot
+        : maybeSnapshot;
+
+      componentDidUpdate.call(this, prevProps, prevState, snapshot);
+    };
+  }
+
+  return Component;
+}
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/react-modal/lib/components/Modal.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/react-modal/lib/components/Modal.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.bodyOpenClassName = exports.portalClassName = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _ModalPortal = __webpack_require__(/*! ./ModalPortal */ "./node_modules/react-modal/lib/components/ModalPortal.js");
+
+var _ModalPortal2 = _interopRequireDefault(_ModalPortal);
+
+var _ariaAppHider = __webpack_require__(/*! ../helpers/ariaAppHider */ "./node_modules/react-modal/lib/helpers/ariaAppHider.js");
+
+var ariaAppHider = _interopRequireWildcard(_ariaAppHider);
+
+var _safeHTMLElement = __webpack_require__(/*! ../helpers/safeHTMLElement */ "./node_modules/react-modal/lib/helpers/safeHTMLElement.js");
+
+var _safeHTMLElement2 = _interopRequireDefault(_safeHTMLElement);
+
+var _reactLifecyclesCompat = __webpack_require__(/*! react-lifecycles-compat */ "./node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var portalClassName = exports.portalClassName = "ReactModalPortal";
+var bodyOpenClassName = exports.bodyOpenClassName = "ReactModal__Body--open";
+
+var isReact16 = _safeHTMLElement.canUseDOM && _reactDom2.default.createPortal !== undefined;
+
+var createHTMLElement = function createHTMLElement(name) {
+  return document.createElement(name);
+};
+
+var getCreatePortal = function getCreatePortal() {
+  return isReact16 ? _reactDom2.default.createPortal : _reactDom2.default.unstable_renderSubtreeIntoContainer;
+};
+
+function getParentElement(parentSelector) {
+  return parentSelector();
+}
+
+var Modal = function (_Component) {
+  _inherits(Modal, _Component);
+
+  function Modal() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Modal);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.removePortal = function () {
+      !isReact16 && _reactDom2.default.unmountComponentAtNode(_this.node);
+      var parent = getParentElement(_this.props.parentSelector);
+      if (parent && parent.contains(_this.node)) {
+        parent.removeChild(_this.node);
+      } else {
+        // eslint-disable-next-line no-console
+        console.warn('React-Modal: "parentSelector" prop did not returned any DOM ' + "element. Make sure that the parent element is unmounted to " + "avoid any memory leaks.");
+      }
+    }, _this.portalRef = function (ref) {
+      _this.portal = ref;
+    }, _this.renderPortal = function (props) {
+      var createPortal = getCreatePortal();
+      var portal = createPortal(_this, _react2.default.createElement(_ModalPortal2.default, _extends({ defaultStyles: Modal.defaultStyles }, props)), _this.node);
+      _this.portalRef(portal);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Modal, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (!_safeHTMLElement.canUseDOM) return;
+
+      if (!isReact16) {
+        this.node = createHTMLElement("div");
+      }
+      this.node.className = this.props.portalClassName;
+
+      var parent = getParentElement(this.props.parentSelector);
+      parent.appendChild(this.node);
+
+      !isReact16 && this.renderPortal(this.props);
+    }
+  }, {
+    key: "getSnapshotBeforeUpdate",
+    value: function getSnapshotBeforeUpdate(prevProps) {
+      var prevParent = getParentElement(prevProps.parentSelector);
+      var nextParent = getParentElement(this.props.parentSelector);
+      return { prevParent: prevParent, nextParent: nextParent };
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, _, snapshot) {
+      if (!_safeHTMLElement.canUseDOM) return;
+      var _props = this.props,
+          isOpen = _props.isOpen,
+          portalClassName = _props.portalClassName;
+
+
+      if (prevProps.portalClassName !== portalClassName) {
+        this.node.className = portalClassName;
+      }
+
+      var prevParent = snapshot.prevParent,
+          nextParent = snapshot.nextParent;
+
+      if (nextParent !== prevParent) {
+        prevParent.removeChild(this.node);
+        nextParent.appendChild(this.node);
+      }
+
+      // Stop unnecessary renders if modal is remaining closed
+      if (!prevProps.isOpen && !isOpen) return;
+
+      !isReact16 && this.renderPortal(this.props);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (!_safeHTMLElement.canUseDOM || !this.node || !this.portal) return;
+
+      var state = this.portal.state;
+      var now = Date.now();
+      var closesAt = state.isOpen && this.props.closeTimeoutMS && (state.closesAt || now + this.props.closeTimeoutMS);
+
+      if (closesAt) {
+        if (!state.beforeClose) {
+          this.portal.closeWithTimeout();
+        }
+
+        setTimeout(this.removePortal, closesAt - now);
+      } else {
+        this.removePortal();
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (!_safeHTMLElement.canUseDOM || !isReact16) {
+        return null;
+      }
+
+      if (!this.node && isReact16) {
+        this.node = createHTMLElement("div");
+      }
+
+      var createPortal = getCreatePortal();
+      return createPortal(_react2.default.createElement(_ModalPortal2.default, _extends({
+        ref: this.portalRef,
+        defaultStyles: Modal.defaultStyles
+      }, this.props)), this.node);
+    }
+  }], [{
+    key: "setAppElement",
+    value: function setAppElement(element) {
+      ariaAppHider.setElement(element);
+    }
+
+    /* eslint-disable react/no-unused-prop-types */
+
+    /* eslint-enable react/no-unused-prop-types */
+
+  }]);
+
+  return Modal;
+}(_react.Component);
+
+Modal.propTypes = {
+  isOpen: _propTypes2.default.bool.isRequired,
+  style: _propTypes2.default.shape({
+    content: _propTypes2.default.object,
+    overlay: _propTypes2.default.object
+  }),
+  portalClassName: _propTypes2.default.string,
+  bodyOpenClassName: _propTypes2.default.string,
+  htmlOpenClassName: _propTypes2.default.string,
+  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.shape({
+    base: _propTypes2.default.string.isRequired,
+    afterOpen: _propTypes2.default.string.isRequired,
+    beforeClose: _propTypes2.default.string.isRequired
+  })]),
+  overlayClassName: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.shape({
+    base: _propTypes2.default.string.isRequired,
+    afterOpen: _propTypes2.default.string.isRequired,
+    beforeClose: _propTypes2.default.string.isRequired
+  })]),
+  appElement: _propTypes2.default.oneOfType([_propTypes2.default.instanceOf(_safeHTMLElement2.default), _propTypes2.default.instanceOf(_safeHTMLElement.SafeHTMLCollection), _propTypes2.default.instanceOf(_safeHTMLElement.SafeNodeList), _propTypes2.default.arrayOf(_propTypes2.default.instanceOf(_safeHTMLElement2.default))]),
+  onAfterOpen: _propTypes2.default.func,
+  onRequestClose: _propTypes2.default.func,
+  closeTimeoutMS: _propTypes2.default.number,
+  ariaHideApp: _propTypes2.default.bool,
+  shouldFocusAfterRender: _propTypes2.default.bool,
+  shouldCloseOnOverlayClick: _propTypes2.default.bool,
+  shouldReturnFocusAfterClose: _propTypes2.default.bool,
+  preventScroll: _propTypes2.default.bool,
+  parentSelector: _propTypes2.default.func,
+  aria: _propTypes2.default.object,
+  data: _propTypes2.default.object,
+  role: _propTypes2.default.string,
+  contentLabel: _propTypes2.default.string,
+  shouldCloseOnEsc: _propTypes2.default.bool,
+  overlayRef: _propTypes2.default.func,
+  contentRef: _propTypes2.default.func,
+  id: _propTypes2.default.string,
+  overlayElement: _propTypes2.default.func,
+  contentElement: _propTypes2.default.func
+};
+Modal.defaultProps = {
+  isOpen: false,
+  portalClassName: portalClassName,
+  bodyOpenClassName: bodyOpenClassName,
+  role: "dialog",
+  ariaHideApp: true,
+  closeTimeoutMS: 0,
+  shouldFocusAfterRender: true,
+  shouldCloseOnEsc: true,
+  shouldCloseOnOverlayClick: true,
+  shouldReturnFocusAfterClose: true,
+  preventScroll: false,
+  parentSelector: function parentSelector() {
+    return document.body;
+  },
+  overlayElement: function overlayElement(props, contentEl) {
+    return _react2.default.createElement(
+      "div",
+      props,
+      contentEl
+    );
+  },
+  contentElement: function contentElement(props, children) {
+    return _react2.default.createElement(
+      "div",
+      props,
+      children
+    );
+  }
+};
+Modal.defaultStyles = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(255, 255, 255, 0.75)"
+  },
+  content: {
+    position: "absolute",
+    top: "40px",
+    left: "40px",
+    right: "40px",
+    bottom: "40px",
+    border: "1px solid #ccc",
+    background: "#fff",
+    overflow: "auto",
+    WebkitOverflowScrolling: "touch",
+    borderRadius: "4px",
+    outline: "none",
+    padding: "20px"
+  }
+};
+
+
+(0, _reactLifecyclesCompat.polyfill)(Modal);
+
+if (true) {
+  Modal.setCreateHTMLElement = function (fn) {
+    return createHTMLElement = fn;
+  };
+}
+
+exports["default"] = Modal;
+
+/***/ }),
+
+/***/ "./node_modules/react-modal/lib/components/ModalPortal.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/react-modal/lib/components/ModalPortal.js ***!
+  \****************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _focusManager = __webpack_require__(/*! ../helpers/focusManager */ "./node_modules/react-modal/lib/helpers/focusManager.js");
+
+var focusManager = _interopRequireWildcard(_focusManager);
+
+var _scopeTab = __webpack_require__(/*! ../helpers/scopeTab */ "./node_modules/react-modal/lib/helpers/scopeTab.js");
+
+var _scopeTab2 = _interopRequireDefault(_scopeTab);
+
+var _ariaAppHider = __webpack_require__(/*! ../helpers/ariaAppHider */ "./node_modules/react-modal/lib/helpers/ariaAppHider.js");
+
+var ariaAppHider = _interopRequireWildcard(_ariaAppHider);
+
+var _classList = __webpack_require__(/*! ../helpers/classList */ "./node_modules/react-modal/lib/helpers/classList.js");
+
+var classList = _interopRequireWildcard(_classList);
+
+var _safeHTMLElement = __webpack_require__(/*! ../helpers/safeHTMLElement */ "./node_modules/react-modal/lib/helpers/safeHTMLElement.js");
+
+var _safeHTMLElement2 = _interopRequireDefault(_safeHTMLElement);
+
+var _portalOpenInstances = __webpack_require__(/*! ../helpers/portalOpenInstances */ "./node_modules/react-modal/lib/helpers/portalOpenInstances.js");
+
+var _portalOpenInstances2 = _interopRequireDefault(_portalOpenInstances);
+
+__webpack_require__(/*! ../helpers/bodyTrap */ "./node_modules/react-modal/lib/helpers/bodyTrap.js");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// so that our CSS is statically analyzable
+var CLASS_NAMES = {
+  overlay: "ReactModal__Overlay",
+  content: "ReactModal__Content"
+};
+
+var TAB_KEY = 9;
+var ESC_KEY = 27;
+
+var ariaHiddenInstances = 0;
+
+var ModalPortal = function (_Component) {
+  _inherits(ModalPortal, _Component);
+
+  function ModalPortal(props) {
+    _classCallCheck(this, ModalPortal);
+
+    var _this = _possibleConstructorReturn(this, (ModalPortal.__proto__ || Object.getPrototypeOf(ModalPortal)).call(this, props));
+
+    _this.setOverlayRef = function (overlay) {
+      _this.overlay = overlay;
+      _this.props.overlayRef && _this.props.overlayRef(overlay);
+    };
+
+    _this.setContentRef = function (content) {
+      _this.content = content;
+      _this.props.contentRef && _this.props.contentRef(content);
+    };
+
+    _this.afterClose = function () {
+      var _this$props = _this.props,
+          appElement = _this$props.appElement,
+          ariaHideApp = _this$props.ariaHideApp,
+          htmlOpenClassName = _this$props.htmlOpenClassName,
+          bodyOpenClassName = _this$props.bodyOpenClassName;
+
+      // Remove classes.
+
+      bodyOpenClassName && classList.remove(document.body, bodyOpenClassName);
+
+      htmlOpenClassName && classList.remove(document.getElementsByTagName("html")[0], htmlOpenClassName);
+
+      // Reset aria-hidden attribute if all modals have been removed
+      if (ariaHideApp && ariaHiddenInstances > 0) {
+        ariaHiddenInstances -= 1;
+
+        if (ariaHiddenInstances === 0) {
+          ariaAppHider.show(appElement);
+        }
+      }
+
+      if (_this.props.shouldFocusAfterRender) {
+        if (_this.props.shouldReturnFocusAfterClose) {
+          focusManager.returnFocus(_this.props.preventScroll);
+          focusManager.teardownScopedFocus();
+        } else {
+          focusManager.popWithoutFocus();
+        }
+      }
+
+      if (_this.props.onAfterClose) {
+        _this.props.onAfterClose();
+      }
+
+      _portalOpenInstances2.default.deregister(_this);
+    };
+
+    _this.open = function () {
+      _this.beforeOpen();
+      if (_this.state.afterOpen && _this.state.beforeClose) {
+        clearTimeout(_this.closeTimer);
+        _this.setState({ beforeClose: false });
+      } else {
+        if (_this.props.shouldFocusAfterRender) {
+          focusManager.setupScopedFocus(_this.node);
+          focusManager.markForFocusLater();
+        }
+
+        _this.setState({ isOpen: true }, function () {
+          _this.openAnimationFrame = requestAnimationFrame(function () {
+            _this.setState({ afterOpen: true });
+
+            if (_this.props.isOpen && _this.props.onAfterOpen) {
+              _this.props.onAfterOpen({
+                overlayEl: _this.overlay,
+                contentEl: _this.content
+              });
+            }
+          });
+        });
+      }
+    };
+
+    _this.close = function () {
+      if (_this.props.closeTimeoutMS > 0) {
+        _this.closeWithTimeout();
+      } else {
+        _this.closeWithoutTimeout();
+      }
+    };
+
+    _this.focusContent = function () {
+      return _this.content && !_this.contentHasFocus() && _this.content.focus({ preventScroll: true });
+    };
+
+    _this.closeWithTimeout = function () {
+      var closesAt = Date.now() + _this.props.closeTimeoutMS;
+      _this.setState({ beforeClose: true, closesAt: closesAt }, function () {
+        _this.closeTimer = setTimeout(_this.closeWithoutTimeout, _this.state.closesAt - Date.now());
+      });
+    };
+
+    _this.closeWithoutTimeout = function () {
+      _this.setState({
+        beforeClose: false,
+        isOpen: false,
+        afterOpen: false,
+        closesAt: null
+      }, _this.afterClose);
+    };
+
+    _this.handleKeyDown = function (event) {
+      if (event.keyCode === TAB_KEY) {
+        (0, _scopeTab2.default)(_this.content, event);
+      }
+
+      if (_this.props.shouldCloseOnEsc && event.keyCode === ESC_KEY) {
+        event.stopPropagation();
+        _this.requestClose(event);
+      }
+    };
+
+    _this.handleOverlayOnClick = function (event) {
+      if (_this.shouldClose === null) {
+        _this.shouldClose = true;
+      }
+
+      if (_this.shouldClose && _this.props.shouldCloseOnOverlayClick) {
+        if (_this.ownerHandlesClose()) {
+          _this.requestClose(event);
+        } else {
+          _this.focusContent();
+        }
+      }
+      _this.shouldClose = null;
+    };
+
+    _this.handleContentOnMouseUp = function () {
+      _this.shouldClose = false;
+    };
+
+    _this.handleOverlayOnMouseDown = function (event) {
+      if (!_this.props.shouldCloseOnOverlayClick && event.target == _this.overlay) {
+        event.preventDefault();
+      }
+    };
+
+    _this.handleContentOnClick = function () {
+      _this.shouldClose = false;
+    };
+
+    _this.handleContentOnMouseDown = function () {
+      _this.shouldClose = false;
+    };
+
+    _this.requestClose = function (event) {
+      return _this.ownerHandlesClose() && _this.props.onRequestClose(event);
+    };
+
+    _this.ownerHandlesClose = function () {
+      return _this.props.onRequestClose;
+    };
+
+    _this.shouldBeClosed = function () {
+      return !_this.state.isOpen && !_this.state.beforeClose;
+    };
+
+    _this.contentHasFocus = function () {
+      return document.activeElement === _this.content || _this.content.contains(document.activeElement);
+    };
+
+    _this.buildClassName = function (which, additional) {
+      var classNames = (typeof additional === "undefined" ? "undefined" : _typeof(additional)) === "object" ? additional : {
+        base: CLASS_NAMES[which],
+        afterOpen: CLASS_NAMES[which] + "--after-open",
+        beforeClose: CLASS_NAMES[which] + "--before-close"
+      };
+      var className = classNames.base;
+      if (_this.state.afterOpen) {
+        className = className + " " + classNames.afterOpen;
+      }
+      if (_this.state.beforeClose) {
+        className = className + " " + classNames.beforeClose;
+      }
+      return typeof additional === "string" && additional ? className + " " + additional : className;
+    };
+
+    _this.attributesFromObject = function (prefix, items) {
+      return Object.keys(items).reduce(function (acc, name) {
+        acc[prefix + "-" + name] = items[name];
+        return acc;
+      }, {});
+    };
+
+    _this.state = {
+      afterOpen: false,
+      beforeClose: false
+    };
+
+    _this.shouldClose = null;
+    _this.moveFromContentToOverlay = null;
+    return _this;
+  }
+
+  _createClass(ModalPortal, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.isOpen) {
+        this.open();
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (true) {
+        if (prevProps.bodyOpenClassName !== this.props.bodyOpenClassName) {
+          // eslint-disable-next-line no-console
+          console.warn('React-Modal: "bodyOpenClassName" prop has been modified. ' + "This may cause unexpected behavior when multiple modals are open.");
+        }
+        if (prevProps.htmlOpenClassName !== this.props.htmlOpenClassName) {
+          // eslint-disable-next-line no-console
+          console.warn('React-Modal: "htmlOpenClassName" prop has been modified. ' + "This may cause unexpected behavior when multiple modals are open.");
+        }
+      }
+
+      if (this.props.isOpen && !prevProps.isOpen) {
+        this.open();
+      } else if (!this.props.isOpen && prevProps.isOpen) {
+        this.close();
+      }
+
+      // Focus only needs to be set once when the modal is being opened
+      if (this.props.shouldFocusAfterRender && this.state.isOpen && !prevState.isOpen) {
+        this.focusContent();
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this.state.isOpen) {
+        this.afterClose();
+      }
+      clearTimeout(this.closeTimer);
+      cancelAnimationFrame(this.openAnimationFrame);
+    }
+  }, {
+    key: "beforeOpen",
+    value: function beforeOpen() {
+      var _props = this.props,
+          appElement = _props.appElement,
+          ariaHideApp = _props.ariaHideApp,
+          htmlOpenClassName = _props.htmlOpenClassName,
+          bodyOpenClassName = _props.bodyOpenClassName;
+
+      // Add classes.
+
+      bodyOpenClassName && classList.add(document.body, bodyOpenClassName);
+
+      htmlOpenClassName && classList.add(document.getElementsByTagName("html")[0], htmlOpenClassName);
+
+      if (ariaHideApp) {
+        ariaHiddenInstances += 1;
+        ariaAppHider.hide(appElement);
+      }
+
+      _portalOpenInstances2.default.register(this);
+    }
+
+    // Don't steal focus from inner elements
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _props2 = this.props,
+          id = _props2.id,
+          className = _props2.className,
+          overlayClassName = _props2.overlayClassName,
+          defaultStyles = _props2.defaultStyles,
+          children = _props2.children;
+
+      var contentStyles = className ? {} : defaultStyles.content;
+      var overlayStyles = overlayClassName ? {} : defaultStyles.overlay;
+
+      if (this.shouldBeClosed()) {
+        return null;
+      }
+
+      var overlayProps = {
+        ref: this.setOverlayRef,
+        className: this.buildClassName("overlay", overlayClassName),
+        style: _extends({}, overlayStyles, this.props.style.overlay),
+        onClick: this.handleOverlayOnClick,
+        onMouseDown: this.handleOverlayOnMouseDown
+      };
+
+      var contentProps = _extends({
+        id: id,
+        ref: this.setContentRef,
+        style: _extends({}, contentStyles, this.props.style.content),
+        className: this.buildClassName("content", className),
+        tabIndex: "-1",
+        onKeyDown: this.handleKeyDown,
+        onMouseDown: this.handleContentOnMouseDown,
+        onMouseUp: this.handleContentOnMouseUp,
+        onClick: this.handleContentOnClick,
+        role: this.props.role,
+        "aria-label": this.props.contentLabel
+      }, this.attributesFromObject("aria", _extends({ modal: true }, this.props.aria)), this.attributesFromObject("data", this.props.data || {}), {
+        "data-testid": this.props.testId
+      });
+
+      var contentElement = this.props.contentElement(contentProps, children);
+      return this.props.overlayElement(overlayProps, contentElement);
+    }
+  }]);
+
+  return ModalPortal;
+}(_react.Component);
+
+ModalPortal.defaultProps = {
+  style: {
+    overlay: {},
+    content: {}
+  },
+  defaultStyles: {}
+};
+ModalPortal.propTypes = {
+  isOpen: _propTypes2.default.bool.isRequired,
+  defaultStyles: _propTypes2.default.shape({
+    content: _propTypes2.default.object,
+    overlay: _propTypes2.default.object
+  }),
+  style: _propTypes2.default.shape({
+    content: _propTypes2.default.object,
+    overlay: _propTypes2.default.object
+  }),
+  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]),
+  overlayClassName: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]),
+  bodyOpenClassName: _propTypes2.default.string,
+  htmlOpenClassName: _propTypes2.default.string,
+  ariaHideApp: _propTypes2.default.bool,
+  appElement: _propTypes2.default.oneOfType([_propTypes2.default.instanceOf(_safeHTMLElement2.default), _propTypes2.default.instanceOf(_safeHTMLElement.SafeHTMLCollection), _propTypes2.default.instanceOf(_safeHTMLElement.SafeNodeList), _propTypes2.default.arrayOf(_propTypes2.default.instanceOf(_safeHTMLElement2.default))]),
+  onAfterOpen: _propTypes2.default.func,
+  onAfterClose: _propTypes2.default.func,
+  onRequestClose: _propTypes2.default.func,
+  closeTimeoutMS: _propTypes2.default.number,
+  shouldFocusAfterRender: _propTypes2.default.bool,
+  shouldCloseOnOverlayClick: _propTypes2.default.bool,
+  shouldReturnFocusAfterClose: _propTypes2.default.bool,
+  preventScroll: _propTypes2.default.bool,
+  role: _propTypes2.default.string,
+  contentLabel: _propTypes2.default.string,
+  aria: _propTypes2.default.object,
+  data: _propTypes2.default.object,
+  children: _propTypes2.default.node,
+  shouldCloseOnEsc: _propTypes2.default.bool,
+  overlayRef: _propTypes2.default.func,
+  contentRef: _propTypes2.default.func,
+  id: _propTypes2.default.string,
+  overlayElement: _propTypes2.default.func,
+  contentElement: _propTypes2.default.func,
+  testId: _propTypes2.default.string
+};
+exports["default"] = ModalPortal;
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "./node_modules/react-modal/lib/helpers/ariaAppHider.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/react-modal/lib/helpers/ariaAppHider.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.resetState = resetState;
+exports.log = log;
+exports.assertNodeList = assertNodeList;
+exports.setElement = setElement;
+exports.validateElement = validateElement;
+exports.hide = hide;
+exports.show = show;
+exports.documentNotReadyOrSSRTesting = documentNotReadyOrSSRTesting;
+
+var _warning = __webpack_require__(/*! warning */ "./node_modules/warning/warning.js");
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _safeHTMLElement = __webpack_require__(/*! ./safeHTMLElement */ "./node_modules/react-modal/lib/helpers/safeHTMLElement.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var globalElement = null;
+
+/* eslint-disable no-console */
+/* istanbul ignore next */
+function resetState() {
+  if (globalElement) {
+    if (globalElement.removeAttribute) {
+      globalElement.removeAttribute("aria-hidden");
+    } else if (globalElement.length != null) {
+      globalElement.forEach(function (element) {
+        return element.removeAttribute("aria-hidden");
+      });
+    } else {
+      document.querySelectorAll(globalElement).forEach(function (element) {
+        return element.removeAttribute("aria-hidden");
+      });
+    }
+  }
+  globalElement = null;
+}
+
+/* istanbul ignore next */
+function log() {
+  if (true) {
+    var check = globalElement || {};
+    console.log("ariaAppHider ----------");
+    console.log(check.nodeName, check.className, check.id);
+    console.log("end ariaAppHider ----------");
+  }
+}
+/* eslint-enable no-console */
+
+function assertNodeList(nodeList, selector) {
+  if (!nodeList || !nodeList.length) {
+    throw new Error("react-modal: No elements were found for selector " + selector + ".");
+  }
+}
+
+function setElement(element) {
+  var useElement = element;
+  if (typeof useElement === "string" && _safeHTMLElement.canUseDOM) {
+    var el = document.querySelectorAll(useElement);
+    assertNodeList(el, useElement);
+    useElement = el;
+  }
+  globalElement = useElement || globalElement;
+  return globalElement;
+}
+
+function validateElement(appElement) {
+  var el = appElement || globalElement;
+  if (el) {
+    return Array.isArray(el) || el instanceof HTMLCollection || el instanceof NodeList ? el : [el];
+  } else {
+    (0, _warning2.default)(false, ["react-modal: App element is not defined.", "Please use `Modal.setAppElement(el)` or set `appElement={el}`.", "This is needed so screen readers don't see main content", "when modal is opened. It is not recommended, but you can opt-out", "by setting `ariaHideApp={false}`."].join(" "));
+
+    return [];
+  }
+}
+
+function hide(appElement) {
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = validateElement(appElement)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var el = _step.value;
+
+      el.setAttribute("aria-hidden", "true");
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+}
+
+function show(appElement) {
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = validateElement(appElement)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var el = _step2.value;
+
+      el.removeAttribute("aria-hidden");
+    }
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2.return) {
+        _iterator2.return();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
+}
+
+function documentNotReadyOrSSRTesting() {
+  globalElement = null;
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-modal/lib/helpers/bodyTrap.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/react-modal/lib/helpers/bodyTrap.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.resetState = resetState;
+exports.log = log;
+
+var _portalOpenInstances = __webpack_require__(/*! ./portalOpenInstances */ "./node_modules/react-modal/lib/helpers/portalOpenInstances.js");
+
+var _portalOpenInstances2 = _interopRequireDefault(_portalOpenInstances);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Body focus trap see Issue #742
+
+var before = void 0,
+    after = void 0,
+    instances = [];
+
+/* eslint-disable no-console */
+/* istanbul ignore next */
+function resetState() {
+  var _arr = [before, after];
+
+  for (var _i = 0; _i < _arr.length; _i++) {
+    var item = _arr[_i];
+    if (!item) continue;
+    item.parentNode && item.parentNode.removeChild(item);
+  }
+  before = after = null;
+  instances = [];
+}
+
+/* istanbul ignore next */
+function log() {
+  console.log("bodyTrap ----------");
+  console.log(instances.length);
+  var _arr2 = [before, after];
+  for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
+    var item = _arr2[_i2];
+    var check = item || {};
+    console.log(check.nodeName, check.className, check.id);
+  }
+  console.log("edn bodyTrap ----------");
+}
+/* eslint-enable no-console */
+
+function focusContent() {
+  if (instances.length === 0) {
+    if (true) {
+      // eslint-disable-next-line no-console
+      console.warn("React-Modal: Open instances > 0 expected");
+    }
+    return;
+  }
+  instances[instances.length - 1].focusContent();
+}
+
+function bodyTrap(eventType, openInstances) {
+  if (!before && !after) {
+    before = document.createElement("div");
+    before.setAttribute("data-react-modal-body-trap", "");
+    before.style.position = "absolute";
+    before.style.opacity = "0";
+    before.setAttribute("tabindex", "0");
+    before.addEventListener("focus", focusContent);
+    after = before.cloneNode();
+    after.addEventListener("focus", focusContent);
+  }
+
+  instances = openInstances;
+
+  if (instances.length > 0) {
+    // Add focus trap
+    if (document.body.firstChild !== before) {
+      document.body.insertBefore(before, document.body.firstChild);
+    }
+    if (document.body.lastChild !== after) {
+      document.body.appendChild(after);
+    }
+  } else {
+    // Remove focus trap
+    if (before.parentElement) {
+      before.parentElement.removeChild(before);
+    }
+    if (after.parentElement) {
+      after.parentElement.removeChild(after);
+    }
+  }
+}
+
+_portalOpenInstances2.default.subscribe(bodyTrap);
+
+/***/ }),
+
+/***/ "./node_modules/react-modal/lib/helpers/classList.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/react-modal/lib/helpers/classList.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.resetState = resetState;
+exports.log = log;
+var htmlClassList = {};
+var docBodyClassList = {};
+
+/* eslint-disable no-console */
+/* istanbul ignore next */
+function removeClass(at, cls) {
+  at.classList.remove(cls);
+}
+
+/* istanbul ignore next */
+function resetState() {
+  var htmlElement = document.getElementsByTagName("html")[0];
+  for (var cls in htmlClassList) {
+    removeClass(htmlElement, htmlClassList[cls]);
+  }
+
+  var body = document.body;
+  for (var _cls in docBodyClassList) {
+    removeClass(body, docBodyClassList[_cls]);
+  }
+
+  htmlClassList = {};
+  docBodyClassList = {};
+}
+
+/* istanbul ignore next */
+function log() {
+  if (true) {
+    var classes = document.getElementsByTagName("html")[0].className;
+    var buffer = "Show tracked classes:\n\n";
+
+    buffer += "<html /> (" + classes + "):\n  ";
+    for (var x in htmlClassList) {
+      buffer += "  " + x + " " + htmlClassList[x] + "\n  ";
+    }
+
+    classes = document.body.className;
+
+    buffer += "\n\ndoc.body (" + classes + "):\n  ";
+    for (var _x in docBodyClassList) {
+      buffer += "  " + _x + " " + docBodyClassList[_x] + "\n  ";
+    }
+
+    buffer += "\n";
+
+    console.log(buffer);
+  }
+}
+/* eslint-enable no-console */
+
+/**
+ * Track the number of reference of a class.
+ * @param {object} poll The poll to receive the reference.
+ * @param {string} className The class name.
+ * @return {string}
+ */
+var incrementReference = function incrementReference(poll, className) {
+  if (!poll[className]) {
+    poll[className] = 0;
+  }
+  poll[className] += 1;
+  return className;
+};
+
+/**
+ * Drop the reference of a class.
+ * @param {object} poll The poll to receive the reference.
+ * @param {string} className The class name.
+ * @return {string}
+ */
+var decrementReference = function decrementReference(poll, className) {
+  if (poll[className]) {
+    poll[className] -= 1;
+  }
+  return className;
+};
+
+/**
+ * Track a class and add to the given class list.
+ * @param {Object} classListRef A class list of an element.
+ * @param {Object} poll         The poll to be used.
+ * @param {Array}  classes      The list of classes to be tracked.
+ */
+var trackClass = function trackClass(classListRef, poll, classes) {
+  classes.forEach(function (className) {
+    incrementReference(poll, className);
+    classListRef.add(className);
+  });
+};
+
+/**
+ * Untrack a class and remove from the given class list if the reference
+ * reaches 0.
+ * @param {Object} classListRef A class list of an element.
+ * @param {Object} poll         The poll to be used.
+ * @param {Array}  classes      The list of classes to be untracked.
+ */
+var untrackClass = function untrackClass(classListRef, poll, classes) {
+  classes.forEach(function (className) {
+    decrementReference(poll, className);
+    poll[className] === 0 && classListRef.remove(className);
+  });
+};
+
+/**
+ * Public inferface to add classes to the document.body.
+ * @param {string} bodyClass The class string to be added.
+ *                           It may contain more then one class
+ *                           with ' ' as separator.
+ */
+var add = exports.add = function add(element, classString) {
+  return trackClass(element.classList, element.nodeName.toLowerCase() == "html" ? htmlClassList : docBodyClassList, classString.split(" "));
+};
+
+/**
+ * Public inferface to remove classes from the document.body.
+ * @param {string} bodyClass The class string to be added.
+ *                           It may contain more then one class
+ *                           with ' ' as separator.
+ */
+var remove = exports.remove = function remove(element, classString) {
+  return untrackClass(element.classList, element.nodeName.toLowerCase() == "html" ? htmlClassList : docBodyClassList, classString.split(" "));
+};
+
+/***/ }),
+
+/***/ "./node_modules/react-modal/lib/helpers/focusManager.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/react-modal/lib/helpers/focusManager.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.resetState = resetState;
+exports.log = log;
+exports.handleBlur = handleBlur;
+exports.handleFocus = handleFocus;
+exports.markForFocusLater = markForFocusLater;
+exports.returnFocus = returnFocus;
+exports.popWithoutFocus = popWithoutFocus;
+exports.setupScopedFocus = setupScopedFocus;
+exports.teardownScopedFocus = teardownScopedFocus;
+
+var _tabbable = __webpack_require__(/*! ../helpers/tabbable */ "./node_modules/react-modal/lib/helpers/tabbable.js");
+
+var _tabbable2 = _interopRequireDefault(_tabbable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var focusLaterElements = [];
+var modalElement = null;
+var needToFocus = false;
+
+/* eslint-disable no-console */
+/* istanbul ignore next */
+function resetState() {
+  focusLaterElements = [];
+}
+
+/* istanbul ignore next */
+function log() {
+  if (true) {
+    console.log("focusManager ----------");
+    focusLaterElements.forEach(function (f) {
+      var check = f || {};
+      console.log(check.nodeName, check.className, check.id);
+    });
+    console.log("end focusManager ----------");
+  }
+}
+/* eslint-enable no-console */
+
+function handleBlur() {
+  needToFocus = true;
+}
+
+function handleFocus() {
+  if (needToFocus) {
+    needToFocus = false;
+    if (!modalElement) {
+      return;
+    }
+    // need to see how jQuery shims document.on('focusin') so we don't need the
+    // setTimeout, firefox doesn't support focusin, if it did, we could focus
+    // the element outside of a setTimeout. Side-effect of this implementation
+    // is that the document.body gets focus, and then we focus our element right
+    // after, seems fine.
+    setTimeout(function () {
+      if (modalElement.contains(document.activeElement)) {
+        return;
+      }
+      var el = (0, _tabbable2.default)(modalElement)[0] || modalElement;
+      el.focus();
+    }, 0);
+  }
+}
+
+function markForFocusLater() {
+  focusLaterElements.push(document.activeElement);
+}
+
+/* eslint-disable no-console */
+function returnFocus() {
+  var preventScroll = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+  var toFocus = null;
+  try {
+    if (focusLaterElements.length !== 0) {
+      toFocus = focusLaterElements.pop();
+      toFocus.focus({ preventScroll: preventScroll });
+    }
+    return;
+  } catch (e) {
+    console.warn(["You tried to return focus to", toFocus, "but it is not in the DOM anymore"].join(" "));
+  }
+}
+/* eslint-enable no-console */
+
+function popWithoutFocus() {
+  focusLaterElements.length > 0 && focusLaterElements.pop();
+}
+
+function setupScopedFocus(element) {
+  modalElement = element;
+
+  if (window.addEventListener) {
+    window.addEventListener("blur", handleBlur, false);
+    document.addEventListener("focus", handleFocus, true);
+  } else {
+    window.attachEvent("onBlur", handleBlur);
+    document.attachEvent("onFocus", handleFocus);
+  }
+}
+
+function teardownScopedFocus() {
+  modalElement = null;
+
+  if (window.addEventListener) {
+    window.removeEventListener("blur", handleBlur);
+    document.removeEventListener("focus", handleFocus);
+  } else {
+    window.detachEvent("onBlur", handleBlur);
+    document.detachEvent("onFocus", handleFocus);
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-modal/lib/helpers/portalOpenInstances.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/react-modal/lib/helpers/portalOpenInstances.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.log = log;
+exports.resetState = resetState;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// Tracks portals that are open and emits events to subscribers
+
+var PortalOpenInstances = function PortalOpenInstances() {
+  var _this = this;
+
+  _classCallCheck(this, PortalOpenInstances);
+
+  this.register = function (openInstance) {
+    if (_this.openInstances.indexOf(openInstance) !== -1) {
+      if (true) {
+        // eslint-disable-next-line no-console
+        console.warn("React-Modal: Cannot register modal instance that's already open");
+      }
+      return;
+    }
+    _this.openInstances.push(openInstance);
+    _this.emit("register");
+  };
+
+  this.deregister = function (openInstance) {
+    var index = _this.openInstances.indexOf(openInstance);
+    if (index === -1) {
+      if (true) {
+        // eslint-disable-next-line no-console
+        console.warn("React-Modal: Unable to deregister " + openInstance + " as " + "it was never registered");
+      }
+      return;
+    }
+    _this.openInstances.splice(index, 1);
+    _this.emit("deregister");
+  };
+
+  this.subscribe = function (callback) {
+    _this.subscribers.push(callback);
+  };
+
+  this.emit = function (eventType) {
+    _this.subscribers.forEach(function (subscriber) {
+      return subscriber(eventType,
+      // shallow copy to avoid accidental mutation
+      _this.openInstances.slice());
+    });
+  };
+
+  this.openInstances = [];
+  this.subscribers = [];
+};
+
+var portalOpenInstances = new PortalOpenInstances();
+
+/* eslint-disable no-console */
+/* istanbul ignore next */
+function log() {
+  console.log("portalOpenInstances ----------");
+  console.log(portalOpenInstances.openInstances.length);
+  portalOpenInstances.openInstances.forEach(function (p) {
+    return console.log(p);
+  });
+  console.log("end portalOpenInstances ----------");
+}
+
+/* istanbul ignore next */
+function resetState() {
+  portalOpenInstances = new PortalOpenInstances();
+}
+/* eslint-enable no-console */
+
+exports["default"] = portalOpenInstances;
+
+/***/ }),
+
+/***/ "./node_modules/react-modal/lib/helpers/safeHTMLElement.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-modal/lib/helpers/safeHTMLElement.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.canUseDOM = exports.SafeNodeList = exports.SafeHTMLCollection = undefined;
+
+var _exenv = __webpack_require__(/*! exenv */ "./node_modules/exenv/index.js");
+
+var _exenv2 = _interopRequireDefault(_exenv);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var EE = _exenv2.default;
+
+var SafeHTMLElement = EE.canUseDOM ? window.HTMLElement : {};
+
+var SafeHTMLCollection = exports.SafeHTMLCollection = EE.canUseDOM ? window.HTMLCollection : {};
+
+var SafeNodeList = exports.SafeNodeList = EE.canUseDOM ? window.NodeList : {};
+
+var canUseDOM = exports.canUseDOM = EE.canUseDOM;
+
+exports["default"] = SafeHTMLElement;
+
+/***/ }),
+
+/***/ "./node_modules/react-modal/lib/helpers/scopeTab.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/react-modal/lib/helpers/scopeTab.js ***!
+  \**********************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = scopeTab;
+
+var _tabbable = __webpack_require__(/*! ./tabbable */ "./node_modules/react-modal/lib/helpers/tabbable.js");
+
+var _tabbable2 = _interopRequireDefault(_tabbable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getActiveElement() {
+  var el = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document;
+
+  return el.activeElement.shadowRoot ? getActiveElement(el.activeElement.shadowRoot) : el.activeElement;
+}
+
+function scopeTab(node, event) {
+  var tabbable = (0, _tabbable2.default)(node);
+
+  if (!tabbable.length) {
+    // Do nothing, since there are no elements that can receive focus.
+    event.preventDefault();
+    return;
+  }
+
+  var target = void 0;
+
+  var shiftKey = event.shiftKey;
+  var head = tabbable[0];
+  var tail = tabbable[tabbable.length - 1];
+  var activeElement = getActiveElement();
+
+  // proceed with default browser behavior on tab.
+  // Focus on last element on shift + tab.
+  if (node === activeElement) {
+    if (!shiftKey) return;
+    target = tail;
+  }
+
+  if (tail === activeElement && !shiftKey) {
+    target = head;
+  }
+
+  if (head === activeElement && shiftKey) {
+    target = tail;
+  }
+
+  if (target) {
+    event.preventDefault();
+    target.focus();
+    return;
+  }
+
+  // Safari radio issue.
+  //
+  // Safari does not move the focus to the radio button,
+  // so we need to force it to really walk through all elements.
+  //
+  // This is very error prone, since we are trying to guess
+  // if it is a safari browser from the first occurence between
+  // chrome or safari.
+  //
+  // The chrome user agent contains the first ocurrence
+  // as the 'chrome/version' and later the 'safari/version'.
+  var checkSafari = /(\bChrome\b|\bSafari\b)\//.exec(navigator.userAgent);
+  var isSafariDesktop = checkSafari != null && checkSafari[1] != "Chrome" && /\biPod\b|\biPad\b/g.exec(navigator.userAgent) == null;
+
+  // If we are not in safari desktop, let the browser control
+  // the focus
+  if (!isSafariDesktop) return;
+
+  var x = tabbable.indexOf(activeElement);
+
+  if (x > -1) {
+    x += shiftKey ? -1 : 1;
+  }
+
+  target = tabbable[x];
+
+  // If the tabbable element does not exist,
+  // focus head/tail based on shiftKey
+  if (typeof target === "undefined") {
+    event.preventDefault();
+    target = shiftKey ? tail : head;
+    target.focus();
+    return;
+  }
+
+  event.preventDefault();
+
+  target.focus();
+}
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "./node_modules/react-modal/lib/helpers/tabbable.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/react-modal/lib/helpers/tabbable.js ***!
+  \**********************************************************/
+/***/ ((module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = findTabbableDescendants;
+/*!
+ * Adapted from jQuery UI core
+ *
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/ui-core/
+ */
+
+var tabbableNode = /input|select|textarea|button|object|iframe/;
+
+function hidesContents(element) {
+  var zeroSize = element.offsetWidth <= 0 && element.offsetHeight <= 0;
+
+  // If the node is empty, this is good enough
+  if (zeroSize && !element.innerHTML) return true;
+
+  try {
+    // Otherwise we need to check some styles
+    var style = window.getComputedStyle(element);
+    return zeroSize ? style.getPropertyValue("overflow") !== "visible" ||
+    // if 'overflow: visible' set, check if there is actually any overflow
+    element.scrollWidth <= 0 && element.scrollHeight <= 0 : style.getPropertyValue("display") == "none";
+  } catch (exception) {
+    // eslint-disable-next-line no-console
+    console.warn("Failed to inspect element style");
+    return false;
+  }
+}
+
+function visible(element) {
+  var parentElement = element;
+  var rootNode = element.getRootNode && element.getRootNode();
+  while (parentElement) {
+    if (parentElement === document.body) break;
+
+    // if we are not hidden yet, skip to checking outside the Web Component
+    if (rootNode && parentElement === rootNode) parentElement = rootNode.host.parentNode;
+
+    if (hidesContents(parentElement)) return false;
+    parentElement = parentElement.parentNode;
+  }
+  return true;
+}
+
+function focusable(element, isTabIndexNotNaN) {
+  var nodeName = element.nodeName.toLowerCase();
+  var res = tabbableNode.test(nodeName) && !element.disabled || (nodeName === "a" ? element.href || isTabIndexNotNaN : isTabIndexNotNaN);
+  return res && visible(element);
+}
+
+function tabbable(element) {
+  var tabIndex = element.getAttribute("tabindex");
+  if (tabIndex === null) tabIndex = undefined;
+  var isTabIndexNaN = isNaN(tabIndex);
+  return (isTabIndexNaN || tabIndex >= 0) && focusable(element, !isTabIndexNaN);
+}
+
+function findTabbableDescendants(element) {
+  var descendants = [].slice.call(element.querySelectorAll("*"), 0).reduce(function (finished, el) {
+    return finished.concat(!el.shadowRoot ? [el] : findTabbableDescendants(el.shadowRoot));
+  }, []);
+  return descendants.filter(tabbable);
+}
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "./node_modules/react-modal/lib/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/react-modal/lib/index.js ***!
+  \***********************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var _Modal = __webpack_require__(/*! ./components/Modal */ "./node_modules/react-modal/lib/components/Modal.js");
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports["default"] = _Modal2.default;
+module.exports = exports["default"];
+
+/***/ }),
+
 /***/ "./node_modules/react-paginate/dist/react-paginate.js":
 /*!************************************************************!*\
   !*** ./node_modules/react-paginate/dist/react-paginate.js ***!
@@ -46741,6 +51085,35 @@ function renderMatches(matches) {
 
 
 //# sourceMappingURL=index.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/react-toastify/dist/react-toastify.esm.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/react-toastify/dist/react-toastify.esm.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Bounce": () => (/* binding */ k),
+/* harmony export */   "Flip": () => (/* binding */ w),
+/* harmony export */   "Icons": () => (/* binding */ B),
+/* harmony export */   "Slide": () => (/* binding */ M),
+/* harmony export */   "ToastContainer": () => (/* binding */ A),
+/* harmony export */   "Zoom": () => (/* binding */ D),
+/* harmony export */   "collapseToast": () => (/* binding */ v),
+/* harmony export */   "cssTransition": () => (/* binding */ E),
+/* harmony export */   "toast": () => (/* binding */ W),
+/* harmony export */   "useToast": () => (/* binding */ L),
+/* harmony export */   "useToastContainer": () => (/* binding */ _)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+function u(e){return"number"==typeof e&&!isNaN(e)}function d(e){return"boolean"==typeof e}function p(e){return"string"==typeof e}function m(e){return"function"==typeof e}function f(e){return p(e)||m(e)?e:null}function g(e){return 0===e||e}function y(e){return (0,react__WEBPACK_IMPORTED_MODULE_0__.isValidElement)(e)||p(e)||m(e)||u(e)}const h={TOP_LEFT:"top-left",TOP_RIGHT:"top-right",TOP_CENTER:"top-center",BOTTOM_LEFT:"bottom-left",BOTTOM_RIGHT:"bottom-right",BOTTOM_CENTER:"bottom-center"},T={INFO:"info",SUCCESS:"success",WARNING:"warning",ERROR:"error",DEFAULT:"default"};function v(e,t,n){void 0===n&&(n=300);const{scrollHeight:o,style:s}=e;requestAnimationFrame(()=>{s.minHeight="initial",s.height=o+"px",s.transition="all "+n+"ms",requestAnimationFrame(()=>{s.height="0",s.padding="0",s.margin="0",setTimeout(t,n)})})}function E(t){let{enter:a,exit:r,appendPosition:i=!1,collapse:c=!0,collapseDuration:l=300}=t;return function(t){let{children:u,position:d,preventExitTransition:p,done:m,nodeRef:f,isIn:g}=t;const y=i?a+"--"+d:a,h=i?r+"--"+d:r,T=(0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(),E=(0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(0);function b(e){if(e.target!==f.current)return;const t=f.current;t.dispatchEvent(new Event("d")),t.removeEventListener("animationend",b),t.removeEventListener("animationcancel",b),0===E.current&&"animationcancel"!==e.type&&(t.className=T.current)}function C(){const e=f.current;e.removeEventListener("animationend",C),c?v(e,m,l):m()}return (0,react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(()=>{!function(){const e=f.current;T.current=e.className,e.className+=" "+y,e.addEventListener("animationend",b),e.addEventListener("animationcancel",b)}()},[]),(0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{g||(p?C():function(){E.current=1;const e=f.current;e.className+=" "+h,e.addEventListener("animationend",C)}())},[g]),react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment,null,u)}}function b(e,t){return{content:e.content,containerId:e.props.containerId,id:e.props.toastId,theme:e.props.theme,type:e.props.type,data:e.props.data||{},isLoading:e.props.isLoading,icon:e.props.icon,status:t}}const C={list:new Map,emitQueue:new Map,on(e,t){return this.list.has(e)||this.list.set(e,[]),this.list.get(e).push(t),this},off(e,t){if(t){const n=this.list.get(e).filter(e=>e!==t);return this.list.set(e,n),this}return this.list.delete(e),this},cancelEmit(e){const t=this.emitQueue.get(e);return t&&(t.forEach(clearTimeout),this.emitQueue.delete(e)),this},emit(e){this.list.has(e)&&this.list.get(e).forEach(t=>{const n=setTimeout(()=>{t(...[].slice.call(arguments,1))},0);this.emitQueue.has(e)||this.emitQueue.set(e,[]),this.emitQueue.get(e).push(n)})}};function _(e){const[,o]=(0,react__WEBPACK_IMPORTED_MODULE_0__.useReducer)(e=>e+1,0),[c,l]=(0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),h=(0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null),T=(0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(new Map).current,v=e=>-1!==c.indexOf(e),E=(0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)({toastKey:1,displayedToast:0,count:0,queue:[],props:e,containerId:null,isToastActive:v,getToast:e=>T.get(e)}).current;function _(e){let{containerId:t}=e;const{limit:n}=E.props;!n||t&&E.containerId!==t||(E.count-=E.queue.length,E.queue=[])}function I(e){l(t=>g(e)?t.filter(t=>t!==e):[])}function O(){const{toastContent:e,toastProps:t,staleId:n}=E.queue.shift();N(e,t,n)}function L(e,n){let{delay:s,staleId:a,...r}=n;if(!y(e)||function(e){return!h.current||E.props.enableMultiContainer&&e.containerId!==E.props.containerId||T.has(e.toastId)&&null==e.updateId}(r))return;const{toastId:c,updateId:l,data:v}=r,{props:_}=E,L=()=>I(c),P=null==l;P&&E.count++;const x={toastId:c,updateId:l,containerId:r.containerId,isLoading:r.isLoading,theme:r.theme||_.theme,icon:null!=r.icon?r.icon:_.icon,isIn:!1,key:r.key||E.toastKey++,type:r.type,closeToast:L,closeButton:r.closeButton,rtl:_.rtl,position:r.position||_.position,transition:r.transition||_.transition,className:f(r.className||_.toastClassName),bodyClassName:f(r.bodyClassName||_.bodyClassName),style:r.style||_.toastStyle,bodyStyle:r.bodyStyle||_.bodyStyle,onClick:r.onClick||_.onClick,pauseOnHover:d(r.pauseOnHover)?r.pauseOnHover:_.pauseOnHover,pauseOnFocusLoss:d(r.pauseOnFocusLoss)?r.pauseOnFocusLoss:_.pauseOnFocusLoss,draggable:d(r.draggable)?r.draggable:_.draggable,draggablePercent:r.draggablePercent||_.draggablePercent,draggableDirection:r.draggableDirection||_.draggableDirection,closeOnClick:d(r.closeOnClick)?r.closeOnClick:_.closeOnClick,progressClassName:f(r.progressClassName||_.progressClassName),progressStyle:r.progressStyle||_.progressStyle,autoClose:!r.isLoading&&(B=r.autoClose,R=_.autoClose,!1===B||u(B)&&B>0?B:R),hideProgressBar:d(r.hideProgressBar)?r.hideProgressBar:_.hideProgressBar,progress:r.progress,role:r.role||_.role,deleteToast(){const e=b(T.get(c),"removed");T.delete(c),C.emit(4,e);const t=E.queue.length;if(E.count=g(c)?E.count-1:E.count-E.displayedToast,E.count<0&&(E.count=0),t>0){const e=g(c)?1:E.props.limit;if(1===t||1===e)E.displayedToast++,O();else{const n=e>t?t:e;E.displayedToast=n;for(let e=0;e<n;e++)O()}}else o()}};var B,R;m(r.onOpen)&&(x.onOpen=r.onOpen),m(r.onClose)&&(x.onClose=r.onClose),x.closeButton=_.closeButton,!1===r.closeButton||y(r.closeButton)?x.closeButton=r.closeButton:!0===r.closeButton&&(x.closeButton=!y(_.closeButton)||_.closeButton);let k=e;(0,react__WEBPACK_IMPORTED_MODULE_0__.isValidElement)(e)&&!p(e.type)?k=(0,react__WEBPACK_IMPORTED_MODULE_0__.cloneElement)(e,{closeToast:L,toastProps:x,data:v}):m(e)&&(k=e({closeToast:L,toastProps:x,data:v})),_.limit&&_.limit>0&&E.count>_.limit&&P?E.queue.push({toastContent:k,toastProps:x,staleId:a}):u(s)?setTimeout(()=>{N(k,x,a)},s):N(k,x,a)}function N(e,t,n){const{toastId:o}=t;n&&T.delete(n);const s={content:e,props:t};T.set(o,s),l(e=>[...e,o].filter(e=>e!==n)),C.emit(4,b(s,null==s.props.updateId?"added":"updated"))}return (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>(E.containerId=e.containerId,C.cancelEmit(3).on(0,L).on(1,e=>h.current&&I(e)).on(5,_).emit(2,E),()=>C.emit(3,E)),[]),(0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{E.props=e,E.isToastActive=v,E.displayedToast=c.length}),{getToastToRender:function(t){const n=new Map,o=Array.from(T.values());return e.newestOnTop&&o.reverse(),o.forEach(e=>{const{position:t}=e.props;n.has(t)||n.set(t,[]),n.get(t).push(e)}),Array.from(n,e=>t(e[0],e[1]))},containerRef:h,isToastActive:v}}function I(e){return e.targetTouches&&e.targetTouches.length>=1?e.targetTouches[0].clientX:e.clientX}function O(e){return e.targetTouches&&e.targetTouches.length>=1?e.targetTouches[0].clientY:e.clientY}function L(e){const[o,a]=(0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(!1),[i,c]=(0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(!1),l=(0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null),u=(0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)({start:0,x:0,y:0,delta:0,removalDistance:0,canCloseOnClick:!0,canDrag:!1,boundingRect:null,didMove:!1}).current,d=(0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(e),{autoClose:p,pauseOnHover:f,closeToast:g,onClick:y,closeOnClick:h}=e;function T(t){if(e.draggable){u.didMove=!1,document.addEventListener("mousemove",C),document.addEventListener("mouseup",_),document.addEventListener("touchmove",C),document.addEventListener("touchend",_);const n=l.current;u.canCloseOnClick=!0,u.canDrag=!0,u.boundingRect=n.getBoundingClientRect(),n.style.transition="",u.x=I(t.nativeEvent),u.y=O(t.nativeEvent),"x"===e.draggableDirection?(u.start=u.x,u.removalDistance=n.offsetWidth*(e.draggablePercent/100)):(u.start=u.y,u.removalDistance=n.offsetHeight*(80===e.draggablePercent?1.5*e.draggablePercent:e.draggablePercent/100))}}function v(){if(u.boundingRect){const{top:t,bottom:n,left:o,right:s}=u.boundingRect;e.pauseOnHover&&u.x>=o&&u.x<=s&&u.y>=t&&u.y<=n?b():E()}}function E(){a(!0)}function b(){a(!1)}function C(t){const n=l.current;u.canDrag&&n&&(u.didMove=!0,o&&b(),u.x=I(t),u.y=O(t),u.delta="x"===e.draggableDirection?u.x-u.start:u.y-u.start,u.start!==u.x&&(u.canCloseOnClick=!1),n.style.transform="translate"+e.draggableDirection+"("+u.delta+"px)",n.style.opacity=""+(1-Math.abs(u.delta/u.removalDistance)))}function _(){document.removeEventListener("mousemove",C),document.removeEventListener("mouseup",_),document.removeEventListener("touchmove",C),document.removeEventListener("touchend",_);const t=l.current;if(u.canDrag&&u.didMove&&t){if(u.canDrag=!1,Math.abs(u.delta)>u.removalDistance)return c(!0),void e.closeToast();t.style.transition="transform 0.2s, opacity 0.2s",t.style.transform="translate"+e.draggableDirection+"(0)",t.style.opacity="1"}}(0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{d.current=e}),(0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>(l.current&&l.current.addEventListener("d",E,{once:!0}),m(e.onOpen)&&e.onOpen((0,react__WEBPACK_IMPORTED_MODULE_0__.isValidElement)(e.children)&&e.children.props),()=>{const e=d.current;m(e.onClose)&&e.onClose((0,react__WEBPACK_IMPORTED_MODULE_0__.isValidElement)(e.children)&&e.children.props)}),[]),(0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>(e.pauseOnFocusLoss&&(document.hasFocus()||b(),window.addEventListener("focus",E),window.addEventListener("blur",b)),()=>{e.pauseOnFocusLoss&&(window.removeEventListener("focus",E),window.removeEventListener("blur",b))}),[e.pauseOnFocusLoss]);const L={onMouseDown:T,onTouchStart:T,onMouseUp:v,onTouchEnd:v};return p&&f&&(L.onMouseEnter=b,L.onMouseLeave=E),h&&(L.onClick=e=>{y&&y(e),u.canCloseOnClick&&g()}),{playToast:E,pauseToast:b,isRunning:o,preventExitTransition:i,toastRef:l,eventHandlers:L}}function N(t){let{closeToast:n,theme:o,ariaLabel:s="close"}=t;return react__WEBPACK_IMPORTED_MODULE_0__.createElement("button",{className:"Toastify__close-button Toastify__close-button--"+o,type:"button",onClick:e=>{e.stopPropagation(),n(e)},"aria-label":s},react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg",{"aria-hidden":"true",viewBox:"0 0 14 16"},react__WEBPACK_IMPORTED_MODULE_0__.createElement("path",{fillRule:"evenodd",d:"M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"})))}function P(t){let{delay:n,isRunning:o,closeToast:s,type:a,hide:r,className:i,style:c,controlledProgress:u,progress:d,rtl:p,isIn:f,theme:g}=t;const y={...c,animationDuration:n+"ms",animationPlayState:o?"running":"paused",opacity:r?0:1};u&&(y.transform="scaleX("+d+")");const h=(0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])("Toastify__progress-bar",u?"Toastify__progress-bar--controlled":"Toastify__progress-bar--animated","Toastify__progress-bar-theme--"+g,"Toastify__progress-bar--"+a,{"Toastify__progress-bar--rtl":p}),T=m(i)?i({rtl:p,type:a,defaultClassName:h}):(0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(h,i);return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{role:"progressbar","aria-hidden":r?"true":"false","aria-label":"notification timer",className:T,style:y,[u&&d>=1?"onTransitionEnd":"onAnimationEnd"]:u&&d<1?null:()=>{f&&s()}})}P.defaultProps={type:T.DEFAULT,hide:!1};const x=t=>{let{theme:n,type:o,...s}=t;return react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg",{viewBox:"0 0 24 24",width:"100%",height:"100%",fill:"colored"===n?"currentColor":"var(--toastify-icon-color-"+o+")",...s})},B={info:function(t){return react__WEBPACK_IMPORTED_MODULE_0__.createElement(x,{...t},react__WEBPACK_IMPORTED_MODULE_0__.createElement("path",{d:"M12 0a12 12 0 1012 12A12.013 12.013 0 0012 0zm.25 5a1.5 1.5 0 11-1.5 1.5 1.5 1.5 0 011.5-1.5zm2.25 13.5h-4a1 1 0 010-2h.75a.25.25 0 00.25-.25v-4.5a.25.25 0 00-.25-.25h-.75a1 1 0 010-2h1a2 2 0 012 2v4.75a.25.25 0 00.25.25h.75a1 1 0 110 2z"}))},warning:function(t){return react__WEBPACK_IMPORTED_MODULE_0__.createElement(x,{...t},react__WEBPACK_IMPORTED_MODULE_0__.createElement("path",{d:"M23.32 17.191L15.438 2.184C14.728.833 13.416 0 11.996 0c-1.42 0-2.733.833-3.443 2.184L.533 17.448a4.744 4.744 0 000 4.368C1.243 23.167 2.555 24 3.975 24h16.05C22.22 24 24 22.044 24 19.632c0-.904-.251-1.746-.68-2.44zm-9.622 1.46c0 1.033-.724 1.823-1.698 1.823s-1.698-.79-1.698-1.822v-.043c0-1.028.724-1.822 1.698-1.822s1.698.79 1.698 1.822v.043zm.039-12.285l-.84 8.06c-.057.581-.408.943-.897.943-.49 0-.84-.367-.896-.942l-.84-8.065c-.057-.624.25-1.095.779-1.095h1.91c.528.005.84.476.784 1.1z"}))},success:function(t){return react__WEBPACK_IMPORTED_MODULE_0__.createElement(x,{...t},react__WEBPACK_IMPORTED_MODULE_0__.createElement("path",{d:"M12 0a12 12 0 1012 12A12.014 12.014 0 0012 0zm6.927 8.2l-6.845 9.289a1.011 1.011 0 01-1.43.188l-4.888-3.908a1 1 0 111.25-1.562l4.076 3.261 6.227-8.451a1 1 0 111.61 1.183z"}))},error:function(t){return react__WEBPACK_IMPORTED_MODULE_0__.createElement(x,{...t},react__WEBPACK_IMPORTED_MODULE_0__.createElement("path",{d:"M11.983 0a12.206 12.206 0 00-8.51 3.653A11.8 11.8 0 000 12.207 11.779 11.779 0 0011.8 24h.214A12.111 12.111 0 0024 11.791 11.766 11.766 0 0011.983 0zM10.5 16.542a1.476 1.476 0 011.449-1.53h.027a1.527 1.527 0 011.523 1.47 1.475 1.475 0 01-1.449 1.53h-.027a1.529 1.529 0 01-1.523-1.47zM11 12.5v-6a1 1 0 012 0v6a1 1 0 11-2 0z"}))},spinner:function(){return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{className:"Toastify__spinner"})}},R=t=>{const{isRunning:n,preventExitTransition:o,toastRef:s,eventHandlers:a}=L(t),{closeButton:r,children:i,autoClose:c,onClick:u,type:d,hideProgressBar:f,closeToast:g,transition:y,position:h,className:T,style:v,bodyClassName:E,bodyStyle:b,progressClassName:C,progressStyle:_,updateId:I,role:O,progress:N,rtl:x,toastId:R,deleteToast:k,isIn:M,isLoading:D,icon:w,theme:A}=t,F=(0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])("Toastify__toast","Toastify__toast-theme--"+A,"Toastify__toast--"+d,{"Toastify__toast--rtl":x}),S=m(T)?T({rtl:x,position:h,type:d,defaultClassName:F}):(0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(F,T),z=!!N,H=B[d],q={theme:A,type:d};let U=H&&H(q);return!1===w?U=void 0:m(w)?U=w(q):react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(w)?U=react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(w,q):p(w)?U=w:D&&(U=B.spinner()),react__WEBPACK_IMPORTED_MODULE_0__.createElement(y,{isIn:M,done:k,position:h,preventExitTransition:o,nodeRef:s},react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{id:R,onClick:u,className:S,...a,style:v,ref:s},react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{...M&&{role:O},className:m(E)?E({type:d}):(0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])("Toastify__toast-body",E),style:b},U&&react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{className:(0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])("Toastify__toast-icon",{"Toastify--animate-icon Toastify__zoom-enter":!D})},U),react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",null,i)),function(t){if(!t)return;const n={closeToast:g,type:d,theme:A};return m(t)?t(n):react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(t)?react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(t,n):void 0}(r),(c||z)&&react__WEBPACK_IMPORTED_MODULE_0__.createElement(P,{...I&&!z?{key:"pb-"+I}:{},rtl:x,theme:A,delay:c,isRunning:n,isIn:M,closeToast:g,hide:f,type:d,style:_,className:C,controlledProgress:z,progress:N})))},k=E({enter:"Toastify--animate Toastify__bounce-enter",exit:"Toastify--animate Toastify__bounce-exit",appendPosition:!0}),M=E({enter:"Toastify--animate Toastify__slide-enter",exit:"Toastify--animate Toastify__slide-exit",appendPosition:!0}),D=E({enter:"Toastify--animate Toastify__zoom-enter",exit:"Toastify--animate Toastify__zoom-exit"}),w=E({enter:"Toastify--animate Toastify__flip-enter",exit:"Toastify--animate Toastify__flip-exit"}),A=(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((t,n)=>{const{getToastToRender:o,containerRef:a,isToastActive:r}=_(t),{className:i,style:c,rtl:u,containerId:d}=t;function p(e){const t=(0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])("Toastify__toast-container","Toastify__toast-container--"+e,{"Toastify__toast-container--rtl":u});return m(i)?i({position:e,rtl:u,defaultClassName:t}):(0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(t,f(i))}return (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{n&&(n.current=a.current)},[]),react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{ref:a,className:"Toastify",id:d},o((t,n)=>{const o=n.length?{...c}:{...c,pointerEvents:"none"};return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{className:p(t),style:o,key:"container-"+t},n.map((t,o)=>{let{content:s,props:a}=t;return react__WEBPACK_IMPORTED_MODULE_0__.createElement(R,{...a,isIn:r(a.toastId),style:{"--nth":o+1,"--len":n.length},key:"toast-"+a.key,closeButton:!0===a.closeButton?N:a.closeButton},s)}))}))});A.displayName="ToastContainer",A.defaultProps={position:h.TOP_RIGHT,transition:k,rtl:!1,autoClose:5e3,hideProgressBar:!1,closeButton:N,pauseOnHover:!0,pauseOnFocusLoss:!0,closeOnClick:!0,newestOnTop:!1,draggable:!0,draggablePercent:80,draggableDirection:"x",role:"alert",theme:"light"};let F,S=new Map,z=[];function H(){return Math.random().toString(36).substring(2,9)}function q(e){return e&&(p(e.toastId)||u(e.toastId))?e.toastId:H()}function U(e,t){return S.size>0?C.emit(0,e,t):z.push({content:e,options:t}),t.toastId}function Q(e,t){return{...t,type:t&&t.type||e,toastId:q(t)}}function G(e){return(t,n)=>U(t,Q(e,n))}function W(e,t){return U(e,Q(T.DEFAULT,t))}W.loading=(e,t)=>U(e,Q(T.DEFAULT,{isLoading:!0,autoClose:!1,closeOnClick:!1,closeButton:!1,draggable:!1,...t})),W.promise=function(e,t,n){let o,{pending:s,error:a,success:r}=t;s&&(o=p(s)?W.loading(s,n):W.loading(s.render,{...n,...s}));const i={isLoading:null,autoClose:null,closeOnClick:null,closeButton:null,draggable:null,delay:100},c=(e,t,s)=>{if(null==t)return void W.dismiss(o);const a={type:e,...i,...n,data:s},r=p(t)?{render:t}:t;return o?W.update(o,{...a,...r}):W(r.render,{...a,...r}),s},l=m(e)?e():e;return l.then(e=>c("success",r,e)).catch(e=>c("error",a,e)),l},W.success=G(T.SUCCESS),W.info=G(T.INFO),W.error=G(T.ERROR),W.warning=G(T.WARNING),W.warn=W.warning,W.dark=(e,t)=>U(e,Q(T.DEFAULT,{theme:"dark",...t})),W.dismiss=e=>C.emit(1,e),W.clearWaitingQueue=function(e){return void 0===e&&(e={}),C.emit(5,e)},W.isActive=e=>{let t=!1;return S.forEach(n=>{n.isToastActive&&n.isToastActive(e)&&(t=!0)}),t},W.update=function(e,t){void 0===t&&(t={}),setTimeout(()=>{const n=function(e,t){let{containerId:n}=t;const o=S.get(n||F);return o?o.getToast(e):null}(e,t);if(n){const{props:o,content:s}=n,a={...o,...t,toastId:t.toastId||e,updateId:H()};a.toastId!==e&&(a.staleId=e);const r=a.render||s;delete a.render,U(r,a)}},0)},W.done=e=>{W.update(e,{progress:1})},W.onChange=e=>(C.on(4,e),()=>{C.off(4,e)}),W.POSITION=h,W.TYPE=T,C.on(2,e=>{F=e.containerId||e,S.set(F,e),z.forEach(e=>{C.emit(0,e.content,e.options)}),z=[]}).on(3,e=>{S.delete(e.containerId||e),0===S.size&&C.off(0).off(1).off(5)});
+//# sourceMappingURL=react-toastify.esm.js.map
 
 
 /***/ }),
@@ -51400,6 +55773,213 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/spinners-react/lib/esm/SpinnerCircularFixed.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/spinners-react/lib/esm/SpinnerCircularFixed.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SpinnerCircularFixed": () => (/* binding */ SpinnerCircularFixed)
+/* harmony export */ });
+/* harmony import */ var _withSharedProps_a1728349_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./withSharedProps-a1728349.js */ "./node_modules/spinners-react/lib/esm/withSharedProps-a1728349.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _style_inject_es_fc9e633e_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style-inject.es-fc9e633e.js */ "./node_modules/spinners-react/lib/esm/style-inject.es-fc9e633e.js");
+
+
+
+
+var css_248z = "@keyframes spinners-react-circular-fixed{0%{stroke-dashoffset:325}to{stroke-dashoffset:151}}";
+(0,_style_inject_es_fc9e633e_js__WEBPACK_IMPORTED_MODULE_1__.s)(css_248z);
+
+var Component = function (_a) {
+    var secondaryColor = _a.secondaryColor, speed = _a.speed, still = _a.still, thickness = _a.thickness, svgProps = (0,_withSharedProps_a1728349_js__WEBPACK_IMPORTED_MODULE_2__._)(_a, ["secondaryColor", "speed", "still", "thickness"]);
+    var strokeWidth = 4 * (thickness / 100);
+    var circleStyle = !still
+        ? { animation: "spinners-react-circular-fixed " + 140 / speed + "s linear infinite" }
+        : {};
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", (0,_withSharedProps_a1728349_js__WEBPACK_IMPORTED_MODULE_2__.a)({ fill: "none" }, svgProps, { viewBox: "0 0 66 66" }),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("circle", { cx: "33", cy: "33", fill: "none", r: "28", stroke: secondaryColor, strokeWidth: strokeWidth }),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("circle", { cx: "33", cy: "33", fill: "none", r: "28", stroke: "currentColor", strokeDasharray: "40, 134", strokeDashoffset: "325", strokeLinecap: "round", strokeWidth: strokeWidth, style: circleStyle })));
+};
+Component.defaultProps = _style_inject_es_fc9e633e_js__WEBPACK_IMPORTED_MODULE_1__.a;
+var SpinnerCircularFixed = (0,_withSharedProps_a1728349_js__WEBPACK_IMPORTED_MODULE_2__.w)(Component);
+
+
+//# sourceMappingURL=SpinnerCircularFixed.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/spinners-react/lib/esm/style-inject.es-fc9e633e.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/spinners-react/lib/esm/style-inject.es-fc9e633e.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "a": () => (/* binding */ secondaryColorDefaultProps),
+/* harmony export */   "d": () => (/* binding */ defaultProps),
+/* harmony export */   "s": () => (/* binding */ styleInject)
+/* harmony export */ });
+/* harmony import */ var _withSharedProps_a1728349_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./withSharedProps-a1728349.js */ "./node_modules/spinners-react/lib/esm/withSharedProps-a1728349.js");
+
+
+var defaultProps = {
+    speed: 100,
+    still: false,
+    thickness: 100,
+};
+var secondaryColorDefaultProps = (0,_withSharedProps_a1728349_js__WEBPACK_IMPORTED_MODULE_0__.a)((0,_withSharedProps_a1728349_js__WEBPACK_IMPORTED_MODULE_0__.a)({}, defaultProps), { secondaryColor: 'rgba(0,0,0,0.44)' });
+
+function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+
+//# sourceMappingURL=style-inject.es-fc9e633e.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/spinners-react/lib/esm/withSharedProps-a1728349.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/spinners-react/lib/esm/withSharedProps-a1728349.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_": () => (/* binding */ __rest),
+/* harmony export */   "a": () => (/* binding */ __assign),
+/* harmony export */   "w": () => (/* binding */ withSharedProps)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+var defaultProps = {
+    color: '#38ad48',
+    enabled: true,
+    size: 50,
+    style: {},
+};
+var normalizeSize = function (size) { return (parseFloat(size.toString()).toString() === size.toString()
+    ? size + "px"
+    : size.toString()); };
+var withSharedProps = function (Component) {
+    var Wrapper = function (props) {
+        var color = props.color, enabled = props.enabled, size = props.size, style = props.style, otherProps = __rest(props, ["color", "enabled", "size", "style"]);
+        var componentProps = __assign(__assign({}, otherProps), { style: __assign({ color: color, overflow: 'visible', width: normalizeSize(size) }, style) });
+        if (!enabled)
+            return null;
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(Component, __assign({}, componentProps));
+    };
+    Wrapper.defaultProps = defaultProps;
+    return Wrapper;
+};
+
+
+//# sourceMappingURL=withSharedProps-a1728349.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/react-toastify/dist/ReactToastify.css":
+/*!************************************************************!*\
+  !*** ./node_modules/react-toastify/dist/ReactToastify.css ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_ReactToastify_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./ReactToastify.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/react-toastify/dist/ReactToastify.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_ReactToastify_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_ReactToastify_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./resources/js/pages/Home/styles.css":
 /*!********************************************!*\
   !*** ./resources/js/pages/Home/styles.css ***!
@@ -51430,10 +56010,10 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./resources/js/components/Card/styles.module.scss":
-/*!*********************************************************!*\
-  !*** ./resources/js/components/Card/styles.module.scss ***!
-  \*********************************************************/
+/***/ "./resources/js/components/Layout/styles.module.scss":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Layout/styles.module.scss ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -51443,7 +56023,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_styles_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./styles.module.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/Card/styles.module.scss");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_styles_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./styles.module.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/components/Layout/styles.module.scss");
 
             
 
@@ -51903,6 +56483,79 @@ function makeNodesHash(arr){
   }
   return res
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/warning/warning.js":
+/*!*****************************************!*\
+  !*** ./node_modules/warning/warning.js ***!
+  \*****************************************/
+/***/ ((module) => {
+
+"use strict";
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+var __DEV__ = "development" !== 'production';
+
+var warning = function() {};
+
+if (__DEV__) {
+  var printWarning = function printWarning(format, args) {
+    var len = arguments.length;
+    args = new Array(len > 1 ? len - 1 : 0);
+    for (var key = 1; key < len; key++) {
+      args[key - 1] = arguments[key];
+    }
+    var argIndex = 0;
+    var message = 'Warning: ' +
+      format.replace(/%s/g, function() {
+        return args[argIndex++];
+      });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  }
+
+  warning = function(condition, format, args) {
+    var len = arguments.length;
+    args = new Array(len > 2 ? len - 2 : 0);
+    for (var key = 2; key < len; key++) {
+      args[key - 2] = arguments[key];
+    }
+    if (format === undefined) {
+      throw new Error(
+          '`warning(condition, format, ...args)` requires a warning ' +
+          'message argument'
+      );
+    }
+    if (!condition) {
+      printWarning.apply(null, [format].concat(args));
+    }
+  };
+}
+
+module.exports = warning;
 
 
 /***/ }),
@@ -54756,2272 +59409,6 @@ function _extends() {
 
   return _extends.apply(this, arguments);
 }
-
-/***/ }),
-
-/***/ "./node_modules/react-hook-form/dist/index.esm.mjs":
-/*!*********************************************************!*\
-  !*** ./node_modules/react-hook-form/dist/index.esm.mjs ***!
-  \*********************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Controller": () => (/* binding */ Controller),
-/* harmony export */   "FormProvider": () => (/* binding */ FormProvider),
-/* harmony export */   "appendErrors": () => (/* binding */ appendErrors),
-/* harmony export */   "get": () => (/* binding */ get),
-/* harmony export */   "set": () => (/* binding */ set),
-/* harmony export */   "useController": () => (/* binding */ useController),
-/* harmony export */   "useFieldArray": () => (/* binding */ useFieldArray),
-/* harmony export */   "useForm": () => (/* binding */ useForm),
-/* harmony export */   "useFormContext": () => (/* binding */ useFormContext),
-/* harmony export */   "useFormState": () => (/* binding */ useFormState),
-/* harmony export */   "useWatch": () => (/* binding */ useWatch)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-var isCheckBoxInput = (element) => element.type === 'checkbox';
-
-var isDateObject = (value) => value instanceof Date;
-
-var isNullOrUndefined = (value) => value == null;
-
-const isObjectType = (value) => typeof value === 'object';
-var isObject = (value) => !isNullOrUndefined(value) &&
-    !Array.isArray(value) &&
-    isObjectType(value) &&
-    !isDateObject(value);
-
-var getEventValue = (event) => isObject(event) && event.target
-    ? isCheckBoxInput(event.target)
-        ? event.target.checked
-        : event.target.value
-    : event;
-
-var getNodeParentName = (name) => name.substring(0, name.search(/\.\d+(\.|$)/)) || name;
-
-var isNameInFieldArray = (names, name) => names.has(getNodeParentName(name));
-
-var compact = (value) => Array.isArray(value) ? value.filter(Boolean) : [];
-
-var isUndefined = (val) => val === undefined;
-
-var get = (obj, path, defaultValue) => {
-    if (!path || !isObject(obj)) {
-        return defaultValue;
-    }
-    const result = compact(path.split(/[,[\].]+?/)).reduce((result, key) => isNullOrUndefined(result) ? result : result[key], obj);
-    return isUndefined(result) || result === obj
-        ? isUndefined(obj[path])
-            ? defaultValue
-            : obj[path]
-        : result;
-};
-
-const EVENTS = {
-    BLUR: 'blur',
-    FOCUS_OUT: 'focusout',
-    CHANGE: 'change',
-};
-const VALIDATION_MODE = {
-    onBlur: 'onBlur',
-    onChange: 'onChange',
-    onSubmit: 'onSubmit',
-    onTouched: 'onTouched',
-    all: 'all',
-};
-const INPUT_VALIDATION_RULES = {
-    max: 'max',
-    min: 'min',
-    maxLength: 'maxLength',
-    minLength: 'minLength',
-    pattern: 'pattern',
-    required: 'required',
-    validate: 'validate',
-};
-
-const HookFormContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
-/**
- * This custom hook allows you to access the form context. useFormContext is intended to be used in deeply nested structures, where it would become inconvenient to pass the context as a prop. To be used with {@link FormProvider}.
- *
- * @remarks
- * [API](https://react-hook-form.com/api/useformcontext) • [Demo](https://codesandbox.io/s/react-hook-form-v7-form-context-ytudi)
- *
- * @returns return all useForm methods
- *
- * @example
- * ```tsx
- * function App() {
- *   const methods = useForm();
- *   const onSubmit = data => console.log(data);
- *
- *   return (
- *     <FormProvider {...methods} >
- *       <form onSubmit={methods.handleSubmit(onSubmit)}>
- *         <NestedInput />
- *         <input type="submit" />
- *       </form>
- *     </FormProvider>
- *   );
- * }
- *
- *  function NestedInput() {
- *   const { register } = useFormContext(); // retrieve all hook methods
- *   return <input {...register("test")} />;
- * }
- * ```
- */
-const useFormContext = () => react__WEBPACK_IMPORTED_MODULE_0__.useContext(HookFormContext);
-/**
- * A provider component that propagates the `useForm` methods to all children components via [React Context](https://reactjs.org/docs/context.html) API. To be used with {@link useFormContext}.
- *
- * @remarks
- * [API](https://react-hook-form.com/api/useformcontext) • [Demo](https://codesandbox.io/s/react-hook-form-v7-form-context-ytudi)
- *
- * @param props - all useFrom methods
- *
- * @example
- * ```tsx
- * function App() {
- *   const methods = useForm();
- *   const onSubmit = data => console.log(data);
- *
- *   return (
- *     <FormProvider {...methods} >
- *       <form onSubmit={methods.handleSubmit(onSubmit)}>
- *         <NestedInput />
- *         <input type="submit" />
- *       </form>
- *     </FormProvider>
- *   );
- * }
- *
- *  function NestedInput() {
- *   const { register } = useFormContext(); // retrieve all hook methods
- *   return <input {...register("test")} />;
- * }
- * ```
- */
-const FormProvider = (props) => {
-    const { children, ...data } = props;
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(HookFormContext.Provider, { value: data }, props.children));
-};
-
-var getProxyFormState = (formState, _proxyFormState, localProxyFormState, isRoot = true) => {
-    const result = {};
-    for (const key in formState) {
-        Object.defineProperty(result, key, {
-            get: () => {
-                const _key = key;
-                if (_proxyFormState[_key] !== VALIDATION_MODE.all) {
-                    _proxyFormState[_key] = !isRoot || VALIDATION_MODE.all;
-                }
-                localProxyFormState && (localProxyFormState[_key] = true);
-                return formState[_key];
-            },
-        });
-    }
-    return result;
-};
-
-var isEmptyObject = (value) => isObject(value) && !Object.keys(value).length;
-
-var shouldRenderFormState = (formStateData, _proxyFormState, isRoot) => {
-    const { name, ...formState } = formStateData;
-    return (isEmptyObject(formState) ||
-        Object.keys(formState).length >= Object.keys(_proxyFormState).length ||
-        Object.keys(formState).find((key) => _proxyFormState[key] ===
-            (!isRoot || VALIDATION_MODE.all)));
-};
-
-var convertToArrayPayload = (value) => (Array.isArray(value) ? value : [value]);
-
-var shouldSubscribeByName = (name, signalName, exact) => exact && signalName
-    ? name === signalName
-    : !name ||
-        !signalName ||
-        name === signalName ||
-        convertToArrayPayload(name).some((currentName) => currentName &&
-            (currentName.startsWith(signalName) ||
-                signalName.startsWith(currentName)));
-
-function useSubscribe(props) {
-    const _props = react__WEBPACK_IMPORTED_MODULE_0__.useRef(props);
-    _props.current = props;
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
-        const tearDown = (subscription) => {
-            if (subscription) {
-                subscription.unsubscribe();
-            }
-        };
-        const subscription = !props.disabled &&
-            _props.current.subject.subscribe({
-                next: _props.current.callback,
-            });
-        return () => tearDown(subscription);
-    }, [props.disabled]);
-}
-
-/**
- * This custom hook allows you to subscribe to each form state, and isolate the re-render at the custom hook level. It has its scope in terms of form state subscription, so it would not affect other useFormState and useForm. Using this hook can reduce the re-render impact on large and complex form application.
- *
- * @remarks
- * [API](https://react-hook-form.com/api/useformstate) • [Demo](https://codesandbox.io/s/useformstate-75xly)
- *
- * @param props - include options on specify fields to subscribe. {@link UseFormStateReturn}
- *
- * @example
- * ```tsx
- * function App() {
- *   const { register, handleSubmit, control } = useForm({
- *     defaultValues: {
- *     firstName: "firstName"
- *   }});
- *   const { dirtyFields } = useFormState({
- *     control
- *   });
- *   const onSubmit = (data) => console.log(data);
- *
- *   return (
- *     <form onSubmit={handleSubmit(onSubmit)}>
- *       <input {...register("firstName")} placeholder="First Name" />
- *       {dirtyFields.firstName && <p>Field is dirty.</p>}
- *       <input type="submit" />
- *     </form>
- *   );
- * }
- * ```
- */
-function useFormState(props) {
-    const methods = useFormContext();
-    const { control = methods.control, disabled, name, exact } = props || {};
-    const [formState, updateFormState] = react__WEBPACK_IMPORTED_MODULE_0__.useState(control._formState);
-    const _localProxyFormState = react__WEBPACK_IMPORTED_MODULE_0__.useRef({
-        isDirty: false,
-        dirtyFields: false,
-        touchedFields: false,
-        isValidating: false,
-        isValid: false,
-        errors: false,
-    });
-    const _name = react__WEBPACK_IMPORTED_MODULE_0__.useRef(name);
-    const _mounted = react__WEBPACK_IMPORTED_MODULE_0__.useRef(true);
-    _name.current = name;
-    const callback = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((value) => _mounted.current &&
-        shouldSubscribeByName(_name.current, value.name, exact) &&
-        shouldRenderFormState(value, _localProxyFormState.current) &&
-        updateFormState({
-            ...control._formState,
-            ...value,
-        }), [control, exact]);
-    useSubscribe({
-        disabled,
-        callback,
-        subject: control._subjects.state,
-    });
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
-        _mounted.current = true;
-        return () => {
-            _mounted.current = false;
-        };
-    }, []);
-    return getProxyFormState(formState, control._proxyFormState, _localProxyFormState.current, false);
-}
-
-var isString = (value) => typeof value === 'string';
-
-var generateWatchOutput = (names, _names, formValues, isGlobal) => {
-    const isArray = Array.isArray(names);
-    if (isString(names)) {
-        isGlobal && _names.watch.add(names);
-        return get(formValues, names);
-    }
-    if (isArray) {
-        return names.map((fieldName) => (isGlobal && _names.watch.add(fieldName),
-            get(formValues, fieldName)));
-    }
-    isGlobal && (_names.watchAll = true);
-    return formValues;
-};
-
-var isFunction = (value) => typeof value === 'function';
-
-var objectHasFunction = (data) => {
-    for (const key in data) {
-        if (isFunction(data[key])) {
-            return true;
-        }
-    }
-    return false;
-};
-
-/**
- * Custom hook to subscribe to field change and isolate re-rendering at the component level.
- *
- * @remarks
- *
- * [API](https://react-hook-form.com/api/usewatch) • [Demo](https://codesandbox.io/s/react-hook-form-v7-ts-usewatch-h9i5e)
- *
- * @example
- * ```tsx
- * const { watch } = useForm();
- * const values = useWatch({
- *   name: "fieldName"
- *   control,
- * })
- * ```
- */
-function useWatch(props) {
-    const methods = useFormContext();
-    const { control = methods.control, name, defaultValue, disabled, exact, } = props || {};
-    const _name = react__WEBPACK_IMPORTED_MODULE_0__.useRef(name);
-    _name.current = name;
-    const callback = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((formState) => {
-        if (shouldSubscribeByName(_name.current, formState.name, exact)) {
-            const fieldValues = generateWatchOutput(_name.current, control._names, formState.values || control._formValues);
-            updateValue(isUndefined(_name.current) ||
-                (isObject(fieldValues) && !objectHasFunction(fieldValues))
-                ? { ...fieldValues }
-                : Array.isArray(fieldValues)
-                    ? [...fieldValues]
-                    : isUndefined(fieldValues)
-                        ? defaultValue
-                        : fieldValues);
-        }
-    }, [control, exact, defaultValue]);
-    useSubscribe({
-        disabled,
-        subject: control._subjects.watch,
-        callback,
-    });
-    const [value, updateValue] = react__WEBPACK_IMPORTED_MODULE_0__.useState(isUndefined(defaultValue)
-        ? control._getWatch(name)
-        : defaultValue);
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
-        control._removeUnmounted();
-    });
-    return value;
-}
-
-/**
- * Custom hook to work with controlled component, this function provide you with both form and field level state. Re-render is isolated at the hook level.
- *
- * @remarks
- * [API](https://react-hook-form.com/api/usecontroller) • [Demo](https://codesandbox.io/s/usecontroller-0o8px)
- *
- * @param props - the path name to the form field value, and validation rules.
- *
- * @returns field properties, field and form state. {@link UseControllerReturn}
- *
- * @example
- * ```tsx
- * function Input(props) {
- *   const { field, fieldState, formState } = useController(props);
- *   return (
- *     <div>
- *       <input {...field} placeholder={props.name} />
- *       <p>{fieldState.isTouched && "Touched"}</p>
- *       <p>{formState.isSubmitted ? "submitted" : ""}</p>
- *     </div>
- *   );
- * }
- * ```
- */
-function useController(props) {
-    const methods = useFormContext();
-    const { name, control = methods.control, shouldUnregister } = props;
-    const isArrayField = isNameInFieldArray(control._names.array, name);
-    const value = useWatch({
-        control,
-        name,
-        defaultValue: get(control._formValues, name, get(control._defaultValues, name, props.defaultValue)),
-        exact: true,
-    });
-    const formState = useFormState({
-        control,
-        name,
-    });
-    const _registerProps = react__WEBPACK_IMPORTED_MODULE_0__.useRef(control.register(name, {
-        ...props.rules,
-        value,
-    }));
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
-        const updateMounted = (name, value) => {
-            const field = get(control._fields, name);
-            if (field) {
-                field._f.mount = value;
-            }
-        };
-        updateMounted(name, true);
-        return () => {
-            const _shouldUnregisterField = control._options.shouldUnregister || shouldUnregister;
-            (isArrayField
-                ? _shouldUnregisterField && !control._stateFlags.action
-                : _shouldUnregisterField)
-                ? control.unregister(name)
-                : updateMounted(name, false);
-        };
-    }, [name, control, isArrayField, shouldUnregister]);
-    return {
-        field: {
-            name,
-            value,
-            onChange: react__WEBPACK_IMPORTED_MODULE_0__.useCallback((event) => {
-                _registerProps.current.onChange({
-                    target: {
-                        value: getEventValue(event),
-                        name: name,
-                    },
-                    type: EVENTS.CHANGE,
-                });
-            }, [name]),
-            onBlur: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
-                _registerProps.current.onBlur({
-                    target: {
-                        value: get(control._formValues, name),
-                        name: name,
-                    },
-                    type: EVENTS.BLUR,
-                });
-            }, [name, control]),
-            ref: react__WEBPACK_IMPORTED_MODULE_0__.useCallback((elm) => {
-                const field = get(control._fields, name);
-                if (elm && field && elm.focus) {
-                    field._f.ref = {
-                        focus: () => elm.focus(),
-                        setCustomValidity: (message) => elm.setCustomValidity(message),
-                        reportValidity: () => elm.reportValidity(),
-                    };
-                }
-            }, [name, control._fields]),
-        },
-        formState,
-        fieldState: Object.defineProperties({}, {
-            invalid: {
-                get: () => !!get(formState.errors, name),
-            },
-            isDirty: {
-                get: () => !!get(formState.dirtyFields, name),
-            },
-            isTouched: {
-                get: () => !!get(formState.touchedFields, name),
-            },
-            error: {
-                get: () => get(formState.errors, name),
-            },
-        }),
-    };
-}
-
-/**
- * Component based on `useController` hook to work with controlled component.
- *
- * @remarks
- * [API](https://react-hook-form.com/api/usecontroller/controller) • [Demo](https://codesandbox.io/s/react-hook-form-v6-controller-ts-jwyzw) • [Video](https://www.youtube.com/watch?v=N2UNk_UCVyA)
- *
- * @param props - the path name to the form field value, and validation rules.
- *
- * @returns provide field handler functions, field and form state.
- *
- * @example
- * ```tsx
- * function App() {
- *   const { control } = useForm<FormValues>({
- *     defaultValues: {
- *       test: ""
- *     }
- *   });
- *
- *   return (
- *     <form>
- *       <Controller
- *         control={control}
- *         name="test"
- *         render={({ field: { onChange, onBlur, value, ref }, formState, fieldState }) => (
- *           <>
- *             <input
- *               onChange={onChange} // send value to hook form
- *               onBlur={onBlur} // notify when input is touched
- *               value={value} // return updated value
- *               ref={ref} // set ref for focus management
- *             />
- *             <p>{formState.isSubmitted ? "submitted" : ""}</p>
- *             <p>{fieldState.isTouched ? "touched" : ""}</p>
- *           </>
- *         )}
- *       />
- *     </form>
- *   );
- * }
- * ```
- */
-const Controller = (props) => props.render(useController(props));
-
-var appendErrors = (name, validateAllFieldCriteria, errors, type, message) => validateAllFieldCriteria
-    ? {
-        ...errors[name],
-        types: {
-            ...(errors[name] && errors[name].types ? errors[name].types : {}),
-            [type]: message || true,
-        },
-    }
-    : {};
-
-var isKey = (value) => /^\w*$/.test(value);
-
-var stringToPath = (input) => compact(input.replace(/["|']|\]/g, '').split(/\.|\[/));
-
-function set(object, path, value) {
-    let index = -1;
-    const tempPath = isKey(path) ? [path] : stringToPath(path);
-    const length = tempPath.length;
-    const lastIndex = length - 1;
-    while (++index < length) {
-        const key = tempPath[index];
-        let newValue = value;
-        if (index !== lastIndex) {
-            const objValue = object[key];
-            newValue =
-                isObject(objValue) || Array.isArray(objValue)
-                    ? objValue
-                    : !isNaN(+tempPath[index + 1])
-                        ? []
-                        : {};
-        }
-        object[key] = newValue;
-        object = object[key];
-    }
-    return object;
-}
-
-const focusFieldBy = (fields, callback, fieldsNames) => {
-    for (const key of fieldsNames || Object.keys(fields)) {
-        const field = get(fields, key);
-        if (field) {
-            const { _f, ...currentField } = field;
-            if (_f && callback(_f.name)) {
-                if (_f.ref.focus && isUndefined(_f.ref.focus())) {
-                    break;
-                }
-                else if (_f.refs) {
-                    _f.refs[0].focus();
-                    break;
-                }
-            }
-            else if (isObject(currentField)) {
-                focusFieldBy(currentField, callback);
-            }
-        }
-    }
-};
-
-var generateId = () => {
-    const d = typeof performance === 'undefined' ? Date.now() : performance.now() * 1000;
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-        const r = (Math.random() * 16 + d) % 16 | 0;
-        return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16);
-    });
-};
-
-var getFocusFieldName = (name, index, options = {}) => options.shouldFocus || isUndefined(options.shouldFocus)
-    ? options.focusName ||
-        `${name}.${isUndefined(options.focusIndex) ? index : options.focusIndex}.`
-    : '';
-
-var isWatched = (name, _names, isBlurEvent) => !isBlurEvent &&
-    (_names.watchAll ||
-        _names.watch.has(name) ||
-        [..._names.watch].some((watchName) => name.startsWith(watchName) &&
-            /^\.\w+/.test(name.slice(watchName.length))));
-
-function append(data, value) {
-    return [...data, ...convertToArrayPayload(value)];
-}
-
-function cloneObject(data) {
-    let copy;
-    const isArray = Array.isArray(data);
-    if (data instanceof Date) {
-        copy = new Date(data);
-    }
-    else if (data instanceof Set) {
-        copy = new Set(data);
-    }
-    else if (globalThis.Blob && data instanceof Blob) {
-        copy = data;
-    }
-    else if (globalThis.FileList && data instanceof FileList) {
-        copy = data;
-    }
-    else if (isArray || isObject(data)) {
-        copy = isArray ? [] : {};
-        for (const key in data) {
-            copy[key] = isFunction(data[key]) ? data[key] : cloneObject(data[key]);
-        }
-    }
-    else {
-        return data;
-    }
-    return copy;
-}
-
-var fillEmptyArray = (value) => Array.isArray(value) ? value.map(() => undefined) : undefined;
-
-function insert(data, index, value) {
-    return [
-        ...data.slice(0, index),
-        ...convertToArrayPayload(value),
-        ...data.slice(index),
-    ];
-}
-
-var moveArrayAt = (data, from, to) => {
-    if (!Array.isArray(data)) {
-        return [];
-    }
-    if (isUndefined(data[to])) {
-        data[to] = undefined;
-    }
-    data.splice(to, 0, data.splice(from, 1)[0]);
-    return data;
-};
-
-function prepend(data, value) {
-    return [...convertToArrayPayload(value), ...convertToArrayPayload(data)];
-}
-
-function removeAtIndexes(data, indexes) {
-    let i = 0;
-    const temp = [...data];
-    for (const index of indexes) {
-        temp.splice(index - i, 1);
-        i++;
-    }
-    return compact(temp).length ? temp : [];
-}
-var removeArrayAt = (data, index) => isUndefined(index)
-    ? []
-    : removeAtIndexes(data, convertToArrayPayload(index).sort((a, b) => a - b));
-
-var swapArrayAt = (data, indexA, indexB) => {
-    data[indexA] = [data[indexB], (data[indexB] = data[indexA])][0];
-};
-
-function baseGet(object, updatePath) {
-    const length = updatePath.slice(0, -1).length;
-    let index = 0;
-    while (index < length) {
-        object = isUndefined(object) ? index++ : object[updatePath[index++]];
-    }
-    return object;
-}
-function unset(object, path) {
-    const updatePath = isKey(path) ? [path] : stringToPath(path);
-    const childObject = updatePath.length == 1 ? object : baseGet(object, updatePath);
-    const key = updatePath[updatePath.length - 1];
-    let previousObjRef;
-    if (childObject) {
-        delete childObject[key];
-    }
-    for (let k = 0; k < updatePath.slice(0, -1).length; k++) {
-        let index = -1;
-        let objectRef;
-        const currentPaths = updatePath.slice(0, -(k + 1));
-        const currentPathsLength = currentPaths.length - 1;
-        if (k > 0) {
-            previousObjRef = object;
-        }
-        while (++index < currentPaths.length) {
-            const item = currentPaths[index];
-            objectRef = objectRef ? objectRef[item] : object[item];
-            if (currentPathsLength === index &&
-                ((isObject(objectRef) && isEmptyObject(objectRef)) ||
-                    (Array.isArray(objectRef) &&
-                        !objectRef.filter((data) => !isUndefined(data)).length))) {
-                previousObjRef ? delete previousObjRef[item] : delete object[item];
-            }
-            previousObjRef = objectRef;
-        }
-    }
-    return object;
-}
-
-var updateAt = (fieldValues, index, value) => {
-    fieldValues[index] = value;
-    return fieldValues;
-};
-
-/**
- * A custom hook that exposes convenient methods to perform operations with a list of dynamic inputs that need to be appended, updated, removed etc.
- *
- * @remarks
- * [API](https://react-hook-form.com/api/usefieldarray) • [Demo](https://codesandbox.io/s/react-hook-form-usefieldarray-ssugn)
- *
- * @param props - useFieldArray props
- *
- * @returns methods - functions to manipulate with the Field Arrays (dynamic inputs) {@link UseFieldArrayReturn}
- *
- * @example
- * ```tsx
- * function App() {
- *   const { register, control, handleSubmit, reset, trigger, setError } = useForm({
- *     defaultValues: {
- *       test: []
- *     }
- *   });
- *   const { fields, append } = useFieldArray({
- *     control,
- *     name: "test"
- *   });
- *
- *   return (
- *     <form onSubmit={handleSubmit(data => console.log(data))}>
- *       {fields.map((item, index) => (
- *          <input key={item.id} {...register(`test.${index}.firstName`)}  />
- *       ))}
- *       <button type="button" onClick={() => append({ firstName: "bill" })}>
- *         append
- *       </button>
- *       <input type="submit" />
- *     </form>
- *   );
- * }
- * ```
- */
-function useFieldArray(props) {
-    const methods = useFormContext();
-    const { control = methods.control, name, keyName = 'id', shouldUnregister, } = props;
-    const [fields, setFields] = react__WEBPACK_IMPORTED_MODULE_0__.useState(control._getFieldArray(name));
-    const ids = react__WEBPACK_IMPORTED_MODULE_0__.useRef(control._getFieldArray(name).map(generateId));
-    const _fieldIds = react__WEBPACK_IMPORTED_MODULE_0__.useRef(fields);
-    const _name = react__WEBPACK_IMPORTED_MODULE_0__.useRef(name);
-    const _actioned = react__WEBPACK_IMPORTED_MODULE_0__.useRef(false);
-    _name.current = name;
-    _fieldIds.current = fields;
-    control._names.array.add(name);
-    const callback = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(({ values, name: fieldArrayName }) => {
-        if (fieldArrayName === _name.current || !fieldArrayName) {
-            const fieldValues = get(values, _name.current, []);
-            setFields(fieldValues);
-            ids.current = fieldValues.map(generateId);
-        }
-    }, []);
-    useSubscribe({
-        callback,
-        subject: control._subjects.array,
-    });
-    const updateValues = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((updatedFieldArrayValues) => {
-        _actioned.current = true;
-        control._updateFieldArray(name, updatedFieldArrayValues);
-    }, [control, name]);
-    const append$1 = (value, options) => {
-        const appendValue = convertToArrayPayload(cloneObject(value));
-        const updatedFieldArrayValues = append(control._getFieldArray(name), appendValue);
-        control._names.focus = getFocusFieldName(name, updatedFieldArrayValues.length - 1, options);
-        ids.current = append(ids.current, appendValue.map(generateId));
-        updateValues(updatedFieldArrayValues);
-        setFields(updatedFieldArrayValues);
-        control._updateFieldArray(name, updatedFieldArrayValues, append, {
-            argA: fillEmptyArray(value),
-        });
-    };
-    const prepend$1 = (value, options) => {
-        const prependValue = convertToArrayPayload(cloneObject(value));
-        const updatedFieldArrayValues = prepend(control._getFieldArray(name), prependValue);
-        control._names.focus = getFocusFieldName(name, 0, options);
-        ids.current = prepend(ids.current, prependValue.map(generateId));
-        updateValues(updatedFieldArrayValues);
-        setFields(updatedFieldArrayValues);
-        control._updateFieldArray(name, updatedFieldArrayValues, prepend, {
-            argA: fillEmptyArray(value),
-        });
-    };
-    const remove = (index) => {
-        const updatedFieldArrayValues = removeArrayAt(control._getFieldArray(name), index);
-        ids.current = removeArrayAt(ids.current, index);
-        updateValues(updatedFieldArrayValues);
-        setFields(updatedFieldArrayValues);
-        control._updateFieldArray(name, updatedFieldArrayValues, removeArrayAt, {
-            argA: index,
-        });
-    };
-    const insert$1 = (index, value, options) => {
-        const insertValue = convertToArrayPayload(cloneObject(value));
-        const updatedFieldArrayValues = insert(control._getFieldArray(name), index, insertValue);
-        control._names.focus = getFocusFieldName(name, index, options);
-        ids.current = insert(ids.current, index, insertValue.map(generateId));
-        updateValues(updatedFieldArrayValues);
-        setFields(updatedFieldArrayValues);
-        control._updateFieldArray(name, updatedFieldArrayValues, insert, {
-            argA: index,
-            argB: fillEmptyArray(value),
-        });
-    };
-    const swap = (indexA, indexB) => {
-        const updatedFieldArrayValues = control._getFieldArray(name);
-        swapArrayAt(updatedFieldArrayValues, indexA, indexB);
-        swapArrayAt(ids.current, indexA, indexB);
-        updateValues(updatedFieldArrayValues);
-        setFields(updatedFieldArrayValues);
-        control._updateFieldArray(name, updatedFieldArrayValues, swapArrayAt, {
-            argA: indexA,
-            argB: indexB,
-        }, false);
-    };
-    const move = (from, to) => {
-        const updatedFieldArrayValues = control._getFieldArray(name);
-        moveArrayAt(updatedFieldArrayValues, from, to);
-        moveArrayAt(ids.current, from, to);
-        updateValues(updatedFieldArrayValues);
-        setFields(updatedFieldArrayValues);
-        control._updateFieldArray(name, updatedFieldArrayValues, moveArrayAt, {
-            argA: from,
-            argB: to,
-        }, false);
-    };
-    const update = (index, value) => {
-        const updateValue = cloneObject(value);
-        const updatedFieldArrayValues = updateAt(control._getFieldArray(name), index, updateValue);
-        ids.current = [...updatedFieldArrayValues].map((item, i) => !item || i === index ? generateId() : ids.current[i]);
-        updateValues(updatedFieldArrayValues);
-        setFields([...updatedFieldArrayValues]);
-        control._updateFieldArray(name, updatedFieldArrayValues, updateAt, {
-            argA: index,
-            argB: updateValue,
-        }, true, false);
-    };
-    const replace = (value) => {
-        const updatedFieldArrayValues = convertToArrayPayload(cloneObject(value));
-        ids.current = updatedFieldArrayValues.map(generateId);
-        updateValues([...updatedFieldArrayValues]);
-        setFields([...updatedFieldArrayValues]);
-        control._updateFieldArray(name, [...updatedFieldArrayValues], (data) => data, {}, true, false);
-    };
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
-        control._stateFlags.action = false;
-        isWatched(name, control._names) && control._subjects.state.next({});
-        if (_actioned.current) {
-            control._executeSchema([name]).then((result) => {
-                const error = get(result.errors, name);
-                const existingError = get(control._formState.errors, name);
-                if (existingError ? !error && existingError.type : error && error.type) {
-                    error
-                        ? set(control._formState.errors, name, error)
-                        : unset(control._formState.errors, name);
-                    control._subjects.state.next({
-                        errors: control._formState.errors,
-                    });
-                }
-            });
-        }
-        control._subjects.watch.next({
-            name,
-            values: control._formValues,
-        });
-        control._names.focus &&
-            focusFieldBy(control._fields, (key) => key.startsWith(control._names.focus));
-        control._names.focus = '';
-        control._proxyFormState.isValid && control._updateValid();
-    }, [fields, name, control]);
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
-        !get(control._formValues, name) && control._updateFieldArray(name);
-        return () => {
-            (control._options.shouldUnregister || shouldUnregister) &&
-                control.unregister(name);
-        };
-    }, [name, control, keyName, shouldUnregister]);
-    return {
-        swap: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(swap, [updateValues, name, control]),
-        move: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(move, [updateValues, name, control]),
-        prepend: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(prepend$1, [updateValues, name, control]),
-        append: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(append$1, [updateValues, name, control]),
-        remove: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(remove, [updateValues, name, control]),
-        insert: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(insert$1, [updateValues, name, control]),
-        update: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(update, [updateValues, name, control]),
-        replace: react__WEBPACK_IMPORTED_MODULE_0__.useCallback(replace, [updateValues, name, control]),
-        fields: react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => fields.map((field, index) => ({
-            ...field,
-            [keyName]: ids.current[index] || generateId(),
-        })), [fields, keyName]),
-    };
-}
-
-function createSubject() {
-    let _observers = [];
-    const next = (value) => {
-        for (const observer of _observers) {
-            observer.next(value);
-        }
-    };
-    const subscribe = (observer) => {
-        _observers.push(observer);
-        return {
-            unsubscribe: () => {
-                _observers = _observers.filter((o) => o !== observer);
-            },
-        };
-    };
-    const unsubscribe = () => {
-        _observers = [];
-    };
-    return {
-        get observers() {
-            return _observers;
-        },
-        next,
-        subscribe,
-        unsubscribe,
-    };
-}
-
-var isPrimitive = (value) => isNullOrUndefined(value) || !isObjectType(value);
-
-function deepEqual(object1, object2) {
-    if (isPrimitive(object1) || isPrimitive(object2)) {
-        return object1 === object2;
-    }
-    if (isDateObject(object1) && isDateObject(object2)) {
-        return object1.getTime() === object2.getTime();
-    }
-    const keys1 = Object.keys(object1);
-    const keys2 = Object.keys(object2);
-    if (keys1.length !== keys2.length) {
-        return false;
-    }
-    for (const key of keys1) {
-        const val1 = object1[key];
-        if (!keys2.includes(key)) {
-            return false;
-        }
-        if (key !== 'ref') {
-            const val2 = object2[key];
-            if ((isDateObject(val1) && isDateObject(val2)) ||
-                (isObject(val1) && isObject(val2)) ||
-                (Array.isArray(val1) && Array.isArray(val2))
-                ? !deepEqual(val1, val2)
-                : val1 !== val2) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-var getValidationModes = (mode) => ({
-    isOnSubmit: !mode || mode === VALIDATION_MODE.onSubmit,
-    isOnBlur: mode === VALIDATION_MODE.onBlur,
-    isOnChange: mode === VALIDATION_MODE.onChange,
-    isOnAll: mode === VALIDATION_MODE.all,
-    isOnTouch: mode === VALIDATION_MODE.onTouched,
-});
-
-var isBoolean = (value) => typeof value === 'boolean';
-
-var isFileInput = (element) => element.type === 'file';
-
-var isHTMLElement = (value) => value instanceof HTMLElement;
-
-var isMultipleSelect = (element) => element.type === `select-multiple`;
-
-var isRadioInput = (element) => element.type === 'radio';
-
-var isRadioOrCheckbox = (ref) => isRadioInput(ref) || isCheckBoxInput(ref);
-
-var isWeb = typeof window !== 'undefined' &&
-    typeof window.HTMLElement !== 'undefined' &&
-    typeof document !== 'undefined';
-
-var live = (ref) => isHTMLElement(ref) && ref.isConnected;
-
-function markFieldsDirty(data, fields = {}) {
-    const isParentNodeArray = Array.isArray(data);
-    if (isObject(data) || isParentNodeArray) {
-        for (const key in data) {
-            if (Array.isArray(data[key]) ||
-                (isObject(data[key]) && !objectHasFunction(data[key]))) {
-                fields[key] = Array.isArray(data[key]) ? [] : {};
-                markFieldsDirty(data[key], fields[key]);
-            }
-            else if (!isNullOrUndefined(data[key])) {
-                fields[key] = true;
-            }
-        }
-    }
-    return fields;
-}
-function getDirtyFieldsFromDefaultValues(data, formValues, dirtyFieldsFromValues) {
-    const isParentNodeArray = Array.isArray(data);
-    if (isObject(data) || isParentNodeArray) {
-        for (const key in data) {
-            if (Array.isArray(data[key]) ||
-                (isObject(data[key]) && !objectHasFunction(data[key]))) {
-                if (isUndefined(formValues) ||
-                    isPrimitive(dirtyFieldsFromValues[key])) {
-                    dirtyFieldsFromValues[key] = Array.isArray(data[key])
-                        ? markFieldsDirty(data[key], [])
-                        : { ...markFieldsDirty(data[key]) };
-                }
-                else {
-                    getDirtyFieldsFromDefaultValues(data[key], isNullOrUndefined(formValues) ? {} : formValues[key], dirtyFieldsFromValues[key]);
-                }
-            }
-            else {
-                dirtyFieldsFromValues[key] = !deepEqual(data[key], formValues[key]);
-            }
-        }
-    }
-    return dirtyFieldsFromValues;
-}
-var getDirtyFields = (defaultValues, formValues) => getDirtyFieldsFromDefaultValues(defaultValues, formValues, markFieldsDirty(formValues));
-
-const defaultResult = {
-    value: false,
-    isValid: false,
-};
-const validResult = { value: true, isValid: true };
-var getCheckboxValue = (options) => {
-    if (Array.isArray(options)) {
-        if (options.length > 1) {
-            const values = options
-                .filter((option) => option && option.checked && !option.disabled)
-                .map((option) => option.value);
-            return { value: values, isValid: !!values.length };
-        }
-        return options[0].checked && !options[0].disabled
-            ? // @ts-expect-error expected to work in the browser
-                options[0].attributes && !isUndefined(options[0].attributes.value)
-                    ? isUndefined(options[0].value) || options[0].value === ''
-                        ? validResult
-                        : { value: options[0].value, isValid: true }
-                    : validResult
-            : defaultResult;
-    }
-    return defaultResult;
-};
-
-var getFieldValueAs = (value, { valueAsNumber, valueAsDate, setValueAs }) => isUndefined(value)
-    ? value
-    : valueAsNumber
-        ? value === ''
-            ? NaN
-            : +value
-        : valueAsDate && isString(value)
-            ? new Date(value)
-            : setValueAs
-                ? setValueAs(value)
-                : value;
-
-const defaultReturn = {
-    isValid: false,
-    value: null,
-};
-var getRadioValue = (options) => Array.isArray(options)
-    ? options.reduce((previous, option) => option && option.checked && !option.disabled
-        ? {
-            isValid: true,
-            value: option.value,
-        }
-        : previous, defaultReturn)
-    : defaultReturn;
-
-function getFieldValue(_f) {
-    const ref = _f.ref;
-    if (_f.refs ? _f.refs.every((ref) => ref.disabled) : ref.disabled) {
-        return;
-    }
-    if (isFileInput(ref)) {
-        return ref.files;
-    }
-    if (isRadioInput(ref)) {
-        return getRadioValue(_f.refs).value;
-    }
-    if (isMultipleSelect(ref)) {
-        return [...ref.selectedOptions].map(({ value }) => value);
-    }
-    if (isCheckBoxInput(ref)) {
-        return getCheckboxValue(_f.refs).value;
-    }
-    return getFieldValueAs(isUndefined(ref.value) ? _f.ref.value : ref.value, _f);
-}
-
-var getResolverOptions = (fieldsNames, _fields, criteriaMode, shouldUseNativeValidation) => {
-    const fields = {};
-    for (const name of fieldsNames) {
-        const field = get(_fields, name);
-        field && set(fields, name, field._f);
-    }
-    return {
-        criteriaMode,
-        names: [...fieldsNames],
-        fields,
-        shouldUseNativeValidation,
-    };
-};
-
-var isRegex = (value) => value instanceof RegExp;
-
-var getRuleValue = (rule) => isUndefined(rule)
-    ? undefined
-    : isRegex(rule)
-        ? rule.source
-        : isObject(rule)
-            ? isRegex(rule.value)
-                ? rule.value.source
-                : rule.value
-            : rule;
-
-var hasValidation = (options) => options.mount &&
-    (options.required ||
-        options.min ||
-        options.max ||
-        options.maxLength ||
-        options.minLength ||
-        options.pattern ||
-        options.validate);
-
-function schemaErrorLookup(errors, _fields, name) {
-    const error = get(errors, name);
-    if (error || isKey(name)) {
-        return {
-            error,
-            name,
-        };
-    }
-    const names = name.split('.');
-    while (names.length) {
-        const fieldName = names.join('.');
-        const field = get(_fields, fieldName);
-        const foundError = get(errors, fieldName);
-        if (field && !Array.isArray(field) && name !== fieldName) {
-            return { name };
-        }
-        if (foundError && foundError.type) {
-            return {
-                name: fieldName,
-                error: foundError,
-            };
-        }
-        names.pop();
-    }
-    return {
-        name,
-    };
-}
-
-var skipValidation = (isBlurEvent, isTouched, isSubmitted, reValidateMode, mode) => {
-    if (mode.isOnAll) {
-        return false;
-    }
-    else if (!isSubmitted && mode.isOnTouch) {
-        return !(isTouched || isBlurEvent);
-    }
-    else if (isSubmitted ? reValidateMode.isOnBlur : mode.isOnBlur) {
-        return !isBlurEvent;
-    }
-    else if (isSubmitted ? reValidateMode.isOnChange : mode.isOnChange) {
-        return isBlurEvent;
-    }
-    return true;
-};
-
-var unsetEmptyArray = (ref, name) => !compact(get(ref, name)).length && unset(ref, name);
-
-var isMessage = (value) => isString(value) || react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(value);
-
-function getValidateError(result, ref, type = 'validate') {
-    if (isMessage(result) ||
-        (Array.isArray(result) && result.every(isMessage)) ||
-        (isBoolean(result) && !result)) {
-        return {
-            type,
-            message: isMessage(result) ? result : '',
-            ref,
-        };
-    }
-}
-
-var getValueAndMessage = (validationData) => isObject(validationData) && !isRegex(validationData)
-    ? validationData
-    : {
-        value: validationData,
-        message: '',
-    };
-
-var validateField = async (field, inputValue, validateAllFieldCriteria, shouldUseNativeValidation) => {
-    const { ref, refs, required, maxLength, minLength, min, max, pattern, validate, name, valueAsNumber, mount, disabled, } = field._f;
-    if (!mount || disabled) {
-        return {};
-    }
-    const inputRef = refs ? refs[0] : ref;
-    const setCustomValidity = (message) => {
-        if (shouldUseNativeValidation && inputRef.reportValidity) {
-            inputRef.setCustomValidity(isBoolean(message) ? '' : message || ' ');
-            inputRef.reportValidity();
-        }
-    };
-    const error = {};
-    const isRadio = isRadioInput(ref);
-    const isCheckBox = isCheckBoxInput(ref);
-    const isRadioOrCheckbox = isRadio || isCheckBox;
-    const isEmpty = ((valueAsNumber || isFileInput(ref)) && !ref.value) ||
-        inputValue === '' ||
-        (Array.isArray(inputValue) && !inputValue.length);
-    const appendErrorsCurry = appendErrors.bind(null, name, validateAllFieldCriteria, error);
-    const getMinMaxMessage = (exceedMax, maxLengthMessage, minLengthMessage, maxType = INPUT_VALIDATION_RULES.maxLength, minType = INPUT_VALIDATION_RULES.minLength) => {
-        const message = exceedMax ? maxLengthMessage : minLengthMessage;
-        error[name] = {
-            type: exceedMax ? maxType : minType,
-            message,
-            ref,
-            ...appendErrorsCurry(exceedMax ? maxType : minType, message),
-        };
-    };
-    if (required &&
-        ((!isRadioOrCheckbox && (isEmpty || isNullOrUndefined(inputValue))) ||
-            (isBoolean(inputValue) && !inputValue) ||
-            (isCheckBox && !getCheckboxValue(refs).isValid) ||
-            (isRadio && !getRadioValue(refs).isValid))) {
-        const { value, message } = isMessage(required)
-            ? { value: !!required, message: required }
-            : getValueAndMessage(required);
-        if (value) {
-            error[name] = {
-                type: INPUT_VALIDATION_RULES.required,
-                message,
-                ref: inputRef,
-                ...appendErrorsCurry(INPUT_VALIDATION_RULES.required, message),
-            };
-            if (!validateAllFieldCriteria) {
-                setCustomValidity(message);
-                return error;
-            }
-        }
-    }
-    if (!isEmpty && (!isNullOrUndefined(min) || !isNullOrUndefined(max))) {
-        let exceedMax;
-        let exceedMin;
-        const maxOutput = getValueAndMessage(max);
-        const minOutput = getValueAndMessage(min);
-        if (!isNaN(inputValue)) {
-            const valueNumber = ref.valueAsNumber || +inputValue;
-            if (!isNullOrUndefined(maxOutput.value)) {
-                exceedMax = valueNumber > maxOutput.value;
-            }
-            if (!isNullOrUndefined(minOutput.value)) {
-                exceedMin = valueNumber < minOutput.value;
-            }
-        }
-        else {
-            const valueDate = ref.valueAsDate || new Date(inputValue);
-            if (isString(maxOutput.value)) {
-                exceedMax = valueDate > new Date(maxOutput.value);
-            }
-            if (isString(minOutput.value)) {
-                exceedMin = valueDate < new Date(minOutput.value);
-            }
-        }
-        if (exceedMax || exceedMin) {
-            getMinMaxMessage(!!exceedMax, maxOutput.message, minOutput.message, INPUT_VALIDATION_RULES.max, INPUT_VALIDATION_RULES.min);
-            if (!validateAllFieldCriteria) {
-                setCustomValidity(error[name].message);
-                return error;
-            }
-        }
-    }
-    if ((maxLength || minLength) && !isEmpty && isString(inputValue)) {
-        const maxLengthOutput = getValueAndMessage(maxLength);
-        const minLengthOutput = getValueAndMessage(minLength);
-        const exceedMax = !isNullOrUndefined(maxLengthOutput.value) &&
-            inputValue.length > maxLengthOutput.value;
-        const exceedMin = !isNullOrUndefined(minLengthOutput.value) &&
-            inputValue.length < minLengthOutput.value;
-        if (exceedMax || exceedMin) {
-            getMinMaxMessage(exceedMax, maxLengthOutput.message, minLengthOutput.message);
-            if (!validateAllFieldCriteria) {
-                setCustomValidity(error[name].message);
-                return error;
-            }
-        }
-    }
-    if (pattern && !isEmpty && isString(inputValue)) {
-        const { value: patternValue, message } = getValueAndMessage(pattern);
-        if (isRegex(patternValue) && !inputValue.match(patternValue)) {
-            error[name] = {
-                type: INPUT_VALIDATION_RULES.pattern,
-                message,
-                ref,
-                ...appendErrorsCurry(INPUT_VALIDATION_RULES.pattern, message),
-            };
-            if (!validateAllFieldCriteria) {
-                setCustomValidity(message);
-                return error;
-            }
-        }
-    }
-    if (validate) {
-        if (isFunction(validate)) {
-            const result = await validate(inputValue);
-            const validateError = getValidateError(result, inputRef);
-            if (validateError) {
-                error[name] = {
-                    ...validateError,
-                    ...appendErrorsCurry(INPUT_VALIDATION_RULES.validate, validateError.message),
-                };
-                if (!validateAllFieldCriteria) {
-                    setCustomValidity(validateError.message);
-                    return error;
-                }
-            }
-        }
-        else if (isObject(validate)) {
-            let validationResult = {};
-            for (const key in validate) {
-                if (!isEmptyObject(validationResult) && !validateAllFieldCriteria) {
-                    break;
-                }
-                const validateError = getValidateError(await validate[key](inputValue), inputRef, key);
-                if (validateError) {
-                    validationResult = {
-                        ...validateError,
-                        ...appendErrorsCurry(key, validateError.message),
-                    };
-                    setCustomValidity(validateError.message);
-                    if (validateAllFieldCriteria) {
-                        error[name] = validationResult;
-                    }
-                }
-            }
-            if (!isEmptyObject(validationResult)) {
-                error[name] = {
-                    ref: inputRef,
-                    ...validationResult,
-                };
-                if (!validateAllFieldCriteria) {
-                    return error;
-                }
-            }
-        }
-    }
-    setCustomValidity(true);
-    return error;
-};
-
-const defaultOptions = {
-    mode: VALIDATION_MODE.onSubmit,
-    reValidateMode: VALIDATION_MODE.onChange,
-    shouldFocusError: true,
-};
-function createFormControl(props = {}) {
-    let _options = {
-        ...defaultOptions,
-        ...props,
-    };
-    let _formState = {
-        isDirty: false,
-        isValidating: false,
-        dirtyFields: {},
-        isSubmitted: false,
-        submitCount: 0,
-        touchedFields: {},
-        isSubmitting: false,
-        isSubmitSuccessful: false,
-        isValid: false,
-        errors: {},
-    };
-    let _fields = {};
-    let _defaultValues = cloneObject(_options.defaultValues) || {};
-    let _formValues = _options.shouldUnregister
-        ? {}
-        : cloneObject(_defaultValues);
-    let _stateFlags = {
-        action: false,
-        mount: false,
-        watch: false,
-    };
-    let _names = {
-        mount: new Set(),
-        unMount: new Set(),
-        array: new Set(),
-        watch: new Set(),
-    };
-    let delayErrorCallback;
-    let timer = 0;
-    let validateFields = {};
-    const _proxyFormState = {
-        isDirty: false,
-        dirtyFields: false,
-        touchedFields: false,
-        isValidating: false,
-        isValid: false,
-        errors: false,
-    };
-    const _subjects = {
-        watch: createSubject(),
-        array: createSubject(),
-        state: createSubject(),
-    };
-    const validationModeBeforeSubmit = getValidationModes(_options.mode);
-    const validationModeAfterSubmit = getValidationModes(_options.reValidateMode);
-    const shouldDisplayAllAssociatedErrors = _options.criteriaMode === VALIDATION_MODE.all;
-    const debounce = (callback, wait) => (...args) => {
-        clearTimeout(timer);
-        timer = window.setTimeout(() => callback(...args), wait);
-    };
-    const _updateValid = async (shouldSkipRender) => {
-        let isValid = false;
-        if (_proxyFormState.isValid) {
-            isValid = _options.resolver
-                ? isEmptyObject((await _executeSchema()).errors)
-                : await executeBuildInValidation(_fields, true);
-            if (!shouldSkipRender && isValid !== _formState.isValid) {
-                _formState.isValid = isValid;
-                _subjects.state.next({
-                    isValid,
-                });
-            }
-        }
-        return isValid;
-    };
-    const _updateFieldArray = (name, values = [], method, args, shouldSetValues = true, shouldUpdateFieldsAndState = true) => {
-        if (args && method) {
-            _stateFlags.action = true;
-            if (shouldUpdateFieldsAndState && Array.isArray(get(_fields, name))) {
-                const fieldValues = method(get(_fields, name), args.argA, args.argB);
-                shouldSetValues && set(_fields, name, fieldValues);
-            }
-            if (_proxyFormState.errors &&
-                shouldUpdateFieldsAndState &&
-                Array.isArray(get(_formState.errors, name))) {
-                const errors = method(get(_formState.errors, name), args.argA, args.argB);
-                shouldSetValues && set(_formState.errors, name, errors);
-                unsetEmptyArray(_formState.errors, name);
-            }
-            if (_proxyFormState.touchedFields &&
-                shouldUpdateFieldsAndState &&
-                Array.isArray(get(_formState.touchedFields, name))) {
-                const touchedFields = method(get(_formState.touchedFields, name), args.argA, args.argB);
-                shouldSetValues && set(_formState.touchedFields, name, touchedFields);
-            }
-            if (_proxyFormState.dirtyFields) {
-                _formState.dirtyFields = getDirtyFields(_defaultValues, _formValues);
-            }
-            _subjects.state.next({
-                isDirty: _getDirty(name, values),
-                dirtyFields: _formState.dirtyFields,
-                errors: _formState.errors,
-                isValid: _formState.isValid,
-            });
-        }
-        else {
-            set(_formValues, name, values);
-        }
-    };
-    const updateErrors = (name, error) => (set(_formState.errors, name, error),
-        _subjects.state.next({
-            errors: _formState.errors,
-        }));
-    const updateValidAndValue = (name, shouldSkipSetValueAs, value, ref) => {
-        const field = get(_fields, name);
-        if (field) {
-            const defaultValue = get(_formValues, name, isUndefined(value) ? get(_defaultValues, name) : value);
-            isUndefined(defaultValue) ||
-                (ref && ref.defaultChecked) ||
-                shouldSkipSetValueAs
-                ? set(_formValues, name, shouldSkipSetValueAs ? defaultValue : getFieldValue(field._f))
-                : setFieldValue(name, defaultValue);
-            _stateFlags.mount && _updateValid();
-        }
-    };
-    const updateTouchAndDirty = (name, fieldValue, isBlurEvent, shouldDirty, shouldRender) => {
-        let isFieldDirty = false;
-        const output = {
-            name,
-        };
-        const isPreviousFieldTouched = get(_formState.touchedFields, name);
-        if (_proxyFormState.isDirty) {
-            const isPreviousFormDirty = _formState.isDirty;
-            _formState.isDirty = output.isDirty = _getDirty();
-            isFieldDirty = isPreviousFormDirty !== output.isDirty;
-        }
-        if (_proxyFormState.dirtyFields && (!isBlurEvent || shouldDirty)) {
-            const isPreviousFieldDirty = get(_formState.dirtyFields, name);
-            const isCurrentFieldPristine = deepEqual(get(_defaultValues, name), fieldValue);
-            isCurrentFieldPristine
-                ? unset(_formState.dirtyFields, name)
-                : set(_formState.dirtyFields, name, true);
-            output.dirtyFields = _formState.dirtyFields;
-            isFieldDirty =
-                isFieldDirty ||
-                    isPreviousFieldDirty !== get(_formState.dirtyFields, name);
-        }
-        if (isBlurEvent && !isPreviousFieldTouched) {
-            set(_formState.touchedFields, name, isBlurEvent);
-            output.touchedFields = _formState.touchedFields;
-            isFieldDirty =
-                isFieldDirty ||
-                    (_proxyFormState.touchedFields &&
-                        isPreviousFieldTouched !== isBlurEvent);
-        }
-        isFieldDirty && shouldRender && _subjects.state.next(output);
-        return isFieldDirty ? output : {};
-    };
-    const shouldRenderByError = async (shouldSkipRender, name, isValid, error, fieldState) => {
-        const previousFieldError = get(_formState.errors, name);
-        const shouldUpdateValid = _proxyFormState.isValid && _formState.isValid !== isValid;
-        if (props.delayError && error) {
-            delayErrorCallback =
-                delayErrorCallback || debounce(updateErrors, props.delayError);
-            delayErrorCallback(name, error);
-        }
-        else {
-            clearTimeout(timer);
-            error
-                ? set(_formState.errors, name, error)
-                : unset(_formState.errors, name);
-        }
-        if (((error ? !deepEqual(previousFieldError, error) : previousFieldError) ||
-            !isEmptyObject(fieldState) ||
-            shouldUpdateValid) &&
-            !shouldSkipRender) {
-            const updatedFormState = {
-                ...fieldState,
-                ...(shouldUpdateValid ? { isValid } : {}),
-                errors: _formState.errors,
-                name,
-            };
-            _formState = {
-                ..._formState,
-                ...updatedFormState,
-            };
-            _subjects.state.next(updatedFormState);
-        }
-        validateFields[name]--;
-        if (_proxyFormState.isValidating &&
-            !Object.values(validateFields).some((v) => v)) {
-            _subjects.state.next({
-                isValidating: false,
-            });
-            validateFields = {};
-        }
-    };
-    const _executeSchema = async (name) => _options.resolver
-        ? await _options.resolver({ ..._formValues }, _options.context, getResolverOptions(name || _names.mount, _fields, _options.criteriaMode, _options.shouldUseNativeValidation))
-        : {};
-    const executeSchemaAndUpdateState = async (names) => {
-        const { errors } = await _executeSchema();
-        if (names) {
-            for (const name of names) {
-                const error = get(errors, name);
-                error
-                    ? set(_formState.errors, name, error)
-                    : unset(_formState.errors, name);
-            }
-        }
-        else {
-            _formState.errors = errors;
-        }
-        return errors;
-    };
-    const executeBuildInValidation = async (fields, shouldOnlyCheckValid, context = {
-        valid: true,
-    }) => {
-        for (const name in fields) {
-            const field = fields[name];
-            if (field) {
-                const { _f: fieldReference, ...fieldValue } = field;
-                if (fieldReference) {
-                    const fieldError = await validateField(field, get(_formValues, fieldReference.name), shouldDisplayAllAssociatedErrors, _options.shouldUseNativeValidation);
-                    if (fieldError[fieldReference.name]) {
-                        context.valid = false;
-                        if (shouldOnlyCheckValid) {
-                            break;
-                        }
-                    }
-                    if (!shouldOnlyCheckValid) {
-                        fieldError[fieldReference.name]
-                            ? set(_formState.errors, fieldReference.name, fieldError[fieldReference.name])
-                            : unset(_formState.errors, fieldReference.name);
-                    }
-                }
-                fieldValue &&
-                    (await executeBuildInValidation(fieldValue, shouldOnlyCheckValid, context));
-            }
-        }
-        return context.valid;
-    };
-    const _removeUnmounted = () => {
-        for (const name of _names.unMount) {
-            const field = get(_fields, name);
-            field &&
-                (field._f.refs
-                    ? field._f.refs.every((ref) => !live(ref))
-                    : !live(field._f.ref)) &&
-                unregister(name);
-        }
-        _names.unMount = new Set();
-    };
-    const _getDirty = (name, data) => (name && data && set(_formValues, name, data),
-        !deepEqual(getValues(), _defaultValues));
-    const _getWatch = (names, defaultValue, isGlobal) => {
-        const fieldValues = {
-            ...(_stateFlags.mount
-                ? _formValues
-                : isUndefined(defaultValue)
-                    ? _defaultValues
-                    : isString(names)
-                        ? { [names]: defaultValue }
-                        : defaultValue),
-        };
-        return generateWatchOutput(names, _names, fieldValues, isGlobal);
-    };
-    const _getFieldArray = (name) => compact(get(_stateFlags.mount ? _formValues : _defaultValues, name, props.shouldUnregister ? get(_defaultValues, name, []) : []));
-    const setFieldValue = (name, value, options = {}) => {
-        const field = get(_fields, name);
-        let fieldValue = value;
-        if (field) {
-            const fieldReference = field._f;
-            if (fieldReference) {
-                !fieldReference.disabled &&
-                    set(_formValues, name, getFieldValueAs(value, fieldReference));
-                fieldValue =
-                    isWeb && isHTMLElement(fieldReference.ref) && isNullOrUndefined(value)
-                        ? ''
-                        : value;
-                if (isMultipleSelect(fieldReference.ref)) {
-                    [...fieldReference.ref.options].forEach((selectRef) => (selectRef.selected = fieldValue.includes(selectRef.value)));
-                }
-                else if (fieldReference.refs) {
-                    if (isCheckBoxInput(fieldReference.ref)) {
-                        fieldReference.refs.length > 1
-                            ? fieldReference.refs.forEach((checkboxRef) => !checkboxRef.disabled &&
-                                (checkboxRef.checked = Array.isArray(fieldValue)
-                                    ? !!fieldValue.find((data) => data === checkboxRef.value)
-                                    : fieldValue === checkboxRef.value))
-                            : fieldReference.refs[0] &&
-                                (fieldReference.refs[0].checked = !!fieldValue);
-                    }
-                    else {
-                        fieldReference.refs.forEach((radioRef) => (radioRef.checked = radioRef.value === fieldValue));
-                    }
-                }
-                else if (isFileInput(fieldReference.ref)) {
-                    fieldReference.ref.value = '';
-                }
-                else {
-                    fieldReference.ref.value = fieldValue;
-                    if (!fieldReference.ref.type) {
-                        _subjects.watch.next({
-                            name,
-                        });
-                    }
-                }
-            }
-        }
-        (options.shouldDirty || options.shouldTouch) &&
-            updateTouchAndDirty(name, fieldValue, options.shouldTouch, options.shouldDirty, true);
-        options.shouldValidate && trigger(name);
-    };
-    const setValues = (name, value, options) => {
-        for (const fieldKey in value) {
-            const fieldValue = value[fieldKey];
-            const fieldName = `${name}.${fieldKey}`;
-            const field = get(_fields, fieldName);
-            (_names.array.has(name) ||
-                !isPrimitive(fieldValue) ||
-                (field && !field._f)) &&
-                !isDateObject(fieldValue)
-                ? setValues(fieldName, fieldValue, options)
-                : setFieldValue(fieldName, fieldValue, options);
-        }
-    };
-    const setValue = (name, value, options = {}) => {
-        const field = get(_fields, name);
-        const isFieldArray = _names.array.has(name);
-        const cloneValue = cloneObject(value);
-        set(_formValues, name, cloneValue);
-        if (isFieldArray) {
-            _subjects.array.next({
-                name,
-                values: _formValues,
-            });
-            if ((_proxyFormState.isDirty || _proxyFormState.dirtyFields) &&
-                options.shouldDirty) {
-                _formState.dirtyFields = getDirtyFields(_defaultValues, _formValues);
-                _subjects.state.next({
-                    name,
-                    dirtyFields: _formState.dirtyFields,
-                    isDirty: _getDirty(name, cloneValue),
-                });
-            }
-        }
-        else {
-            field && !field._f && !isNullOrUndefined(cloneValue)
-                ? setValues(name, cloneValue, options)
-                : setFieldValue(name, cloneValue, options);
-        }
-        isWatched(name, _names) && _subjects.state.next({});
-        _subjects.watch.next({
-            name,
-        });
-    };
-    const onChange = async (event) => {
-        const target = event.target;
-        let name = target.name;
-        const field = get(_fields, name);
-        if (field) {
-            let error;
-            let isValid;
-            const fieldValue = target.type
-                ? getFieldValue(field._f)
-                : getEventValue(event);
-            const isBlurEvent = event.type === EVENTS.BLUR || event.type === EVENTS.FOCUS_OUT;
-            const shouldSkipValidation = (!hasValidation(field._f) &&
-                !_options.resolver &&
-                !get(_formState.errors, name) &&
-                !field._f.deps) ||
-                skipValidation(isBlurEvent, get(_formState.touchedFields, name), _formState.isSubmitted, validationModeAfterSubmit, validationModeBeforeSubmit);
-            const watched = isWatched(name, _names, isBlurEvent);
-            set(_formValues, name, fieldValue);
-            if (isBlurEvent) {
-                field._f.onBlur && field._f.onBlur(event);
-            }
-            else if (field._f.onChange) {
-                field._f.onChange(event);
-            }
-            const fieldState = updateTouchAndDirty(name, fieldValue, isBlurEvent, false);
-            const shouldRender = !isEmptyObject(fieldState) || watched;
-            !isBlurEvent &&
-                _subjects.watch.next({
-                    name,
-                    type: event.type,
-                });
-            if (shouldSkipValidation) {
-                return (shouldRender &&
-                    _subjects.state.next({ name, ...(watched ? {} : fieldState) }));
-            }
-            !isBlurEvent && watched && _subjects.state.next({});
-            validateFields[name] = validateFields[name] ? +1 : 1;
-            _subjects.state.next({
-                isValidating: true,
-            });
-            if (_options.resolver) {
-                const { errors } = await _executeSchema([name]);
-                const previousErrorLookupResult = schemaErrorLookup(_formState.errors, _fields, name);
-                const errorLookupResult = schemaErrorLookup(errors, _fields, previousErrorLookupResult.name || name);
-                error = errorLookupResult.error;
-                name = errorLookupResult.name;
-                isValid = isEmptyObject(errors);
-            }
-            else {
-                error = (await validateField(field, get(_formValues, name), shouldDisplayAllAssociatedErrors, _options.shouldUseNativeValidation))[name];
-                isValid = await _updateValid(true);
-            }
-            field._f.deps &&
-                trigger(field._f.deps);
-            shouldRenderByError(false, name, isValid, error, fieldState);
-        }
-    };
-    const trigger = async (name, options = {}) => {
-        let isValid;
-        let validationResult;
-        const fieldNames = convertToArrayPayload(name);
-        _subjects.state.next({
-            isValidating: true,
-        });
-        if (_options.resolver) {
-            const errors = await executeSchemaAndUpdateState(isUndefined(name) ? name : fieldNames);
-            isValid = isEmptyObject(errors);
-            validationResult = name
-                ? !fieldNames.some((name) => get(errors, name))
-                : isValid;
-        }
-        else if (name) {
-            validationResult = (await Promise.all(fieldNames.map(async (fieldName) => {
-                const field = get(_fields, fieldName);
-                return await executeBuildInValidation(field && field._f ? { [fieldName]: field } : field);
-            }))).every(Boolean);
-            !(!validationResult && !_formState.isValid) && _updateValid();
-        }
-        else {
-            validationResult = isValid = await executeBuildInValidation(_fields);
-        }
-        _subjects.state.next({
-            ...(!isString(name) ||
-                (_proxyFormState.isValid && isValid !== _formState.isValid)
-                ? {}
-                : { name }),
-            ...(_options.resolver ? { isValid } : {}),
-            errors: _formState.errors,
-            isValidating: false,
-        });
-        options.shouldFocus &&
-            !validationResult &&
-            focusFieldBy(_fields, (key) => get(_formState.errors, key), name ? fieldNames : _names.mount);
-        return validationResult;
-    };
-    const getValues = (fieldNames) => {
-        const values = {
-            ..._defaultValues,
-            ...(_stateFlags.mount ? _formValues : {}),
-        };
-        return isUndefined(fieldNames)
-            ? values
-            : isString(fieldNames)
-                ? get(values, fieldNames)
-                : fieldNames.map((name) => get(values, name));
-    };
-    const getFieldState = (name, formState) => ({
-        invalid: !!get((formState || _formState).errors, name),
-        isDirty: !!get((formState || _formState).dirtyFields, name),
-        isTouched: !!get((formState || _formState).touchedFields, name),
-        error: get((formState || _formState).errors, name),
-    });
-    const clearErrors = (name) => {
-        name
-            ? convertToArrayPayload(name).forEach((inputName) => unset(_formState.errors, inputName))
-            : (_formState.errors = {});
-        _subjects.state.next({
-            errors: _formState.errors,
-        });
-    };
-    const setError = (name, error, options) => {
-        const ref = (get(_fields, name, { _f: {} })._f || {}).ref;
-        set(_formState.errors, name, {
-            ...error,
-            ref,
-        });
-        _subjects.state.next({
-            name,
-            errors: _formState.errors,
-            isValid: false,
-        });
-        options && options.shouldFocus && ref && ref.focus && ref.focus();
-    };
-    const watch = (name, defaultValue) => isFunction(name)
-        ? _subjects.watch.subscribe({
-            next: (info) => name(_getWatch(undefined, defaultValue), info),
-        })
-        : _getWatch(name, defaultValue, true);
-    const unregister = (name, options = {}) => {
-        for (const fieldName of name ? convertToArrayPayload(name) : _names.mount) {
-            _names.mount.delete(fieldName);
-            _names.array.delete(fieldName);
-            if (get(_fields, fieldName)) {
-                if (!options.keepValue) {
-                    unset(_fields, fieldName);
-                    unset(_formValues, fieldName);
-                }
-                !options.keepError && unset(_formState.errors, fieldName);
-                !options.keepDirty && unset(_formState.dirtyFields, fieldName);
-                !options.keepTouched && unset(_formState.touchedFields, fieldName);
-                !_options.shouldUnregister &&
-                    !options.keepDefaultValue &&
-                    unset(_defaultValues, fieldName);
-            }
-        }
-        _subjects.watch.next({});
-        _subjects.state.next({
-            ..._formState,
-            ...(!options.keepDirty ? {} : { isDirty: _getDirty() }),
-        });
-        !options.keepIsValid && _updateValid();
-    };
-    const register = (name, options = {}) => {
-        let field = get(_fields, name);
-        const disabledIsDefined = isBoolean(options.disabled);
-        set(_fields, name, {
-            _f: {
-                ...(field && field._f ? field._f : { ref: { name } }),
-                name,
-                mount: true,
-                ...options,
-            },
-        });
-        _names.mount.add(name);
-        field
-            ? disabledIsDefined &&
-                set(_formValues, name, options.disabled
-                    ? undefined
-                    : get(_formValues, name, getFieldValue(field._f)))
-            : updateValidAndValue(name, true, options.value);
-        return {
-            ...(disabledIsDefined ? { disabled: options.disabled } : {}),
-            ...(_options.shouldUseNativeValidation
-                ? {
-                    required: !!options.required,
-                    min: getRuleValue(options.min),
-                    max: getRuleValue(options.max),
-                    minLength: getRuleValue(options.minLength),
-                    maxLength: getRuleValue(options.maxLength),
-                    pattern: getRuleValue(options.pattern),
-                }
-                : {}),
-            name,
-            onChange,
-            onBlur: onChange,
-            ref: (ref) => {
-                if (ref) {
-                    register(name, options);
-                    field = get(_fields, name);
-                    const fieldRef = isUndefined(ref.value)
-                        ? ref.querySelectorAll
-                            ? ref.querySelectorAll('input,select,textarea')[0] || ref
-                            : ref
-                        : ref;
-                    const radioOrCheckbox = isRadioOrCheckbox(fieldRef);
-                    const refs = field._f.refs || [];
-                    if (radioOrCheckbox
-                        ? refs.find((option) => option === fieldRef)
-                        : fieldRef === field._f.ref) {
-                        return;
-                    }
-                    set(_fields, name, {
-                        _f: {
-                            ...field._f,
-                            ...(radioOrCheckbox
-                                ? {
-                                    refs: [
-                                        ...refs.filter(live),
-                                        fieldRef,
-                                        ...(!!Array.isArray(get(_defaultValues, name))
-                                            ? [{}]
-                                            : []),
-                                    ],
-                                    ref: { type: fieldRef.type, name },
-                                }
-                                : { ref: fieldRef }),
-                        },
-                    });
-                    updateValidAndValue(name, false, undefined, fieldRef);
-                }
-                else {
-                    field = get(_fields, name, {});
-                    if (field._f) {
-                        field._f.mount = false;
-                    }
-                    (_options.shouldUnregister || options.shouldUnregister) &&
-                        !(isNameInFieldArray(_names.array, name) && _stateFlags.action) &&
-                        _names.unMount.add(name);
-                }
-            },
-        };
-    };
-    const handleSubmit = (onValid, onInvalid) => async (e) => {
-        if (e) {
-            e.preventDefault && e.preventDefault();
-            e.persist && e.persist();
-        }
-        let hasNoPromiseError = true;
-        let fieldValues = cloneObject(_formValues);
-        _subjects.state.next({
-            isSubmitting: true,
-        });
-        try {
-            if (_options.resolver) {
-                const { errors, values } = await _executeSchema();
-                _formState.errors = errors;
-                fieldValues = values;
-            }
-            else {
-                await executeBuildInValidation(_fields);
-            }
-            if (isEmptyObject(_formState.errors)) {
-                _subjects.state.next({
-                    errors: {},
-                    isSubmitting: true,
-                });
-                await onValid(fieldValues, e);
-            }
-            else {
-                if (onInvalid) {
-                    await onInvalid({ ..._formState.errors }, e);
-                }
-                _options.shouldFocusError &&
-                    focusFieldBy(_fields, (key) => get(_formState.errors, key), _names.mount);
-            }
-        }
-        catch (err) {
-            hasNoPromiseError = false;
-            throw err;
-        }
-        finally {
-            _formState.isSubmitted = true;
-            _subjects.state.next({
-                isSubmitted: true,
-                isSubmitting: false,
-                isSubmitSuccessful: isEmptyObject(_formState.errors) && hasNoPromiseError,
-                submitCount: _formState.submitCount + 1,
-                errors: _formState.errors,
-            });
-        }
-    };
-    const resetField = (name, options = {}) => {
-        if (get(_fields, name)) {
-            if (isUndefined(options.defaultValue)) {
-                setValue(name, get(_defaultValues, name));
-            }
-            else {
-                setValue(name, options.defaultValue);
-                set(_defaultValues, name, options.defaultValue);
-            }
-            if (!options.keepTouched) {
-                unset(_formState.touchedFields, name);
-            }
-            if (!options.keepDirty) {
-                unset(_formState.dirtyFields, name);
-                _formState.isDirty = options.defaultValue
-                    ? _getDirty(name, get(_defaultValues, name))
-                    : _getDirty();
-            }
-            if (!options.keepError) {
-                unset(_formState.errors, name);
-                _proxyFormState.isValid && _updateValid();
-            }
-            _subjects.state.next({ ..._formState });
-        }
-    };
-    const reset = (formValues, keepStateOptions = {}) => {
-        const updatedValues = formValues || _defaultValues;
-        const cloneUpdatedValues = cloneObject(updatedValues);
-        const values = formValues && !isEmptyObject(formValues)
-            ? cloneUpdatedValues
-            : _defaultValues;
-        if (!keepStateOptions.keepDefaultValues) {
-            _defaultValues = updatedValues;
-        }
-        if (!keepStateOptions.keepValues) {
-            if (keepStateOptions.keepDirtyValues) {
-                for (const fieldName of _names.mount) {
-                    get(_formState.dirtyFields, fieldName)
-                        ? set(values, fieldName, get(_formValues, fieldName))
-                        : setValue(fieldName, get(values, fieldName));
-                }
-            }
-            else {
-                if (isWeb && isUndefined(formValues)) {
-                    for (const name of _names.mount) {
-                        const field = get(_fields, name);
-                        if (field && field._f) {
-                            const fieldReference = Array.isArray(field._f.refs)
-                                ? field._f.refs[0]
-                                : field._f.ref;
-                            try {
-                                isHTMLElement(fieldReference) &&
-                                    fieldReference.closest('form').reset();
-                                break;
-                            }
-                            catch (_a) { }
-                        }
-                    }
-                }
-                _fields = {};
-            }
-            _formValues = props.shouldUnregister
-                ? keepStateOptions.keepDefaultValues
-                    ? cloneObject(_defaultValues)
-                    : {}
-                : cloneUpdatedValues;
-            _subjects.array.next({
-                values,
-            });
-            _subjects.watch.next({
-                values,
-            });
-        }
-        _names = {
-            mount: new Set(),
-            unMount: new Set(),
-            array: new Set(),
-            watch: new Set(),
-            watchAll: false,
-            focus: '',
-        };
-        _stateFlags.mount =
-            !_proxyFormState.isValid || !!keepStateOptions.keepIsValid;
-        _stateFlags.watch = !!props.shouldUnregister;
-        _subjects.state.next({
-            submitCount: keepStateOptions.keepSubmitCount
-                ? _formState.submitCount
-                : 0,
-            isDirty: keepStateOptions.keepDirty || keepStateOptions.keepDirtyValues
-                ? _formState.isDirty
-                : !!(keepStateOptions.keepDefaultValues &&
-                    !deepEqual(formValues, _defaultValues)),
-            isSubmitted: !!keepStateOptions.keepIsSubmitted,
-            dirtyFields: keepStateOptions.keepDirty || keepStateOptions.keepDirtyValues
-                ? _formState.dirtyFields
-                : keepStateOptions.keepDefaultValues && formValues
-                    ? getDirtyFields(_defaultValues, formValues)
-                    : {},
-            touchedFields: keepStateOptions.keepTouched
-                ? _formState.touchedFields
-                : {},
-            errors: keepStateOptions.keepErrors
-                ? _formState.errors
-                : {},
-            isSubmitting: false,
-            isSubmitSuccessful: false,
-        });
-    };
-    const setFocus = (name, options = {}) => {
-        const field = get(_fields, name)._f;
-        const fieldRef = field.refs ? field.refs[0] : field.ref;
-        options.shouldSelect ? fieldRef.select() : fieldRef.focus();
-    };
-    return {
-        control: {
-            register,
-            unregister,
-            getFieldState,
-            _executeSchema,
-            _getWatch,
-            _getDirty,
-            _updateValid,
-            _removeUnmounted,
-            _updateFieldArray,
-            _getFieldArray,
-            _subjects,
-            _proxyFormState,
-            get _fields() {
-                return _fields;
-            },
-            get _formValues() {
-                return _formValues;
-            },
-            get _stateFlags() {
-                return _stateFlags;
-            },
-            set _stateFlags(value) {
-                _stateFlags = value;
-            },
-            get _defaultValues() {
-                return _defaultValues;
-            },
-            get _names() {
-                return _names;
-            },
-            set _names(value) {
-                _names = value;
-            },
-            get _formState() {
-                return _formState;
-            },
-            set _formState(value) {
-                _formState = value;
-            },
-            get _options() {
-                return _options;
-            },
-            set _options(value) {
-                _options = {
-                    ..._options,
-                    ...value,
-                };
-            },
-        },
-        trigger,
-        register,
-        handleSubmit,
-        watch,
-        setValue,
-        getValues,
-        reset,
-        resetField,
-        clearErrors,
-        unregister,
-        setError,
-        setFocus,
-        getFieldState,
-    };
-}
-
-/**
- * Custom hook to mange the entire form.
- *
- * @remarks
- * [API](https://react-hook-form.com/api/useform) • [Demo](https://codesandbox.io/s/react-hook-form-get-started-ts-5ksmm) • [Video](https://www.youtube.com/watch?v=RkXv4AXXC_4)
- *
- * @param props - form configuration and validation parameters.
- *
- * @returns methods - individual functions to manage the form state. {@link UseFormReturn}
- *
- * @example
- * ```tsx
- * function App() {
- *   const { register, handleSubmit, watch, formState: { errors } } = useForm();
- *   const onSubmit = data => console.log(data);
- *
- *   console.log(watch("example"));
- *
- *   return (
- *     <form onSubmit={handleSubmit(onSubmit)}>
- *       <input defaultValue="test" {...register("example")} />
- *       <input {...register("exampleRequired", { required: true })} />
- *       {errors.exampleRequired && <span>This field is required</span>}
- *       <input type="submit" />
- *     </form>
- *   );
- * }
- * ```
- */
-function useForm(props = {}) {
-    const _formControl = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
-    const [formState, updateFormState] = react__WEBPACK_IMPORTED_MODULE_0__.useState({
-        isDirty: false,
-        isValidating: false,
-        dirtyFields: {},
-        isSubmitted: false,
-        submitCount: 0,
-        touchedFields: {},
-        isSubmitting: false,
-        isSubmitSuccessful: false,
-        isValid: false,
-        errors: {},
-    });
-    if (_formControl.current) {
-        _formControl.current.control._options = props;
-    }
-    else {
-        _formControl.current = {
-            ...createFormControl(props),
-            formState,
-        };
-    }
-    const control = _formControl.current.control;
-    const callback = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((value) => {
-        if (shouldRenderFormState(value, control._proxyFormState, true)) {
-            control._formState = {
-                ...control._formState,
-                ...value,
-            };
-            updateFormState({ ...control._formState });
-        }
-    }, [control]);
-    useSubscribe({
-        subject: control._subjects.state,
-        callback,
-    });
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
-        if (!control._stateFlags.mount) {
-            control._proxyFormState.isValid && control._updateValid();
-            control._stateFlags.mount = true;
-        }
-        if (control._stateFlags.watch) {
-            control._stateFlags.watch = false;
-            control._subjects.state.next({});
-        }
-        control._removeUnmounted();
-    });
-    _formControl.current.formState = getProxyFormState(formState, control._proxyFormState);
-    return _formControl.current;
-}
-
-
-//# sourceMappingURL=index.esm.mjs.map
-
 
 /***/ })
 

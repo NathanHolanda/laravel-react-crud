@@ -16,8 +16,10 @@ class PhoneNumberFactory extends Factory
      */
     public function definition()
     {
+        $faker = \Faker\Factory::create('pt_BR');
+
         return [
-            'content' => $this->faker->phoneNumber()
+            'content' => $faker->cellphoneNumber()
         ];
     }
 }

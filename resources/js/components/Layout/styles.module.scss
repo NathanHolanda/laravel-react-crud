@@ -1,23 +1,23 @@
 @import '../../../sass/variables';
 
-.card{
+.layout{
     margin: 0 auto;
-    background: #23416e;
+    background: $layout;
     width: 700px;
     border-radius: 0.25rem;
     padding: 2rem;
 }
 
-.cardHeader{
+.layoutHeader{
     width: 100%;
     justify-content: center;
     display: flex;
     padding-bottom: 2rem;
     margin-bottom: 2rem;
-    border-bottom: 2px dashed $card-border;
+    border-bottom: 2px dashed $layout-border;
 
     button{
-        background: $card-button;
+        background: $layout-button;
         border: none;
         border-radius: 0.25rem;
         transition: 0.2s;
@@ -27,11 +27,11 @@
         }
 
         &:hover{
-            background: $card-button-hover;
+            background: $layout-button-hover;
         }
 
         &.selected{
-            background: $card-selected;
+            background: $layout-selected;
         }
 
         a{

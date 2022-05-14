@@ -56,21 +56,21 @@
             top: 0;
             right: 0;
             color: $font-main;
-            background-color: $card-button;
+            background-color: $layout-button;
             border-radius: 0 0.2rem 0.2rem 0;
             border: 2px solid transparent;
             transition: 0.2s;
 
             &:hover{
-                background-color: $card-button-hover;
+                background-color: $layout-button-hover;
             }
         }
 
         .addField{
-            background-color: $card-button;
+            background-color: $layout-button;
 
             &:hover{
-                background-color: $card-button-hover;
+                background-color: $layout-button-hover;
             }
         }
 
@@ -94,8 +94,9 @@
             text-align: center;
 
             button{
+                padding: 0.75rem;
                 color: $font-main;
-                background-color: $card-button;
+                background-color: $layout-button;
                 border: none;
                 border-radius: 0.25rem;
                 padding: 0.3rem;
@@ -106,7 +107,7 @@
                 }
 
                 &:not([disabled]):hover{
-                    background-color: $card-button-hover;
+                    background-color: $layout-button-hover;
                 }
             }
         }
