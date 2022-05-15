@@ -11327,6 +11327,9 @@ body .react-modal-content h1, body .react-modal-content .h1 {
 body .react-modal-content .react-modal-body p {
   font-size: 1rem;
 }
+body .react-modal-content .react-modal-body ul {
+  list-style-type: none;
+}
 body .close-modal-container {
   position: relative;
   width: 100%;
@@ -11351,6 +11354,7 @@ body .react-confirm-delete {
   background: #23416e;
 }
 body .react-confirm-delete p {
+  margin-top: 1.5rem;
   font-weight: 500;
   font-size: 1.125rem;
 }

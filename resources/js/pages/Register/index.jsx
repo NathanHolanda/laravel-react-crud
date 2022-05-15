@@ -192,6 +192,8 @@ function Register(){
                                             deletedFields,
                                             setDeletedFields
                                         }}
+                                        isEditForm={false}
+                                        formState={{ form, setForm }}
                                     />
                                 )
                             })
@@ -225,6 +227,7 @@ function Register(){
                             [...Array(countPhoneNumbers)].map((_, i) => {
                                 return (
                                     <AddedField
+                                        mask="(99) \99999-9999"
                                         key={i + 1}
                                         label="Telefone"
                                         id={`phone_number${i + 1}`}
@@ -234,6 +237,8 @@ function Register(){
                                             deletedFields,
                                             setDeletedFields
                                         }}
+                                        isEditForm={false}
+                                        formState={{ form, setForm }}
                                     />
                                 )
                             })

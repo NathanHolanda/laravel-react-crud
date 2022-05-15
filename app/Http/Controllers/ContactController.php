@@ -112,7 +112,7 @@ class ContactController extends Controller
             ->update($contact_data);
 
         foreach($request->emails as $email){
-            if(isset($email["id"]))
+            if(isset($email["id"]) && !empty($email["id"]))
                 Email::where("id", $email["id"])
                     ->update([
                         "contact_id" => $id,
@@ -125,7 +125,7 @@ class ContactController extends Controller
                 ]);
         }
         foreach($request->phone_numbers as $phone_number){
-            if(isset($phone_number["id"]))
+            if(isset($phone_number["id"]) && !empty($phone_number["id"]))
                 PhoneNumber::where("id", $phone_number["id"])
                     ->update([
                         "contact_id" => $id,
@@ -136,6 +136,28 @@ class ContactController extends Controller
                     "contact_id" => $id,
                     "content" => $phone_number["content"]
                 ]);
+        }
+
+        $db_emails = Email::where("contact_id", $id)->get()->toArray();
+        $req_emails = array_map(function($item){
+            return $item["content"];
+        }, $request->emails);
+        foreach($db_emails as $email){
+            $is_in_request = in_array($email["content"], $req_emails);
+
+            if( !$is_in_request )
+                Email::where("content", $email["content"])->delete();
+        }
+
+        $db_phone_numbers = PhoneNumber::where("contact_id", $id)->get()->toArray();
+        $req_phone_numbers = array_map(function($item){
+            return $item["content"];
+        }, $request->phone_numbers);
+        foreach($db_phone_numbers as $phone_number){
+            $is_in_request = in_array($phone_number["content"], $req_phone_numbers);
+
+            if( !$is_in_request )
+                PhoneNumber::where("content", $phone_number["content"])->delete();
         }
 
         if($updated)

@@ -1,25 +1,41 @@
 import { RiDeleteBin5Line } from "react-icons/ri"
-import { forwardRef, useState } from "react";
+import { useState, useEffect } from "react";
+import InputMask from "react-input-mask";
 
-function Base(props, ref){
-    const { styles, id, type, label, deleted: {
+function AddedField(props){
+    const { styles, id, type, label, formState: {
+        form, setForm
+    }, deleted: {
         deletedFields, setDeletedFields
-    }, initialValue, ...rest } = props
-    const [ value, setValue ] = useState(initialValue)
+    }, mask, isEditForm } = props
+
+    useEffect(() => {
+        if(!isEditForm)
+            setForm({
+                ...form,
+                [id]: ""
+            })
+    }, [])
+
     const [ showElement, setShowElement ] = useState(true)
 
     return showElement && (
         <div className={styles.formControl}>
             <label htmlFor={id}>{label}</label>
             <div className={styles.inputBox}>
-                <input
-                  {...rest}
+                <InputMask
+                  mask={mask ?? ""}
                   id={id}
                   type={type}
-                  value={value}
-                  defaultValue={initialValue}
-                  onChange={event => setValue(event.target.value)}
-                  ref={ref}
+                  data-id={form[id]?.id ?? ""}
+                  value={form[id]?.content}
+                  onChange={event => setForm({
+                    ...form,
+                    [id]: isEditForm ? {
+                        ...form[id],
+                        content: event.target.value
+                    } : event.target.value
+                  })}
                 />
                 <button
                   type="button"
@@ -36,7 +52,5 @@ function Base(props, ref){
         </div>
     )
 }
-
-const AddedField = forwardRef(Base)
 
 export { AddedField }

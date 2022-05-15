@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { RiArrowRightSLine, RiArrowLeftSLine, RiEyeLine, RiDeleteBin5Line, RiEdit2Line, RiCloseLine } from "react-icons/ri";
 import { api } from "../../services/api"
 import Modal from 'react-modal';
+import { EditForm } from "../../components/EditForm";
 
 Modal.setAppElement("#root")
 
@@ -44,9 +45,10 @@ function Home(){
         setModalType(type)
         api.get(`contacts/${id}`)
             .then(response => response.data)
-            .then(data => setCurrentContact(data))
-
-        setModalIsOpen(true)
+            .then(data => {
+                setCurrentContact(data)
+                setModalIsOpen(true)
+            })
     }
     const [confirmDeleteIsOpen, setConfirmDeleteIsOpen] = useState(false)
     const closeConfirmDelete = () => setConfirmDeleteIsOpen(false)
@@ -76,25 +78,27 @@ function Home(){
                 }</h1>
                 {
                     currentContact ?
+                    modalType === "view" ?
                     <div className="react-modal-body">
                         <p>CPF: {`${currentContact.cpf}`}</p>
                         <p>Emails: </p>
                         <ul>
                         {
-                            currentContact.emails.map(email => {
-                                return <li>{email.content}</li>
+                            currentContact.emails.map((email, i) => {
+                                return <li key={i + 1}>{email.content}</li>
                             })
                         }
                         </ul>
                         <p>Telefones: </p>
                         <ul>
                         {
-                            currentContact.phone_numbers.map(phone_number => {
-                                return <li>{phone_number.content}</li>
+                            currentContact.phone_numbers.map((phone_number, i) => {
+                                return <li key={i + 1}>{phone_number.content}</li>
                             })
                         }
                         </ul>
-                    </div> : ""
+                    </div> : <EditForm contactId={currentContact.id}/>
+                    : ""
                 }
             </Modal>
 
