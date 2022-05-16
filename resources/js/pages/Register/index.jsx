@@ -26,8 +26,8 @@ function Register(){
     const schema = yup.object({
         name: yup.string().min(2, "Nome inválido.").required("Nome obrigatório."),
         surname: yup.string().min(2, "Sobrenome inválido.").required("Sobrenome obrigatório."),
-        cpf: yup.string().matches(/(\d{3}\.){2}\d{3}\-\d{2}/, "CPF inválido."),
-        email: yup.string().email("E-mail inválido.").required("E-mail obrigatório."),
+        cpf: yup.string().matches(/((\d{3}\.){2}\d{3}\-\d{2})|/, "CPF inválido.").nullable().notRequired(),
+        email: yup.string().matches(/[^\s]+@[^\s]+\.[^\s]+[^\s]*|/, "E-mail inválido.").nullable().notRequired(),
         phone_number: yup.string().matches(/\(\d{2}\) 9\d{4}\-\d{4}/, "Número de telefone inválido.")
     })
 
@@ -41,7 +41,7 @@ function Register(){
 
         const { name, surname, cpf, email, phone_number } = formData
 
-        const emails = [email]
+        const emails = email ? [email] : []
         for(let i = 1; i <= countEmails; i++){
             const key = `email${i}`
             if(formData[key] && !deletedFields.includes(key))
@@ -62,6 +62,8 @@ function Register(){
             emails,
             phone_numbers
         }
+
+        console.log(data)
 
         api.post("contacts", data)
             .then(response => {
@@ -141,7 +143,7 @@ function Register(){
                         </div>
 
                         <div className={styles.formControl}>
-                            <label htmlFor="cpf">CPF *</label>
+                            <label htmlFor="cpf">CPF</label>
                             <InputMask
                               mask="999.999.999-99"
                               id="cpf"
@@ -157,7 +159,7 @@ function Register(){
                         </div>
 
                         <div className={styles.formControl}>
-                            <label htmlFor="email">E-mail *</label>
+                            <label htmlFor="email">E-mail</label>
                             <div className={styles.inputBox}>
                                 <input
                                   id="email"

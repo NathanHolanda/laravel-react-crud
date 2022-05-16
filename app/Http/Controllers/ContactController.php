@@ -17,13 +17,14 @@ class ContactController extends Controller
         ];
         $contact = Contact::create($contact_data);
 
-        foreach ($request->emails as $email) {
-            $email_data = [
-                "contact_id" => $contact->id,
-                "content" => $email
-            ];
-            Email::create($email_data);
-        }
+        if( count($request->emails) > 0)
+            foreach ($request->emails as $email) {
+                $email_data = [
+                    "contact_id" => $contact->id,
+                    "content" => $email
+                ];
+                Email::create($email_data);
+            }
 
         foreach ($request->phone_numbers as $phone_number) {
             $phone_number_data = [
@@ -67,7 +68,6 @@ class ContactController extends Controller
             return 0;
         });
 
-
         $initial = $per_page * ($page - 1);
         $response_data = array_slice($contacts, $initial, $per_page);
 
@@ -100,6 +100,68 @@ class ContactController extends Controller
         return response(json_encode($contact), 200);
     }
 
+    function search(Request $request){
+        $search = $request->q;
+        $collection = Contact::where("name", "like", "%".$search."%")
+            ->orWhere("surname", "like", "%".$search."%")
+            ->orWhere("cpf", "like", "%".$search."%")
+            ->get();
+
+        if( !count($collection) )
+            $contacts_ids = Email::where("content", "like", "%".$search."%")
+                ->select("contact_id")
+                ->distinct()
+                ->get();
+
+        if( isset($contacts_ids) && !count($contacts_ids) )
+            $contacts_ids = PhoneNumber::where("content", "like", "%".$search."%")
+                ->select("contact_id")
+                ->distinct()
+                ->get();
+
+        if( isset($contacts_ids) && !count($contacts_ids) )
+            return response(json_encode([
+                "message" => "Contact doesn't exist.'"
+            ]), 404);
+        elseif( isset($contacts_ids) && count($contacts_ids) > 0 )
+            $collection = Contact::where("id", $contacts_ids->toArray())->get();
+
+
+        foreach($collection as $contact){
+            $emails = Email::where("contact_id", $contact->id)
+                ->get()
+                ->toArray();
+            $phone_numbers = PhoneNumber::where("contact_id", $contact->id)
+                ->get()
+                ->toArray();
+
+            $contact["emails"] = $emails;
+            $contact["phone_numbers"] = $phone_numbers;
+        }
+
+        $per_page = $request->query("per_page", 8);
+        $page = $request->query("page", 1);
+        $count = count($collection);
+
+        $contacts = $collection->toArray();
+        usort($contacts, function ($a, $b) {
+            $a_val = $a['name'];
+            $b_val = $b['name'];
+
+            if($a_val > $b_val) return 1;
+            if($a_val < $b_val) return -1;
+            return 0;
+        });
+
+        $initial = $per_page * ($page - 1);
+        $response_data = array_slice($contacts, $initial, $per_page);
+
+        return response(json_encode([
+            "total" => $count,
+            "contacts" => $response_data
+        ]), 200);
+    }
+
     function edit(Request $request){
         $contact_data = [
             "name" => $request->name,
@@ -111,27 +173,37 @@ class ContactController extends Controller
         $updated = Contact::where("id", $id)
             ->update($contact_data);
 
-        foreach($request->emails as $email){
-            if(isset($email["id"]) && !empty($email["id"]))
-                Email::where("id", $email["id"])
-                    ->update([
+        if( count($request->emails) > 0 )
+            foreach($request->emails as $email){
+                if(isset($email["id"]) && !empty($email["id"])){
+                    if( !empty($email["content"]) )
+                        Email::where("id", $email["id"])
+                            ->update([
+                                "contact_id" => $id,
+                                "content" => $email["content"]
+                            ]);
+                    else
+                        Email::where("id", $email["id"])
+                            ->delete();
+                }else
+                    Email::create([
                         "contact_id" => $id,
                         "content" => $email["content"]
                     ]);
-            else
-                Email::create([
-                    "contact_id" => $id,
-                    "content" => $email["content"]
-                ]);
-        }
+            }
+
         foreach($request->phone_numbers as $phone_number){
-            if(isset($phone_number["id"]) && !empty($phone_number["id"]))
-                PhoneNumber::where("id", $phone_number["id"])
-                    ->update([
-                        "contact_id" => $id,
-                        "content" => $phone_number["content"]
-                    ]);
-            else
+            if(isset($phone_number["id"]) && !empty($phone_number["id"])){
+                if( !empty($phone_number["content"]) )
+                    PhoneNumber::where("id", $phone_number["id"])
+                        ->update([
+                            "contact_id" => $id,
+                            "content" => $phone_number["content"]
+                        ]);
+                else
+                    PhoneNumber::where("id", $phone_number["id"])
+                        ->delete();
+            }else
                 PhoneNumber::create([
                     "contact_id" => $id,
                     "content" => $phone_number["content"]

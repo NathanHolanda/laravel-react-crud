@@ -7,9 +7,9 @@ import { api } from "../../services/api"
 import Modal from 'react-modal';
 import { EditForm } from "../../components/EditForm";
 
-Modal.setAppElement("#root")
+function Search() {
+    const [query, setQuery] = useState("")
 
-function Home(){
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const perPage = 8
@@ -18,7 +18,10 @@ function Home(){
     useEffect(() => {
         setIsLoading(true)
 
-        api.get("contacts")
+        const url = new URL(location.href)
+        setQuery(url.searchParams.get("q"))
+
+        api.get(`search/contacts?q=${query}`)
             .then(response => {
                 const total = response.data.total
                 const totalPages = Math.ceil(total / perPage)
@@ -85,20 +88,15 @@ function Home(){
                     currentContact ?
                     modalType === "view" ?
                     <div className="react-modal-body">
-                        <p>CPF: {`${currentContact.cpf}` || ""}</p>
+                        <p>CPF: {`${currentContact.cpf}`}</p>
+                        <p>Emails: </p>
+                        <ul>
                         {
-                            currentContact.emails.length > 0 ?
-                            <>
-                                <p>Emails: </p>
-                                <ul>
-                                    {
-                                        currentContact.emails.map((email, i) => {
-                                            return <li key={i + 1}>{email.content}</li>
-                                        })
-                                    }
-                                </ul>
-                            </> : <p>Nenhum email cadastrado</p>
+                            currentContact.emails.map((email, i) => {
+                                return <li key={i + 1}>{email.content}</li>
+                            })
                         }
+                        </ul>
                         <p>Telefones: </p>
                         <ul>
                         {
@@ -131,7 +129,7 @@ function Home(){
                         api.delete(`contacts/${contactIdToDelete}`)
                             .then(() => {
                                 closeConfirmDelete()
-                                location.href = "/"
+                                location.reload()
                             })
                       }}
                     >Confirmar</button>
@@ -143,10 +141,10 @@ function Home(){
             </Modal>
 
             <Layout>
-                <h1>Contatos</h1>
+                <h1>Resultados para "{query}"</h1>
                 {
                     currentItems.length === 0 && !isLoading ?
-                    <p>Nenhum contato cadastrado.</p> :
+                    <p>Nenhum contato encontrado.</p> :
                     <>
                         <table>
                             <thead>
@@ -183,14 +181,14 @@ function Home(){
                             </tbody>
                         </table>
                         <div className={styles.paginationContainer}>
-                            <ReactPaginate
-                                breakLabel="..."
-                                nextLabel={<RiArrowRightSLine/>}
-                                onPageChange={handlePageClick}
-                                pageRangeDisplayed={5}
-                                pageCount={pageCount}
-                                previousLabel={<RiArrowLeftSLine/>}
-                            />
+                        <ReactPaginate
+                            breakLabel="..."
+                            nextLabel={<RiArrowRightSLine/>}
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={5}
+                            pageCount={pageCount}
+                            previousLabel={<RiArrowLeftSLine/>}
+                        />
                         </div>
                     </>
                 }
@@ -199,4 +197,4 @@ function Home(){
     )
 }
 
-export { Home }
+export { Search }

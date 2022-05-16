@@ -9,12 +9,16 @@
 }
 
 .layoutHeader{
-    width: 100%;
-    justify-content: center;
-    display: flex;
     padding-bottom: 2rem;
     margin-bottom: 2rem;
     border-bottom: 2px dashed $layout-border;
+}
+
+.layoutButtons{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 1rem;
 
     button{
         background: $layout-button;
@@ -36,6 +40,33 @@
 
         a{
             font-size: 1.5rem;
+        }
+    }
+}
+
+.searchBox{
+    width: 100%;
+    text-align: center;
+
+    input{
+        padding-left: 0.5rem;
+        border: none;
+        border-radius: 0.25rem;
+        width: 250px;
+    }
+
+    button{
+        background: $layout-button;
+        color: $font-main;
+        position: relative;
+        width: 30px;
+        left: -29px;
+        border: none;
+        border-radius: 0 0.25rem 0.25rem 0;
+        transition: 0.2s;
+
+        &:hover{
+            background: $layout-button-hover;
         }
     }
 }

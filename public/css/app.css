@@ -11297,6 +11297,9 @@ body a {
 body a:hover {
   color: #dadada;
 }
+body li.selected {
+  background-color: #2357a4 !important;
+}
 body .react-modal-overlay {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5333333333);

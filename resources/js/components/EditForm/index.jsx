@@ -32,16 +32,21 @@ function EditForm(props) {
                     name,
                     surname,
                     cpf,
-                    email: {
+                    email: data.emails.length > 0 ? {
                         id: emails[0].id,
                         content: emails[0].content
+                    } : {
+                        content: ""
                     },
                     phone_number: {
                         id: phone_numbers[0].id,
                         content: phone_numbers[0].content
                     },
                 }
-                setCountEmails(emails.length - 1)
+
+                setCountEmails(
+                    emails.length > 0 ? emails.length - 1 : 0
+                )
                 emails.forEach((item, i) => {
                     if(i !== 0){
                         const { id, content } = item
@@ -75,8 +80,8 @@ function EditForm(props) {
     const schema = yup.object({
         name: yup.string().min(2, "Nome inválido.").required("Nome obrigatório."),
         surname: yup.string().min(2, "Sobrenome inválido.").required("Sobrenome obrigatório."),
-        cpf: yup.string().matches(/(\d{3}\.){2}\d{3}\-\d{2}/, "CPF inválido."),
-        email: yup.string().email("E-mail inválido.").required("E-mail obrigatório."),
+        cpf: yup.string().matches(/((\d{3}\.){2}\d{3}\-\d{2}|)/, "CPF inválido.").nullable().notRequired(),
+        email: yup.string().matches(/[^\s]+@[^\s]+\.[^\s]+[^\s]*|/, "E-mail inválido.").nullable().notRequired(),
         phone_number: yup.string().matches(/\(\d{2}\) 9\d{4}\-\d{4}/, "Número de telefone inválido.")
     })
 
@@ -99,7 +104,7 @@ function EditForm(props) {
             content: formData.phone_number.content
         }
 
-        const emails = [email]
+        const emails = email ? [email] : []
         for(let i = 1; i <= countEmails; i++){
             const key = `email${i}`
             if(formData[key] && !deletedFields.includes(key)){
@@ -132,6 +137,7 @@ function EditForm(props) {
             emails,
             phone_numbers
         }
+        console.log(data)
 
         api.put(`contacts/${contactId}`, data)
             .then(response => {
@@ -255,12 +261,13 @@ function EditForm(props) {
                             onClick={() => {
                                 setCountEmails(countEmails + 1)
 
-                                setForm({
-                                    ...form,
-                                    [`email${countEmails}`]: {
-                                        content: ""
-                                    }
-                                })
+                                if( !form[`email${countEmails}`] )
+                                    setForm({
+                                        ...form,
+                                        [`email${countEmails}`]: {
+                                            content: ""
+                                        }
+                                    })
                             }}
                         ><RiAddLine/></button>
                     </div>
@@ -310,12 +317,13 @@ function EditForm(props) {
                             onClick={() => {
                                 setCountPhoneNumbers(countPhoneNumbers + 1)
 
-                                setForm({
-                                    ...form,
-                                    [`phone_number${countPhoneNumbers}`]: {
-                                        content: ""
-                                    }
-                                })
+                                if( !form[`phone_number${countPhoneNumbers}`] )
+                                    setForm({
+                                        ...form,
+                                        [`phone_number${countPhoneNumbers}`]: {
+                                            content: ""
+                                        }
+                                    })
                             }}
                         ><RiAddLine/></button>
                     </div>

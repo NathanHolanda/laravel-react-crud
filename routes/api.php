@@ -21,3 +21,5 @@ Route::prefix('contacts')->group(function () {
     Route::put('/{id}', [ContactController::class, 'edit']);
     Route::delete('/{id}', [ContactController::class, 'delete']);
 });
+
+Route::get('/search/contacts', [ContactController::class, 'search']);

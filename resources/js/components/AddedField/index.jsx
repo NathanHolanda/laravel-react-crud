@@ -9,6 +9,7 @@ function AddedField(props){
         deletedFields, setDeletedFields
     }, mask, isEditForm } = props
 
+    const [value, setValue] = useState("")
     useEffect(() => {
         if(!isEditForm)
             setForm({
@@ -28,14 +29,26 @@ function AddedField(props){
                   id={id}
                   type={type}
                   data-id={form[id]?.id ?? ""}
-                  value={form[id]?.content}
-                  onChange={event => setForm({
-                    ...form,
-                    [id]: isEditForm ? {
-                        ...form[id],
-                        content: event.target.value
-                    } : event.target.value
-                  })}
+                  value={form[id]?.content ?? value}
+                  onChange={event => {
+                        setValue(event.target.value)
+
+                        if(isEditForm)
+                            setForm({
+                                ...form,
+                                [id]: {
+                                    ...form[id],
+                                    content: event.target.value
+                                }
+                            })
+                        else{
+                            setForm({
+                                ...form,
+                                [id]: event.target.value
+                            })
+                        }
+                    }
+                  }
                 />
                 <button
                   type="button"

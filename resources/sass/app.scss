@@ -20,6 +20,10 @@ body{
         }
     }
 
+    li.selected{
+        background-color: #2357a4 !important;
+    }
+
     .react-modal-overlay{
         position: fixed;
         background-color: #00000088;
