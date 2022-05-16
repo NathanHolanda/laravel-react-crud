@@ -63,8 +63,6 @@ function Register(){
             phone_numbers
         }
 
-        console.log(data)
-
         api.post("contacts", data)
             .then(response => {
                 if(response.status === 201){

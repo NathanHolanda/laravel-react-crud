@@ -85,7 +85,7 @@ function Home(){
                     currentContact ?
                     modalType === "view" ?
                     <div className="react-modal-body">
-                        <p>CPF: {`${currentContact.cpf}` || ""}</p>
+                        <p>CPF: { currentContact.cpf ?? "Não informado"}</p>
                         {
                             currentContact.emails.length > 0 ?
                             <>

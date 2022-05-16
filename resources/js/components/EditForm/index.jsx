@@ -137,7 +137,6 @@ function EditForm(props) {
             emails,
             phone_numbers
         }
-        console.log(data)
 
         api.put(`contacts/${contactId}`, data)
             .then(response => {

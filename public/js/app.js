@@ -2535,7 +2535,6 @@ function EditForm(props) {
       emails: emails,
       phone_numbers: phone_numbers
     };
-    console.log(data);
     _services_api__WEBPACK_IMPORTED_MODULE_3__.api.put("contacts/".concat(contactId), data).then(function (response) {
       if (response.status === 201) {
         react_toastify__WEBPACK_IMPORTED_MODULE_5__.toast.success("Contato atualizado com sucesso! 😉", {
@@ -2922,6 +2921,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 react_modal__WEBPACK_IMPORTED_MODULE_5___default().setAppElement("#root");
 
 function Home() {
+  var _currentContact$cpf;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       currentItems = _useState2[0],
@@ -3027,7 +3028,7 @@ function Home() {
       }), currentContact ? modalType === "view" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "react-modal-body",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
-          children: ["CPF: ", "".concat(currentContact.cpf) || ""]
+          children: ["CPF: ", (_currentContact$cpf = currentContact.cpf) !== null && _currentContact$cpf !== void 0 ? _currentContact$cpf : "Não informado"]
         }), currentContact.emails.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
             children: "Emails: "
@@ -3297,7 +3298,6 @@ function Register() {
       emails: emails,
       phone_numbers: phone_numbers
     };
-    console.log(data);
     _services_api__WEBPACK_IMPORTED_MODULE_4__.api.post("contacts", data).then(function (response) {
       if (response.status === 201) {
         react_toastify__WEBPACK_IMPORTED_MODULE_6__.toast.success("Contato cadastrado com sucesso! 😉", {
