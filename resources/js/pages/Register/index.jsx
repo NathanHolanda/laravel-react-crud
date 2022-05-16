@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SpinnerCircularFixed } from "spinners-react";
 import InputMask from "react-input-mask";
+import { cpf } from 'cpf-cnpj-validator';
 
 function Register(){
     const [form, setForm] = useState({
@@ -26,9 +27,7 @@ function Register(){
     const schema = yup.object({
         name: yup.string().min(2, "Nome inválido.").required("Nome obrigatório."),
         surname: yup.string().min(2, "Sobrenome inválido.").required("Sobrenome obrigatório."),
-        cpf: yup.string().matches(/((\d{3}\.){2}\d{3}\-\d{2})|/, "CPF inválido.").nullable().notRequired(),
-        email: yup.string().matches(/[^\s]+@[^\s]+\.[^\s]+[^\s]*|/, "E-mail inválido.").nullable().notRequired(),
-        phone_number: yup.string().matches(/\(\d{2}\) 9\d{4}\-\d{4}/, "Número de telefone inválido.")
+        phone_number: yup.string().matches(/\(\d{2}\) 9\d{4}\-\d{4}/, "Número de telefone inválido.").required("Número de telefone obrigatório")
     })
 
     const [errors, setErrors] = useState(null)
@@ -90,25 +89,73 @@ function Register(){
                 setIsLoading(false)
             })
     }
+    const validateForm = async (event) => {
+        event.preventDefault()
+
+        let isCpfValid = true
+        let isEmailValid = true
+        if(form.cpf !== ""){
+            const cpfNumbers = form.cpf.replace(".", "").replace("-", "")
+            isCpfValid = cpf.isValid(cpfNumbers)
+        }
+        if(form.email !== "")
+            isEmailValid = form.email.match(/[^\s]+@[^\s]+\.[^\s]+/)
+
+        const invalidEmails = []
+        const invalidPhoneNumbers = []
+        Array(countEmails).fill(0).forEach((_, i) => {
+            let valid = true
+            const key = `email${i + 1}`
+
+            if( form[key] && !deletedFields.includes(key) )
+                valid = form[key].match(/[^\s]+@[^\s]+\.[^\s]+/)
+
+            if( !valid ) invalidEmails.push(key)
+        })
+        console.log(countPhoneNumbers)
+        Array(countPhoneNumbers).fill(0).forEach((_, i) => {
+            let valid = true
+            const key = `phone_number${i + 1}`
+
+            if( form[key] && !deletedFields.includes(key) )
+                valid = form[key].match(/\(\d{2}\) 9\d{4}\-\d{4}/)
+
+            if( !valid ) invalidPhoneNumbers.push(key)
+        })
+
+        const errorsFound = {}
+
+        if(!isCpfValid)
+            errorsFound.cpf = "CPF inválido."
+        if(!isEmailValid)
+            errorsFound.email = "E-mail inválido."
+
+        if(invalidEmails.length > 0)
+            invalidEmails.forEach(item => errorsFound[item] = "E-mail inválido.")
+        if(invalidPhoneNumbers.length > 0)
+            invalidPhoneNumbers.forEach(item => errorsFound[item] = "Número de telefone inválido.")
+
+        try{
+            await schema.validate(form, {abortEarly: false})
+        }catch(errors){
+            const invalid = JSON.parse(JSON.stringify(errors))
+
+            invalid.inner.forEach(item => {
+                errorsFound[item.path] = item.errors[0]
+            })
+        }
+
+        setErrors(errorsFound)
+
+        if( Object.keys(errors).length > 0 )
+            onSubmit(form)
+    }
 
     return (
         <main className={styles.container}>
             <Layout>
                 <h1>Novo contato</h1>
-                <form onSubmit={event => {
-                    event.preventDefault()
-
-                    schema.validate(form, {abortEarly: false})
-                        .then(data => onSubmit(data))
-                        .catch(data => {
-                            const invalid = JSON.parse(JSON.stringify(data))
-                            const errors = {}
-                            invalid.inner.forEach(item => {
-                                errors[item.path] = item.errors[0]
-                            })
-                            setErrors(errors)
-                        })
-                }}>
+                <form onSubmit={validateForm}>
                     <div className={styles.formFields}>
                         <div className={styles.formControl}>
                             <label htmlFor="name">Nome *</label>
@@ -161,7 +208,7 @@ function Register(){
                             <div className={styles.inputBox}>
                                 <input
                                   id="email"
-                                  type="email"
+                                  type="text"
                                   className={ submitClicked && errors?.email ? styles.errorFieldBorder : "" }
                                   value={form.email}
                                   onChange={event => setForm({
@@ -181,12 +228,15 @@ function Register(){
                         </div>
                         {
                             [...Array(countEmails)].map((_, i) => {
+                                const key = `email${i + 1}`
+                                const error = submitClicked && errors && errors[key] ? errors[key] : null
+
                                 return (
                                     <AddedField
                                         key={i + 1}
                                         label="E-mail"
-                                        id={`email${i + 1}`}
-                                        type="email"
+                                        id={key}
+                                        error={error}
                                         styles={styles}
                                         deleted={{
                                             deletedFields,
@@ -225,13 +275,16 @@ function Register(){
                         </div>
                         {
                             [...Array(countPhoneNumbers)].map((_, i) => {
+                                const key = `phone_number${i + 1}`
+                                const error = submitClicked && errors && errors[key] ? errors[key] : null
+
                                 return (
                                     <AddedField
                                         mask="(99) \99999-9999"
                                         key={i + 1}
                                         label="Telefone"
-                                        id={`phone_number${i + 1}`}
-                                        type="text"
+                                        id={key}
+                                        error={error}
                                         styles={styles}
                                         deleted={{
                                             deletedFields,

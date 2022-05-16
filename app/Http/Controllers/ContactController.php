@@ -185,7 +185,7 @@ class ContactController extends Controller
                     else
                         Email::where("id", $email["id"])
                             ->delete();
-                }else
+                }elseif( !empty($email["content"]) )
                     Email::create([
                         "contact_id" => $id,
                         "content" => $email["content"]

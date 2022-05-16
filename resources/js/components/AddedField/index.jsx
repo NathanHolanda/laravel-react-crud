@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import InputMask from "react-input-mask";
 
 function AddedField(props){
-    const { styles, id, type, label, formState: {
+    const { styles, id, label, formState: {
         form, setForm
     }, deleted: {
         deletedFields, setDeletedFields
-    }, mask, isEditForm } = props
+    }, mask, isEditForm, error } = props
 
     const [value, setValue] = useState("")
     useEffect(() => {
@@ -27,8 +27,9 @@ function AddedField(props){
                 <InputMask
                   mask={mask ?? ""}
                   id={id}
-                  type={type}
+                  type="text"
                   data-id={form[id]?.id ?? ""}
+                  className={ error ? styles.errorFieldBorder : "" }
                   value={form[id]?.content ?? value}
                   onChange={event => {
                         setValue(event.target.value)
@@ -50,6 +51,7 @@ function AddedField(props){
                     }
                   }
                 />
+                { error && <small className={styles.errorFieldMessage }>{ error }</small> }
                 <button
                   type="button"
                   className={styles.removeField}
