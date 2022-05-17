@@ -229,9 +229,18 @@ function EditForm(props) {
 
         setErrors(errorsFound)
 
-        if( Object.keys(errors).length > 0 )
-            onSubmit(form)
+        /* console.log(errorsFound, errors) */
+        /* if( !errors || Object.keys(errors).length === 0 )
+            onSubmit(form) */
     }
+
+    useEffect(() => {
+        if(
+            submitClicked &&
+            (!errors || Object.keys(errors).length === 0)
+        )
+            onSubmit(form)
+    }, [errors])
 
     return (
         <form onSubmit={validateForm}>

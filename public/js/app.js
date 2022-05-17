@@ -2659,9 +2659,12 @@ function EditForm(props) {
 
             case 26:
               setErrors(errorsFound);
-              if (Object.keys(errors).length > 0) onSubmit(form);
+              /* console.log(errorsFound, errors) */
 
-            case 28:
+              /* if( !errors || Object.keys(errors).length === 0 )
+                  onSubmit(form) */
+
+            case 27:
             case "end":
               return _context.stop();
           }
@@ -2674,6 +2677,9 @@ function EditForm(props) {
     };
   }();
 
+  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
+    if (submitClicked && (!errors || Object.keys(errors).length === 0)) onSubmit(form);
+  }, [errors]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("form", {
     onSubmit: validateForm,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
@@ -3488,9 +3494,10 @@ function Register() {
 
             case 24:
               setErrors(errorsFound);
-              if (Object.keys(errors).length > 0) onSubmit(form);
+              /* if( !errors || Object.keys(errors).length === 0 )
+                  onSubmit(form) */
 
-            case 26:
+            case 25:
             case "end":
               return _context.stop();
           }
@@ -3503,6 +3510,9 @@ function Register() {
     };
   }();
 
+  (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(function () {
+    if (submitClicked && (!errors || Object.keys(errors).length === 0)) onSubmit(form);
+  }, [errors]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("main", {
     className: _styles_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].container,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(_components_Layout__WEBPACK_IMPORTED_MODULE_1__.Layout, {
@@ -3774,10 +3784,12 @@ function Search() {
       setIsLoading = _useState8[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    setIsLoading(true);
     var url = new URL(location.href);
     setQuery(url.searchParams.get("q"));
-    _services_api__WEBPACK_IMPORTED_MODULE_4__.api.get("search/contacts?q=".concat(query)).then(function (response) {
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
+    setIsLoading(true);
+    if (query !== "") _services_api__WEBPACK_IMPORTED_MODULE_4__.api.get("search/contacts?q=".concat(query)).then(function (response) {
       var total = response.data.total;
       var totalPages = Math.ceil(total / perPage);
       setPageCount(totalPages);
@@ -3786,7 +3798,10 @@ function Search() {
       setIsLoading(false);
       setCurrentItems(contacts);
     });
-  }, []);
+  }, [query]);
+  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
+    return console.log(currentItems);
+  }, [currentItems]);
 
   function handlePageClick(event) {
     var page = event.selected + 1;

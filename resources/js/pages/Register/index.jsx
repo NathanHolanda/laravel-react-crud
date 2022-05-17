@@ -2,7 +2,7 @@ import { Layout } from "../../components/Layout";
 import { RiAddLine } from "react-icons/ri";
 import styles from "./styles.module.scss";
 import { AddedField } from "../../components/AddedField"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { api } from "../../services/api"
 import * as yup from "yup";
 import { ToastContainer, toast } from 'react-toastify';
@@ -147,9 +147,17 @@ function Register(){
 
         setErrors(errorsFound)
 
-        if( Object.keys(errors).length > 0 )
-            onSubmit(form)
+        /* if( !errors || Object.keys(errors).length === 0 )
+            onSubmit(form) */
     }
+
+    useEffect(() => {
+        if(
+            submitClicked &&
+            (!errors || Object.keys(errors).length === 0)
+        )
+            onSubmit(form)
+    }, [errors])
 
     return (
         <main className={styles.container}>

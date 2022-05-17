@@ -16,24 +16,29 @@ function Search() {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        setIsLoading(true)
-
         const url = new URL(location.href)
         setQuery(url.searchParams.get("q"))
-
-        api.get(`search/contacts?q=${query}`)
-            .then(response => {
-                const total = response.data.total
-                const totalPages = Math.ceil(total / perPage)
-                setPageCount(totalPages)
-
-                return response.data.contacts
-            })
-            .then(contacts => {
-                setIsLoading(false)
-                setCurrentItems(contacts)
-            })
     }, [])
+
+    useEffect(() => {
+        setIsLoading(true)
+
+        if(query !== "")
+            api.get(`search/contacts?q=${query}`)
+                .then(response => {
+                    const total = response.data.total
+                    const totalPages = Math.ceil(total / perPage)
+                    setPageCount(totalPages)
+
+                    return response.data.contacts
+                })
+                .then(contacts => {
+                    setIsLoading(false)
+                    setCurrentItems(contacts)
+                })
+    }, [query])
+
+    useEffect(() => console.log(currentItems), [currentItems])
 
     function handlePageClick(event){
         const page = event.selected + 1
